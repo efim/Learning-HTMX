@@ -1,0 +1,10 @@
+#+title: Readme
+* attempting to set up something more complex in a single small project
+** adding dependencies:
+#+begin_src scala
+//> using dep com.lihaoyi::pprint:0.8.1
+#+end_src
+
+this should be on the very top of the file, otherwise it's not visible to scala-cli
+
+that was my error for a while - having package declaration on top
