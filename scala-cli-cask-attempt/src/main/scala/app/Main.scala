@@ -6,26 +6,17 @@
 // import munit.FunSuite
 package app
 
-object Main {
-  def main(args: Array[String]) = {
-    final case class Thingy(a: String, b: Int, c: List[Double])
-    val th = Thingy("hello", 1234, List(1D, 1.523, 1234.1234))
-    pprint.pprintln(th)
-    println(th)
+object Main extends cask.MainRoutes {
+  @cask.get("/")
+  def hello() = {
+    "Hello world!"
   }
 
-  // object MinimalExample extends cask.MainRoutes {
-  //   @cask.get("/")
-  //   def hello() = {
-  //     "Hello world!"
-  //   }
+  @cask.post("/do-thing")
+  def doThing(request: cask.Request) = {
+    request.text().reverse
+  }
 
-  //   @cask.post("/do-thing")
-  //   def doThing(request: cask.Request) = {
-  //     request.text().reverse
-  //   }
-
-  //   initialize()
-  // }
+  initialize()
 
 }

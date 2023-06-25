@@ -8,3 +8,17 @@
 this should be on the very top of the file, otherwise it's not visible to scala-cli
 
 that was my error for a while - having package declaration on top
+** replicating simplest cask example
+https://github.com/com-lihaoyi/cask/blob/master/example/minimalApplication/app/src/MinimalApplication.scala
+*** and it works!
+opening localhost:8080 shows "Hello world!"
+
+and opening Network tab, refreshing to see get request,
+and doing "Edit and Resend" to issue Post to /do-thing with some text in body
+returns the result with test reversed.
+
+this is really nice.
+** what i'd really like though is browser refresh.
+i suppose that can be added to emacs? also on file save :shrug: somehow
+** for the future - more details on things of cask
+https://com-lihaoyi.github.io/cask/index.html#minimal-example
