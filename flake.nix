@@ -13,6 +13,7 @@
               pkgs.scala-cli
               pkgs.sbt
               pkgs.scalafmt
+              pkgs.nodePackages.tailwindcss
             ];
           };
         }

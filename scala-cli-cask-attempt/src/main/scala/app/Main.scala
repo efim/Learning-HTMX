@@ -6,6 +6,7 @@ package app
 
 import scalatags.Text.all._
 import scala.util.Random
+import scalatags.Text.tags2
 
 object Main extends cask.MainRoutes {
   @cask.get("/")
@@ -13,15 +14,27 @@ object Main extends cask.MainRoutes {
     doctype("html")(
       html(
         head(
+          tags2.title("Trying out the starter page"),
+          meta(
+            charset := "UTF-8"
+          ),
+          meta(
+            name := "viewport",
+            content := "width=device-width, initial-scale=1.0"
+          ),
+          link(rel := "stylesheet", href := "/dist/output.css")
           // title("Hello testing")
         ),
         body(
+          cls := "bg-blue-50 grid place-content-center h-screen",
           div(
-            h1("This is it, the start"),
+            h1(
+              cls := "text-2xl font-bold",
+              "This is it, the start"),
             p("Let's keep going"),
             ul(
               Range(1, 15).map(index =>
-                li(a(s"article with number $index", href := s"/article/$index"))
+                li(a(s"article with number $index", href := s"/article/$index", cls := "underline text-blue-500"))
               )
             )
           )
@@ -29,6 +42,9 @@ object Main extends cask.MainRoutes {
       )
     )
   }
+
+  @cask.staticFiles("/dist")
+  def staticFileRoutes() = "/dist"
 
   @cask.get("/article/:id")
   def articlePage(id: Long) = {

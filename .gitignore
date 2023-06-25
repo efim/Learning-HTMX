@@ -2,3 +2,4 @@
 .scala-build/
 .metals/
 .direnv
+*/dist/
