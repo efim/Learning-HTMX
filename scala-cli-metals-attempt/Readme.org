@@ -1,0 +1,18 @@
+#+title: Readme
+* Attempting to have metals set up in a scala-cli project
+** now, integration with metals..
+https://scala-cli.virtuslab.org/docs/cookbooks/vscode/ - this is directly with metals
+overall with ide's - https://scala-cli.virtuslab.org/docs/guides/ide/
+*** put files into /src/main/scala
+and tests into /src/test/scala
+then i suppose close projectile tab, visit file and interactively select the project root, maybe that would be enough
+*** yeah, i think this is very much working.
+** generating .gitignore hmm
+https://scala-cli.virtuslab.org/docs/commands/misc/default-file/
+
+scala-cli default-file --write .gitignore
+** adding dependencies
+//> using dep org.scalameta::munit::1.0.0-M1
+
+i guess good enough for the super small projects with very few files?
+and i could set it in main class and they hopefully will be available for import in other files, right?
