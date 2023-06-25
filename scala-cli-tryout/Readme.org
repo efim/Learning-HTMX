@@ -1,0 +1,31 @@
+#+title: Readme
+* learning to use scala-cli in the most simple way:
+** i've just added 'scala-cli' into nix shell
+and most recent is the 1.0.1 that's good
+now overview: https://scala-cli.virtuslab.org/docs/overview
+** doing "scala-cli ." will compile all files in the directory and have them be available for referencing
+and adding --watch would run again on completion&code change
+adding --restart would restart on code change, what i'd prefer with web services, yay
+
+so, just reference other files, they are picked up from whole . directory, cool
+
+and I guess i'll be mostly using
+#+begin_src bash
+scala-cli . --restart
+#+end_src
+
+for my future experiments with cask web server, because it stays alive until it's killed
+** oh, it can do formatting!
+scala-cli fmt
+** ok, that's about running : https://scala-cli.virtuslab.org/docs/commands/run
+and later would be nice to do tests and other things
+tests : https://scala-cli.virtuslab.org/docs/commands/test
+repl : https://scala-cli.virtuslab.org/docs/commands/repl
+can start with specific file in scope
+** so, repl
+doing
+#+begin_src bash
+scala-cli repl .
+#+end_src
+
+will open repl with all entities from files available for interactive use, that's neat
