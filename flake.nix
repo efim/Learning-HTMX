@@ -10,6 +10,7 @@
         {
           devShells.default = pkgs.mkShell {
             buildInputs = [
+              pkgs.scala-cli
               pkgs.sbt
               pkgs.scalafmt
             ];
