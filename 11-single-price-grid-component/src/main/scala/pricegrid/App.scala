@@ -33,10 +33,10 @@ case class AppRoutes()(implicit cc: castor.Context,
   def index() = Page.wholePageMarkup
 
   @cask.staticFiles("/dist") // this is what path gets matched
-  def distFiles() = "dist" // this is os path where files are looked up, for the generated files
+  def distFiles() = "dist"
 
   @cask.staticFiles("/public") // this is what path gets matched
-  def publicFiles() = "public" // this is os path where files are looked up, for the committed files
+  def publicFiles() = "public"
 
   initialize()
 }
