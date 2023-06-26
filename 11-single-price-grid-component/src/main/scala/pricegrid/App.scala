@@ -8,7 +8,7 @@ import scalatags.Text.tags2
 
 object App extends cask.MainRoutes {
   @cask.get("/")
-  def index() = Page.markdown
+  def index() = Page.wholePageMarkup
 
   @cask.staticFiles("/dist") // this is what path gets matched
   def distFiles() = "dist" // this is os path where files are looked up, for the generated files
