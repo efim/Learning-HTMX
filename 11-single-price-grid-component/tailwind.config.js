@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.scala"],
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['Karla', 'sans-serif']
+      },
       colors: {
         'primary-cyan': 'hsl(179, 62%, 43%)',
         'primary-yellow': 'hsl(71, 73%, 54%)',

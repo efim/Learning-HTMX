@@ -105,6 +105,10 @@ object Page {
         ),
         tags2.title("Frontend Mentor | Single Price Grid Component"),
         link(
+          href := "https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap",
+          rel := "stylesheet",
+        ),
+        link(
           rel := "icon",
           `type` := "image/png",
           href := "/public/images/favicon-32x32.png"
