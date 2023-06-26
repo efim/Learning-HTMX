@@ -29,21 +29,21 @@ object Page {
   )
 
   lazy val joinOurCommunity = div(
-    `class` := " bg-white flex flex-col gap-y-4 p-6 py-7 ",
+    `class` := "bg-white flex flex-col gap-y-4 p-6 py-7 ",
     `class` := "md:px-10 md:gap-y-0",
     h1(
-      `class` := "text-lg text-primary-cyan font-semibold",
-      `class` := "md:text-xl md:my-3",
+      `class` := "text-xl text-primary-cyan font-bold",
+      `class` := "md:text-2xl md:my-3",
       "Join our community"
     ),
     h2(
-      `class` := "text-sm text-primary-yellow font-semibold",
-      `class` := "md:text-base md:my-2",
+      `class` := "text-sm text-primary-yellow font-bold",
+      `class` := "md:text-lg md:my-2",
       "30-day, hassle-free money back guarantee"
     ),
     p(
       `class` := "text-xs text-grayish-blue leading-loose ",
-      `class` := "md:text-sm md:leading-loose md:mb-2",
+      `class` := "md:text-base md:leading-relaxed md:mb-2",
       """
   Gain access to our full library of tutorials along with expert code reviews.
   Perfect for any developers who are serious about honing their skills.
@@ -55,32 +55,32 @@ object Page {
     `class` := "bg-bg-subscription text-white p-6 ",
     `class` := "md:p-10",
     h2(
-      `class` := "text-md font-semibold mb-4",
+      `class` := "text-md font-bold mb-4 md:text-lg",
       "Monthly Subscription"
     ),
     div(
       `class` := "flex flex-row items-center mb-2",
-      p(`class` := "text-2xl font-bold md:text-3xl", "$29"),
-      p(`class` := "font-extralight text-sm ml-3", "per month")
+      p(`class` := "text-3xl font-bold md:text-3xl", "$29"),
+      p(`class` := "font-extralight text-sm ml-3 text-neutral-gray", "per month")
     ),
     p(`class` := "text-sm", "Full access for less than $1 a day"),
     button(
-      `class` := "w-full bg-primary-yellow rounded-lg h-12 mt-7 drop-shadow-xl",
+      `class` := "w-full bg-primary-yellow rounded-lg h-12 mt-7 drop-shadow-xl font-bold",
       `class` := "md:text-md",
       "Sign Up"
     )
   )
 
   lazy val whyUs = div(
-    `class` := "bg-bg-why-us text-white p-6 ",
+    `class` := "bg-bg-why-us text-white p-6 md:text-lg",
     `class` := "md:p-10",
     h2(
-      `class` := "font-semibold mb-3",
+      `class` := "font-bold mb-3",
       "Why Us"),
     ul(
       List(
         "  Tutorials by industry experts ",
-        "  Peer &amp; expert code review ",
+        "  Peer & expert code review ",
         "  Coding exercises ",
         "  Access to our GitHub repos ",
         "  Community forum ",
@@ -88,7 +88,7 @@ object Page {
         "  New videos every week "
       ).map(linkText =>
         li(
-          `class` := "text-xs pt-1 md:font-light",
+          `class` := "text-xs text-neutral-gray pt-1 md:font-light md:text-sm md:leading-tight",
           linkText)
       )
     )

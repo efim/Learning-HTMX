@@ -6,6 +6,10 @@ module.exports = {
       fontFamily: {
         'sans': ['Karla', 'sans-serif']
       },
+      fontWeight: {
+        'normal': 400,
+        'bold': 700,
+      },
       colors: {
         'primary-cyan': 'hsl(179, 62%, 43%)',
         'primary-yellow': 'hsl(71, 73%, 54%)',
