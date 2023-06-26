@@ -6,7 +6,10 @@ package pricegrid
 import scalatags.Text.all._
 import scalatags.Text.tags2
 
-object App extends cask.MainRoutes {
+case class AppRoutes(someVal: String)(implicit cc: castor.Context,
+                           log: cask.Logger) extends cask.Routes {
+  println(s"> Starting server with param $someVal")
+
   @cask.get("/")
   def index() = Page.wholePageMarkup
 
@@ -17,4 +20,11 @@ object App extends cask.MainRoutes {
   def publicFiles() = "public" // this is os path where files are looked up, for the committed files
 
   initialize()
+}
+object App extends cask.Main {
+  override val allRoutes = Seq(AppRoutes("hello!"))
+  override def main(args: Array[String]) = {
+    println(s"server starting with args: $args")
+    super.main(Array.empty)
+  }
 }

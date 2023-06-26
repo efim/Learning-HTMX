@@ -14,6 +14,7 @@
               pkgs.sbt
               pkgs.scalafmt
               pkgs.nodePackages.tailwindcss
+              pkgs.jdk
             ];
           };
         }
