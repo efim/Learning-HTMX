@@ -8,21 +8,13 @@ import scalatags.Text.tags2
 
 object App extends cask.MainRoutes {
   @cask.get("/")
-  def index() = doctype("html")(
-    html(
-      head(
-        tags2.title("Exercise 11"),
-        link(rel := "stylesheet", href := "/dist/output.css")
-      ),
-      body(
-        cls := "bg-blue-100",
-        h1("Welcome to the future")
-      )
-    )
-  )
+  def index() = Page.markdown
 
   @cask.staticFiles("/dist") // this is what path gets matched
-  def distFiles() = "dist" // this is os path where files are looked up
+  def distFiles() = "dist" // this is os path where files are looked up, for the generated files
+
+  @cask.staticFiles("/public") // this is what path gets matched
+  def publicFiles() = "public" // this is os path where files are looked up, for the committed files
 
   initialize()
 }
