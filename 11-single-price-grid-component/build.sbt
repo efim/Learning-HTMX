@@ -7,6 +7,9 @@ ThisBuild / organization := "industries.sunshine"
 lazy val root = (project in file("."))
   .settings(
     name := "priceGrid",
+
+    assembly / mainClass := Some("pricegrid.App"),
+
     libraryDependencies ++= Seq(
       "com.lihaoyi" %% "cask" % "0.9.1",
       "com.lihaoyi" %% "scalatags" % "0.12.0",
