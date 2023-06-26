@@ -1,15 +1,34 @@
 //> using dep com.lihaoyi::cask:0.9.1
 //> using dep com.lihaoyi::scalatags:0.12.0
-
+//> using dep com.lihaoyi::mainargs:0.5.0
 package pricegrid
 
 import scalatags.Text.all._
 import scalatags.Text.tags2
+import scalatags.Text.short
+import mainargs.{main, arg, ParserForMethods}
 
-case class AppRoutes(someVal: String)(implicit cc: castor.Context,
+object App {
+  @main
+  def run(@arg(name = "post", short = 'p', doc = "Port on which server will start serving.")
+            portArg: Int = 8080,
+          @arg(name = "host", doc = "Host on which server will start serving.")
+            hostArg: String = "localhost") = {
+    println(s"Will start server on ${hostArg}:${portArg}")
+
+    val server = new cask.Main {
+      override val allRoutes = Seq(AppRoutes())
+      override def port = portArg
+      override def host = hostArg
+    }
+    server.main(Array.empty)
+  }
+
+  def main(args: Array[String]): Unit = ParserForMethods(this).runOrExit(args)
+}
+
+case class AppRoutes()(implicit cc: castor.Context,
                            log: cask.Logger) extends cask.Routes {
-  println(s"> Starting server with param $someVal")
-
   @cask.get("/")
   def index() = Page.wholePageMarkup
 
@@ -20,11 +39,4 @@ case class AppRoutes(someVal: String)(implicit cc: castor.Context,
   def publicFiles() = "public" // this is os path where files are looked up, for the committed files
 
   initialize()
-}
-object App extends cask.Main {
-  override val allRoutes = Seq(AppRoutes("hello!"))
-  override def main(args: Array[String]) = {
-    println(s"server starting with args: $args")
-    super.main(Array.empty)
-  }
 }
