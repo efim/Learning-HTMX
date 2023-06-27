@@ -13,6 +13,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
         price-grid = import ./11-single-price-grid-component/default.nix {
           inherit pkgs sbt-derivation;
+          lib = pkgs.lib;
         };
       in {
         devShells.default = pkgs.mkShell {
