@@ -55,7 +55,8 @@ let
           description = "My Java Service";
           wantedBy = [ "multi-user.target" ];
           after = [ "network.target" ];
-
+          startLimitIntervalSec = 30;
+          startLimitBurst = 10;
           serviceConfig = {
             ExecStart =
               "${pkgs.jdk}/bin/java -jar ${package}/bin/priceGridApp.jar -p ${toString cfg.port} --host ${cfg.host}";
