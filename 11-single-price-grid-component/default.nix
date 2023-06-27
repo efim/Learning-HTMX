@@ -43,6 +43,12 @@ let
           default = "localhost";
           description = "Host to bind to.";
         };
+
+        useNginx = lib.mkOption {
+          type = lib.types.bool;
+          default = true;
+          description = "Whether to use Nginx to proxy requests.";
+        };
       };
       config = lib.mkIf cfg.enable {
         users.groups.price-grid-app-group = { };
@@ -51,19 +57,29 @@ let
           group = "price-grid-app-group";
         };
 
-        systemd.services.price-grid-app = {
-          description = "My Java Service";
-          wantedBy = [ "multi-user.target" ];
-          after = [ "network.target" ];
-          startLimitIntervalSec = 30;
-          startLimitBurst = 10;
-          serviceConfig = {
-            ExecStart =
-              "${pkgs.jdk}/bin/java -jar ${package}/bin/priceGridApp.jar -p ${toString cfg.port} --host ${cfg.host}";
-            WorkingDirectory = "${package}/bin";
-            Restart = "on-failure";
-            User = "price-grid-app-user";
-            Group = "price-grid-app-group";
+        systemd.services.price-grid-app =
+          let serverHost = if cfg.useNginx then "localhost" else cfg.host;
+          in {
+            description = "My Java Service";
+            wantedBy = [ "multi-user.target" ];
+            after = [ "network.target" ];
+            startLimitIntervalSec = 30;
+            startLimitBurst = 10;
+            serviceConfig = {
+              ExecStart =
+                "${pkgs.jdk}/bin/java -jar ${package}/bin/priceGridApp.jar -p ${
+                  toString cfg.port
+                } --host ${serverHost}";
+              WorkingDirectory = "${package}/bin";
+              Restart = "on-failure";
+              User = "price-grid-app-user";
+              Group = "price-grid-app-group";
+            };
+          };
+
+        services.nginx = lib.mkIf cfg.useNginx {
+          virtualHosts.${cfg.host} = {
+            locations."/".proxyPass = "http://127.0.0.1:${toString cfg.port}";
           };
         };
       };
