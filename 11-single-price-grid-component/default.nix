@@ -60,6 +60,7 @@ let
           serviceConfig = {
             ExecStart =
               "${pkgs.jdk}/bin/java -jar ${package}/bin/priceGridApp.jar -p ${toString cfg.port} --host ${cfg.host}";
+            WorkingDirectory = "${package}/bin";
             Restart = "on-failure";
             User = "price-grid-app-user";
             Group = "price-grid-app-group";
