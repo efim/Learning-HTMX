@@ -15,6 +15,10 @@
           inherit pkgs sbt-derivation;
           lib = pkgs.lib;
         };
+        order-summary = import ./12-order-summary-component-thymeleaf/default.nix {
+          inherit pkgs sbt-derivation;
+          lib = pkgs.lib;
+        };
       in {
         devShells.default = pkgs.mkShell {
           buildInputs = [
@@ -28,6 +32,8 @@
         };
         packages.price-grid-app = price-grid.package;
         nixosModules.price-grid-app = price-grid.module;
+        packages.order-summary = order-summary.package;
+        nixosModules.order-summary = order-summary.module;
       });
   # see https://serokell.io/blog/practical-nix-flakes
 }
