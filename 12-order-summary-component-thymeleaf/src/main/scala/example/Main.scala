@@ -48,7 +48,7 @@ object Main {
       val context = new Context()
       context.setVariable("name", s"Johny $a")
 
-      val result = templateEngine.process("basic-template", context)
+      val result = templateEngine.process("index", context)
 
       cask.Response(
         result,
