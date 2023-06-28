@@ -1,0 +1,126 @@
+* Frontend Mentor - Order summary card solution
+:PROPERTIES:
+:CUSTOM_ID: frontend-mentor---order-summary-card-solution
+:END:
+This is a solution to the
+[[https://www.frontendmentor.io/challenges/order-summary-component-QlPmajDUj][Order
+summary card challenge on Frontend Mentor]]. Frontend Mentor challenges
+help you improve your coding skills by building realistic projects.
+
+** Overview
+:PROPERTIES:
+:CUSTOM_ID: overview
+:END:
+*** The challenge
+:PROPERTIES:
+:CUSTOM_ID: the-challenge
+:END:
+Users should be able to:
+
+- See hover states for interactive elements
+
+*** Screenshot
+:PROPERTIES:
+:CUSTOM_ID: screenshot
+:END:
+[[./screenshot.png]]
+
+*** Links
+:PROPERTIES:
+:CUSTOM_ID: links
+:END:
+- Solution URL: [[https://your-solution-url.com][Add solution URL here]]
+- Live Site URL: [[https://your-live-site-url.com][Add live site URL
+  here]]
+
+** My process
+:PROPERTIES:
+:CUSTOM_ID: my-process
+:END:
+*** Built with
+:PROPERTIES:
+:CUSTOM_ID: built-with
+:END:
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
+- [[https://reactjs.org/][React]] - JS library
+- [[https://nextjs.org/][Next.js]] - React framework
+- [[https://styled-components.com/][Styled Components]] - For styles
+
+*Note: These are just examples. Delete this note and replace the list
+above with your own choices*
+**** running during development
+installing "sbt-revolver":
+#+begin_src scala
+addSbtPlugin("io.spray" % "sbt-revolver" % "0.10.0")
+#+end_src
+
+then `~reStart -p 49012`
+
+otherwise =~= in front of sbt command reruns it only if it finished execution.
+
+*** What I learned
+:PROPERTIES:
+:CUSTOM_ID: what-i-learned
+:END:
+**** placing Thymeleaf templates
+if they are in src/main/resources - they should be available on class path.
+and search should be relative to the resources, i.e putting templates into dir "templates"
+then
+#+begin_src scala
+val templateResolver = new ClassLoaderTemplateResolver()
+templateResolver.setPrefix("templates/");
+templateResolver.setSuffix(".html")
+val result = templateEngine.process("index", context)
+#+end_src
+will look for file in "src/main/resources/templates/index.html" to treat as a template
+**** to reload web server during development - sbt plugin "sbt-revolver"
+
+**** with these html templates I can start learning and using Emmet mode in Emacs
+https://github.com/smihica/emmet-mode
+
+**** importing Thymeleaf template
+
+There are other methods to include templates like th:replace and th:include, which have slightly different behaviours. th:insert keeps the host tag (the div in your case), th:replace replaces the whole host tag with the fragment, and th:include replaces the inner content of the host tag with the fragment.
+**** getting responsive background image with Tailwincss
+#+begin_src html
+    <div
+      class="bg-[url('../public/images/pattern-background-mobile.svg')] fixed h-screen w-screen bg-no-repeat bg-contain md:bg-[url('../public/images/pattern-background-desktop.svg')]"
+    ></div>
+#+end_src
+
+*** Continued development
+:PROPERTIES:
+:CUSTOM_ID: continued-development
+:END:
+Use this section to outline areas that you want to continue focusing on
+in future projects. These could be concepts you're still not completely
+comfortable with or techniques you found useful that you want to refine
+and perfect.
+
+*Note: Delete this note and the content within this section and replace
+with your own plans for continued development.*
+
+*** Useful resources
+:PROPERTIES:
+:CUSTOM_ID: useful-resources
+:END:
+- [[https://www.example.com][Example resource 1]] - This helped me for
+  XYZ reason. I really liked this pattern and will use it going forward.
+- [[https://www.example.com][Example resource 2]] - This is an amazing
+  article which helped me finally understand XYZ. I'd recommend it to
+  anyone still learning this concept.
+
+*Note: Delete this note and replace the list above with resources that
+helped you during the challenge. These could come in handy for anyone
+viewing your solution or for yourself when you look back on this project
+in the future.*
+
+** Acknowledgments
+:PROPERTIES:
+:CUSTOM_ID: acknowledgments
+:END:
+Lots of gratitude to Thymeleaf templates, they seem to be very advandced and thoughtfully designed
