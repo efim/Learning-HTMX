@@ -44,7 +44,7 @@ object Main {
       val templateEngine = new TemplateEngine()
       templateEngine.setTemplateResolver(templateResolver)
 
-      val a = 11234
+      val a = 11
       val context = new Context()
       context.setVariable("name", s"Johny $a")
 
