@@ -22,6 +22,7 @@
             pkgs.sbt
             pkgs.scalafmt
             pkgs.nodePackages.tailwindcss
+            pkgs.nodePackages.prettier
             pkgs.jdk
           ];
         };

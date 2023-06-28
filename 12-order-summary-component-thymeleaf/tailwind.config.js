@@ -14,9 +14,7 @@ module.exports = {
         'sans': ['Red Hat Display', 'sans-serif'], // This will set Roboto as the default sans font
       },
       fontWeight: {
-        'thin': 100,
-        'normal': 400,
-        'semibold': 600,
+        'normal': 500,
         'bold': 700,
         'extrabold': 900,
       }
