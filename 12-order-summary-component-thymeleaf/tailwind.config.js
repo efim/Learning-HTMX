@@ -9,6 +9,7 @@ module.exports = {
         'very-pale-blue': 'hsl(225, 100%, 98%)',
         'desaturated-blue': 'hsl(224, 23%, 55%)',
         'dark-blue': 'hsl(223, 47%, 23%)',
+        'warm-blue': 'hsl(245, 83%, 68%)',
       },
       fontFamily: {
         'sans': ['Red Hat Display', 'sans-serif'], // This will set Roboto as the default sans font
