@@ -15,6 +15,7 @@ lazy val root = (project in file("."))
     libraryDependencies += (toolkitTest % Test),
     libraryDependencies ++= Seq(
       "com.lihaoyi" %% "cask" % "0.9.1",
-      "com.lihaoyi" %% "mainargs" % "0.5.0"
+      "com.lihaoyi" %% "mainargs" % "0.5.0",
+      "org.thymeleaf" % "thymeleaf" % "3.1.1.RELEASE"
     )
   )
