@@ -32,27 +32,36 @@
     </style>
   </head>
   <body >
-    <div class="py-20 px-7 space-y-7 text-white bg-light-grayish-blue">
+    <div class="py-20 px-7 space-y-7 h-screen text-white bg-light-grayish-blue">
       <section
-        class="py-7 px-10 space-y-4 rounded-xl bg-moderate-violet first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow"
+        th:each="testimonial : ${testimonials}"
+        th:classappend="${testimonial.additionalClasses}"
+        class="py-7 px-10 space-y-4 rounded-xl first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow bg-moderate-violet"
       >
         <div class="flex items-center">
           <img
             alt="Avatar image"
             src="../../../../public/images/image-daniel.jpg"
+            th:src="${testimonial.avatarUrl}"
             class="mr-5 w-10 h-10 rounded-full border-2 border-gray-400"
           />
           <div class="grow">
-            <h1>Daniel Clifford</h1>
+            <h1
+              th:text="${testimonial.author}"
+            >Daniel Clifford</h1>
             <p class="text-sm opacity-50">Verified Graduate</p>
           </div>
         </div>
-        <h2 class="text-2xl">
+        <h2 class="text-2xl"
+            th:text="${testimonial.header}"
+        >
           I received a job offer mid-course, and the subjects I learned were
           current, if not more so, in the company I joined. I honestly feel I
           got every penny’s worth.
         </h2>
-        <p class="opacity-[70%] pb-2">
+        <p class="opacity-[70%] pb-2"
+            th:text="${testimonial.text}"
+        >
           “ I was an EMT for many years before I joined the bootcamp. I’ve been
           looking to make a transition and have heard some people who had an
           amazing experience here. I signed up for the free intro course and
@@ -64,6 +73,7 @@
       </section>
 
       <section
+        th:remove="all"
         class="py-7 px-10 space-y-4 rounded-xl bg-very-dark-grayish-blue first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow"
       >
         <div class="flex items-center">
@@ -87,6 +97,7 @@
         </p>
       </section>
       <section
+        th:remove="all"
         class="py-7 px-10 space-y-4 rounded-xl bg-white text-very-dark-blackish-blue first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow"
       >
         <div class="flex items-center">
@@ -107,6 +118,7 @@
         </p>
       </section>
       <section
+        th:remove="all"
         class="py-7 px-10 space-y-4 rounded-xl bg-very-dark-blackish-blue text-white first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow"
       >
         <div class="flex items-center">
@@ -136,6 +148,7 @@
       </section>
 
       <section
+        th:remove="all"
         class="py-7 px-10 space-y-4 rounded-xl bg-white text-very-dark-blackish-blue first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow"
       >
         <div class="flex items-center">
