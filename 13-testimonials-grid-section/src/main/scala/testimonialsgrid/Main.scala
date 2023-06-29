@@ -7,6 +7,8 @@ import org.thymeleaf.context.Context
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
 import org.thymeleaf.TemplateEngine
 
+import scala.jdk.CollectionConverters._
+
 object Main {
   @main def run(
       @arg(
@@ -42,7 +44,54 @@ object Main {
     @cask.get("/")
     def index() = {
       val context = new Context()
-      context.setVariable("name", s"Johny")
+
+      import scala.beans.BeanProperty
+      final case class Testimonial(
+          @BeanProperty var author: String,
+          @BeanProperty var text: String,
+          @BeanProperty var age: Int
+      )
+
+      class CompatTestimonial {
+        @BeanProperty var author: String = _
+        @BeanProperty var text: String = _
+        @BeanProperty var age: Int = _
+
+        // Auxiliary constructor
+        def this(author: String, text: String, age: Int) = {
+          this() // Call to the primary constructor
+          this.author = author
+          this.text = text
+          this.age = age
+        }
+      }
+      val yo = new CompatTestimonial("Leopold", "Miawu", 188)
+      // val yo = Testimonial("Leopold", "Miawu", 188)
+
+      // let's experiment. ugh
+      class Person(
+          @BeanProperty var firstName: String,
+          @BeanProperty var lastName: String,
+          @BeanProperty var age: Int
+      ) {
+        override def toString: String =
+          return String.format("%s, %s, %d", firstName, lastName, age)
+      }
+      val p = new Person("Efim", "Nefedov", 31)
+      println(p)
+      // println(p.getFirstName)
+
+      val ugh = new JTestimonial("Hell", "lala", 1234)
+
+      context.setVariable("justString", "oh why oh why")
+      context.setVariable("oneTestimonial", ugh)
+      context.setVariable(
+        "testimonials",
+        List(
+          new JTestimonial("Leopold", "Miawu", 91),
+          new JTestimonial("Aragorn", "And my sword!", 55)
+        ).asJava
+      )
       val result = templateEngine.process("index", context)
       cask.Response(
         result,

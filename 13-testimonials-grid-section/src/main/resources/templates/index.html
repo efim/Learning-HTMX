@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link href="/dist/output.css" rel="stylesheet">
+  <link href="../../../../dist/output.css" rel="stylesheet" th:remove="all">
   <link rel="icon" type="image/png" sizes="32x32" href=".public/images/favicon-32x32.png">
-  
+
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap" rel="stylesheet">
   <title>Frontend Mentor | [Challenge Name Here]</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
@@ -15,59 +17,82 @@
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 </head>
-<body class="bg-amber-200">
-  Daniel Clifford
-  Verified Graduate
+<body class="bg-light-grayish-blue py-20 px-7">
+  <section
+    th:fragment="testimonialCard(t)"
+    class="bg-moderate-violet"
+    th:remove="tag"
+  >
+    some unconditional text
+    <p th:text="${t}">Daniel Clifford</p>
+    <!-- <p th:text="${t.author}">author name</p> -->
+  </section>
 
-  I received a job offer mid-course, and the subjects I learned were current, if not more so, 
-  in the company I joined. I honestly feel I got every penny’s worth.
+  <p th:text="${oneTestimonial.author}">
+    "Hello"
+  </p>
+  <!-- <section th:replace=":: testimonialCard(${oneTestimonial})"> </section> -->
 
-  “ I was an EMT for many years before I joined the bootcamp. I’ve been looking to make a 
-  transition and have heard some people who had an amazing experience here. I signed up 
-  for the free intro course and found it incredibly fun! I enrolled shortly thereafter. 
-  The next 12 weeks was the best - and most grueling - time of my life. Since completing 
-  the course, I’ve successfully switched careers, working as a Software Engineer at a VR startup. ”
+  <div th:each="t : ${testimonials}">
+    <span th:text="${t.author}">author</span> and <span th:text="${t.text}">the text</span>
+    <!-- <section th:replace=":: testimonialCard(${testimonial})"> </section> -->
+  </div>
+  <section
+    th:if="${#lists.isEmpty(testimonials)}"
+  >
+    Jonathan Walters
+    Verified Graduate
 
-  Jonathan Walters
-  Verified Graduate
+    The team was very supportive and kept me motivated
 
-  The team was very supportive and kept me motivated
+    “ I started as a total newbie with virtually no coding skills. I now work as a mobile engineer
+    for a big company. This was one of the best investments I’ve made in myself. ”
+  </section>
 
-  “ I started as a total newbie with virtually no coding skills. I now work as a mobile engineer 
-  for a big company. This was one of the best investments I’ve made in myself. ”
+  <section
+    th:if="${#lists.isEmpty(testimonials)}"
+  >
+    Jeanette Harmon
+    Verified Graduate
 
-  Jeanette Harmon
-  Verified Graduate
+    An overall wonderful and rewarding experience
 
-  An overall wonderful and rewarding experience
+    “ Thank you for the wonderful experience! I now have a job I really enjoy, and make a good living
+    while doing something I love. ”
+  </section>
 
-  “ Thank you for the wonderful experience! I now have a job I really enjoy, and make a good living 
-  while doing something I love. ”
+  <section
+    th:if="${#lists.isEmpty(testimonials)}"
+  >
+    Patrick Abrams
+    Verified Graduate
 
-  Patrick Abrams
-  Verified Graduate
+    Awesome teaching support from TAs who did the bootcamp themselves. Getting guidance from them and
+    learning from their experiences was easy.
 
-  Awesome teaching support from TAs who did the bootcamp themselves. Getting guidance from them and 
-  learning from their experiences was easy.
+    “ The staff seem genuinely concerned about my progress which I find really refreshing. The program
+    gave me the confidence necessary to be able to go out in the world and present myself as a capable
+    junior developer. The standard is above the rest. You will get the personal attention you need from
+    an incredible community of smart and amazing people. ”
+  </section>
 
-  “ The staff seem genuinely concerned about my progress which I find really refreshing. The program 
-  gave me the confidence necessary to be able to go out in the world and present myself as a capable 
-  junior developer. The standard is above the rest. You will get the personal attention you need from 
-  an incredible community of smart and amazing people. ”
+  <section
+    th:if="${#lists.isEmpty(testimonials)}"
+  >
+    Kira Whittle
+    Verified Graduate
 
-  Kira Whittle
-  Verified Graduate
+    Such a life-changing experience. Highly recommended!
 
-  Such a life-changing experience. Highly recommended!
-
-  “ Before joining the bootcamp, I’ve never written a line of code. I needed some structure from 
-  professionals who can help me learn programming step by step. I was encouraged to enroll by a former 
-  student of theirs who can only say wonderful things about the program. The entire curriculum and staff 
-  did not disappoint. They were very hands-on and I never had to wait long for assistance. The agile team 
-  project, in particular, was outstanding. It took my learning to the next level in a way that no tutorial 
-  could ever have. In fact, I’ve often referred to it during interviews as an example of my developent 
-  experience. It certainly helped me land a job as a full-stack developer after receiving multiple offers. 
-  100% recommend! ”
+    “ Before joining the bootcamp, I’ve never written a line of code. I needed some structure from
+    professionals who can help me learn programming step by step. I was encouraged to enroll by a former
+    student of theirs who can only say wonderful things about the program. The entire curriculum and staff
+    did not disappoint. They were very hands-on and I never had to wait long for assistance. The agile team
+    project, in particular, was outstanding. It took my learning to the next level in a way that no tutorial
+    could ever have. In fact, I’ve often referred to it during interviews as an example of my developent
+    experience. It certainly helped me land a job as a full-stack developer after receiving multiple offers.
+    100% recommend! ”
+  </section>
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
