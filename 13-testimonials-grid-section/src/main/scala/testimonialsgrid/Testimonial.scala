@@ -16,17 +16,9 @@ object Testimonial {
       "public/images/image-patrick.jpg",
       "Leopold",
       "  Odio facilisis mauris sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices. ",
-      "  Nibh sed pulvinar proin gravida hendrerit? Massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero nunc, consequat interdum varius sit amet, mattis vulputate enim nulla aliquet porttitor lacus! ",
+      "  Nibh sed pulvinar proin gravida hendrerit? Massa tincidunt nunc pulvinar sapien et ligula libero nunc!",
       91,
-      "!bg-red-500"
-    ),
-    new Testimonial(
-      "public/images/image-jeanette.jpg",
-      "Jeanatte Mamamia",
-      "  Id venenatis a, condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus, urna et pharetra pharetra! ",
-      "  Amet nulla facilisi morbi tempus iaculis urna, id volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Lorem dolor, sed viverra ipsum nunc aliquet bibendum? ",
-      91,
-      "!bg-green-200 !text-black"
+      "bg-red-500"
     ),
     new Testimonial(
       "public/images/image-jonathan.jpg",
@@ -34,8 +26,26 @@ object Testimonial {
       "  Eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum! ",
       "  Egestas fringilla phasellus faucibus scelerisque eleifend! Dignissim enim, sit amet venenatis urna cursus eget nunc scelerisque viverra mauris, in aliquam sem fringilla ut morbi tincidunt augue interdum velit euismod in! ",
       55,
-      "!bg-blue-500"
-    )
+      "bg-blue-500 md:col-span-2"
+    ),
+    new Testimonial(
+      "public/images/image-jeanette.jpg",
+      "Jeanatte Mamamia",
+      "  Id venenatis a, condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus, urna et pharetra pharetra! ",
+      "  Amet nulla facilisi morbi tempus iaculis urna, id volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Lorem dolor, sed viverra ipsum nunc aliquet bibendum? ",
+      91,
+      "bg-green-200 text-black md:row-span-2"
+    ),
+        new Testimonial(
+      "public/images/image-kira.jpg",
+      "Mamma mia",
+      "  Id venenatis a, condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus, urna et pharetra pharetra! ",
+      """        Quis hendrerit dolor magna eget est lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis! Nam libero justo, laoreet sit amet cursus sit amet, dictum sit amet justo donec.
+""",
+      91,
+      "bg-amber-200 text-black md:col-span-2"
+    ),
+
   )
 
   val sameAsRequested = List(
@@ -52,7 +62,7 @@ object Testimonial {
   the course, I’ve successfully switched careers, working as a Software Engineer at a VR startup. ”
 """,
       55,
-      "!bg-moderate-violet"
+      "bg-moderate-violet md:col-span-2"
     ),
     new Testimonial(
       "public/images/image-jonathan.jpg",
@@ -61,7 +71,7 @@ object Testimonial {
       """      "  Egestas fringilla phasellus faucibus scelerisque eleifend! Dignissim enim, sit amet venenatis urna cursus eget nunc scelerisque viverra mauris, in aliquam sem fringilla ut morbi tincidunt augue interdum velit euismod in! ",
 """,
       55,
-      "!bg-very-dark-grayish-blue"
+      "bg-very-dark-grayish-blue md:col-span-1"
     ),
     new Testimonial(
       "public/images/image-jeanette.jpg",
@@ -71,7 +81,7 @@ object Testimonial {
   while doing something I love. ”
 """,
       55,
-      "!bg-white !text-very-dark-blackish-blue"
+      "bg-white text-very-dark-blackish-blue md:col-span-1"
     ),
     new Testimonial(
       "public/images/image-patrick.jpg",
@@ -84,16 +94,26 @@ object Testimonial {
   an incredible community of smart and amazing people. ”
 """,
       55,
-      "!bg-bg-very-dark-blackish-blue"
+      "bg-very-dark-blackish-blue md:col-span-2"
     ),
     new Testimonial(
       "public/images/image-kira.jpg",
       "Kira Whittle",
       "  Such a life-changing experience. Highly recommended! ",
-      """      "  Egestas fringilla phasellus faucibus scelerisque eleifend! Dignissim enim, sit amet venenatis urna cursus eget nunc scelerisque viverra mauris, in aliquam sem fringilla ut morbi tincidunt augue interdum velit euismod in! ",
+      """          “ Before joining the bootcamp, I’ve never written a line of code. I
+          needed some structure from professionals who can help me learn
+          programming step by step. I was encouraged to enroll by a former
+          student of theirs who can only say wonderful things about the program.
+          The entire curriculum and staff did not disappoint. They were very
+          hands-on and I never had to wait long for assistance. The agile team
+          project, in particular, was outstanding. It took my learning to the
+          next level in a way that no tutorial could ever have. In fact, I’ve
+          often referred to it during interviews as an example of my developent
+          experience. It certainly helped me land a job as a full-stack
+          developer after receiving multiple offers. 100% recommend! ”
 """,
       55,
-      "!bg-white !text-very-dark-blackish-blue"
+      "bg-white text-very-dark-blackish-blue md:row-span-2 md:col-end-[-1] md:row-start-1"
     )
   )
 

@@ -31,12 +31,12 @@
       }
     </style>
   </head>
-  <body class="grid place-content-center bg-light-grayish-blue">
+  <body class="grid place-content-center bg-light-grayish-blue grid-flow-dense">
     <div class="py-20 px-7 space-y-7 min-h-screen text-white md:grid md:gap-[30px] md:py-0 md:px-0 h-max max-w-[1200px] md:grid-cols-[repeat(auto-fill,_255px)] md:auto-rows-[280px] md:mt-[160px] md:space-y-0">
       <section
         th:each="testimonial : ${testimonials}"
-        th:classappend="${testimonial.additionalClasses}"
-        class="py-7 px-10 flex flex-col justify-between rounded-xl first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow bg-moderate-violet md:col-span-2"
+        th:classappend="${testimonial.additionalClasses}? ${testimonial.additionalClasses} : 'bg-moderate-violet md:col-span-2'"
+        class="py-7 px-10 flex flex-col justify-between rounded-xl first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow   "
       >
         <div class="flex items-center">
           <img
@@ -165,6 +165,7 @@
         <h2 class="text-2xl">
           Such a life-changing experience. Highly recommended!
         </h2>
+        Quis hendrerit dolor magna eget est lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis! Nam libero justo, laoreet sit amet cursus sit amet, dictum sit amet justo donec.
         <p class="opacity-[70%] pb-2 leading-snug">
           “ Before joining the bootcamp, I’ve never written a line of code. I
           needed some structure from professionals who can help me learn

@@ -46,7 +46,7 @@ object Main {
       val context = new Context()
       context.setVariable(
         "testimonials",
-        Testimonial.colorful.asJava
+        Testimonial.sameAsRequested.asJava
       )
       val result = templateEngine.process("index", context)
       cask.Response(
