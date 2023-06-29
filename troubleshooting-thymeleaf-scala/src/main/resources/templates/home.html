@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Good Thymes Virtual Grocery</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div th:remove="all">
+        <section th:fragment="mySection(dateVar, person)" >
+            This is text
+            <p th:text="${dateVar}">
+                and this should be dinamic
+            </p>
+            <p th:text="${person}">
+                and this for the person
+            </p>
+            <p th:text="${me.firstName}">
+                and this for the outer state
+            </p>
+        </section>
+    </div>
+    <div th:remove="all">
+        <div th:fragment="myDiv" >
+            anohter fragment
+            <p th:text="${onevar}">
+                here should use onevar
+            </p>
+        </div>
+    </div>
+
+    <h2>here check myDiv fragment</h2>
+    <div th:replace="::myDiv" th:with="onevar=${me}"></div>
+    <div th:replace="::myDiv (onevar=${me})"></div>
+
+    <h2>here check secion fragment</h2>
+    <section th:replace=":: mySection(${today}, ${me})">
+    </section>
+	<p>Today is: <span th:text="${today}">13 February 2011</span></p>
+	<p>Testing class: <span th:text="${me.firstName}">John Doe</span></p>
+</body>
+</html>
