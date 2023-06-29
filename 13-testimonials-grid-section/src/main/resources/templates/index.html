@@ -31,12 +31,12 @@
       }
     </style>
   </head>
-  <body >
-    <div class="py-20 px-7 space-y-7 min-h-screen text-white h-max bg-light-grayish-blue">
+  <body class="grid place-content-center bg-light-grayish-blue">
+    <div class="py-20 px-7 space-y-7 min-h-screen text-white md:grid md:gap-[30px] md:py-0 md:px-0 h-max max-w-[1200px] md:grid-cols-[repeat(auto-fill,_255px)] md:auto-rows-[280px] md:mt-[160px] md:space-y-0">
       <section
         th:each="testimonial : ${testimonials}"
         th:classappend="${testimonial.additionalClasses}"
-        class="py-7 px-10 space-y-4 rounded-xl first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow bg-moderate-violet"
+        class="py-7 px-10 flex flex-col justify-between rounded-xl first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow bg-moderate-violet md:col-span-2"
       >
         <div class="flex items-center">
           <img
@@ -59,7 +59,7 @@
           current, if not more so, in the company I joined. I honestly feel I
           got every penny’s worth.
         </h2>
-        <p class="opacity-[70%] pb-2"
+        <p class="opacity-[70%] pb-2 leading-snug"
             th:text="${testimonial.text}"
         >
           “ I was an EMT for many years before I joined the bootcamp. I’ve been
@@ -74,7 +74,7 @@
 
       <section
         th:remove="all"
-        class="py-7 px-10 space-y-4 rounded-xl bg-very-dark-grayish-blue first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow"
+        class="py-7 px-10 flex flex-col justify-between rounded-xl bg-very-dark-grayish-blue first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow"
       >
         <div class="flex items-center">
           <img
@@ -90,7 +90,7 @@
         <h2 class="text-2xl">
           The team was very supportive and kept me motivated
         </h2>
-        <p class="opacity-[70%] pb-2">
+        <p class="opacity-[70%] pb-2 leading-snug">
           “ I started as a total newbie with virtually no coding skills. I now
           work as a mobile engineer for a big company. This was one of the best
           investments I’ve made in myself. ”
@@ -98,7 +98,7 @@
       </section>
       <section
         th:remove="all"
-        class="py-7 px-10 space-y-4 rounded-xl bg-white text-very-dark-blackish-blue first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow"
+        class="py-7 px-10 flex flex-col justify-between rounded-xl bg-white text-very-dark-blackish-blue first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow"
       >
         <div class="flex items-center">
           <img
@@ -108,18 +108,18 @@
           />
           <div class="grow">
             <h1>Jeanette Harmon</h1>
-            <p class="text-sm opacity-50">Verified Graduate</p>
+            <p class="text-sm leading-snug opacity-50">Verified Graduate</p>
           </div>
         </div>
         <h2 class="text-2xl">An overall wonderful and rewarding experience</h2>
-        <p class="opacity-[70%] pb-2">
+        <p class="opacity-[70%] pb-2 leading-snug">
           “ Thank you for the wonderful experience! I now have a job I really
           enjoy, and make a good living while doing something I love. ”
         </p>
       </section>
       <section
         th:remove="all"
-        class="py-7 px-10 space-y-4 rounded-xl bg-very-dark-blackish-blue text-white first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow"
+        class="py-7 px-10 flex flex-col justify-between rounded-xl bg-very-dark-blackish-blue text-white first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow md:col-span-2"
       >
         <div class="flex items-center">
           <img
@@ -129,7 +129,7 @@
           />
           <div class="grow">
             <h1>Patrick Abrams</h1>
-            <p class="text-sm opacity-50">Verified Graduate</p>
+            <p class="text-sm leading-snug opacity-50">Verified Graduate</p>
           </div>
         </div>
         <h2 class="text-2xl">
@@ -137,7 +137,7 @@
           Getting guidance from them and learning from their experiences was
           easy.
         </h2>
-        <p class="opacity-[70%] pb-2">
+        <p class="opacity-[70%] pb-2 leading-snug">
           “ The staff seem genuinely concerned about my progress which I find
           really refreshing. The program gave me the confidence necessary to be
           able to go out in the world and present myself as a capable junior
@@ -149,7 +149,7 @@
 
       <section
         th:remove="all"
-        class="py-7 px-10 space-y-4 rounded-xl bg-white text-very-dark-blackish-blue first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow"
+        class="py-7 px-10 flex flex-col justify-between rounded-xl bg-white text-very-dark-blackish-blue first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow md:row-span-2 md:row-start-1 md:col-end-[-1]"
       >
         <div class="flex items-center">
           <img
@@ -165,7 +165,7 @@
         <h2 class="text-2xl">
           Such a life-changing experience. Highly recommended!
         </h2>
-        <p class="opacity-[70%] pb-2">
+        <p class="opacity-[70%] pb-2 leading-snug">
           “ Before joining the bootcamp, I’ve never written a line of code. I
           needed some structure from professionals who can help me learn
           programming step by step. I was encouraged to enroll by a former
