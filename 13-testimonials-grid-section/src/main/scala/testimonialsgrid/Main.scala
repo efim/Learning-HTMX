@@ -6,7 +6,6 @@ import cask.main.Routes
 import org.thymeleaf.context.Context
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
 import org.thymeleaf.TemplateEngine
-import scala.beans.BeanProperty
 
 import scala.jdk.CollectionConverters._
 
@@ -45,36 +44,9 @@ object Main {
     @cask.get("/")
     def index() = {
       val context = new Context()
-
-      final case class Testimonial(
-          @BeanProperty var avatarUrl: String,
-          @BeanProperty var author: String,
-          @BeanProperty var header: String,
-          @BeanProperty var text: String,
-          @BeanProperty var age: Int,
-          @BeanProperty var additionalClasses: String
-      )
-
       context.setVariable(
         "testimonials",
-        List(
-          new Testimonial(
-            "public/images/image-patrick.jpg",
-            "Leopold",
-            "  Odio facilisis mauris sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices. ",
-            "  Nibh sed pulvinar proin gravida hendrerit? Massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero nunc, consequat interdum varius sit amet, mattis vulputate enim nulla aliquet porttitor lacus! ",
-            91,
-            "!bg-red-500"
-          ),
-          new Testimonial(
-            "public/images/image-jonathan.jpg",
-            "Aragorn",
-            "  Eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum! ",
-            "  Egestas fringilla phasellus faucibus scelerisque eleifend! Dignissim enim, sit amet venenatis urna cursus eget nunc scelerisque viverra mauris, in aliquam sem fringilla ut morbi tincidunt augue interdum velit euismod in! ",
-            55,
-            "!bg-blue-500"
-          )
-        ).asJava
+        Testimonial.colorful.asJava
       )
       val result = templateEngine.process("index", context)
       cask.Response(
