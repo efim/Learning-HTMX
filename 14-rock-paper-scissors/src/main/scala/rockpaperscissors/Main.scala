@@ -26,8 +26,7 @@ object Main {
     server.main(Array.empty)
   }
 
-  def main(args: Array[String]): Unit =
-  {
+  def main(args: Array[String]): Unit = {
     println(s"got args : $args")
     ParserForMethods(this).runOrExit(args)
   }
@@ -43,11 +42,12 @@ object Main {
     templateEngine.setTemplateResolver(templateResolver)
 
     @cask.get("/")
-    def index() = {
+    def index(req: cask.Request) = {
       val context = new Context()
+      println(s"getting request for ${req.remainingPathSegments}")
       context.setVariable(
         "myVar",
-        "Hello, from Scala world"
+        "Hello, from Scala world!"
       )
       val result = templateEngine.process("index", context)
       cask.Response(
@@ -56,11 +56,11 @@ object Main {
       )
     }
 
-    @cask.staticFiles("/dist")
-    def distFiles() = "dist"
-    @cask.staticFiles("/public")
-    def publicFiles() = "public"
-
+    @cask.staticResources("/public")
+    def publicFiles(req: cask.Request) = {
+      println(s"getting request for ${req.remainingPathSegments}")
+      "public"
+    }
     initialize()
   }
 
