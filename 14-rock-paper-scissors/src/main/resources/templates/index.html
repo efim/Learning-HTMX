@@ -7,6 +7,11 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
+      href="../public/output.css"
+      th:href="'public/output.css'"
+      rel="stylesheet"
+    />
+    <link
       rel="icon"
       type="image/png"
       sizes="32x32"
@@ -17,7 +22,7 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Place favicon.ico in the root directory -->
   </head>
-  <body>
+  <body class="bg-red-500">
     <!--[if lt IE 8]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -26,7 +31,7 @@
       </p>
     <![endif]-->
     <main>
-      <h1>Hello!</h1>
+      <h1 th:class="'text-2xl text-green-700'">Hello!</h1>
       <p th:text="${myVar}">with static text</p>
     </main>
   </body>
