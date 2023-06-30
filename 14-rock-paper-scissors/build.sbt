@@ -1,4 +1,5 @@
 ThisBuild / scalaVersion := "3.2.2"
+fork := true
 
 ThisBuild / version := "0.0.1"
 ThisBuild / organization := "industries.sunshine"
