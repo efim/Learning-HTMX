@@ -19,6 +19,10 @@
           inherit pkgs sbt-derivation;
           lib = pkgs.lib;
         };
+        testimonials-grid = import ./13-testimonials-grid-section/default.nix {
+          inherit pkgs sbt-derivation;
+          lib = pkgs.lib;
+        };
       in {
         devShells.default = pkgs.mkShell {
           buildInputs = [
@@ -34,6 +38,8 @@
         nixosModules.price-grid-app = price-grid.module;
         packages.order-summary = order-summary.package;
         nixosModules.order-summary = order-summary.module;
+        packages.testimonials-grid = testimonials-grid.package;
+        nixosModules.testimonials-grid = testimonials-grid.module;
       });
   # see https://serokell.io/blog/practical-nix-flakes
 }

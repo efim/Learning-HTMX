@@ -11,15 +11,14 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href=".public/images/favicon-32x32.png"
+      href="public/images/favicon-32x32.png"
     />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap"
       rel="stylesheet"
     />
     <title>Frontend Mentor | [Challenge Name Here]</title>
 
+    <script type="text/javascript" src="public/deps/htmx.min.js"></script>
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
     <style>
       .attribution {
@@ -31,13 +30,16 @@
       }
     </style>
   </head>
-  <body class="grid place-content-center bg-light-grayish-blue grid-flow-dense">
+  <body class="grid grid-flow-col-dense place-content-center bg-light-grayish-blue">
     <div class="py-20 px-7 space-y-7 min-h-screen text-white md:grid md:gap-[30px] md:py-0 md:px-0 h-max max-w-[1200px] md:grid-cols-[repeat(auto-fill,_255px)] md:auto-rows-[280px] md:mt-[160px] md:space-y-0">
       <section
         th:fragment="testimonialSection(testimonials)"
         th:each="testimonial : ${testimonials}"
-        th:classappend="${testimonial.additionalClasses}? ${testimonial.additionalClasses} : 'bg-moderate-violet md:col-span-2'"
+        th:classappend="${testimonial.additionalSizeClasses} + ' ' + ${testimonial.additionalColorClasses}"
         class="py-7 px-10 flex flex-col justify-between rounded-xl first:bg-[url('../public/images/bg-pattern-quotation.svg')] bg-no-repeat bg-[right_2rem_top] drop-shadow   "
+        th:id="${testimonial.id}"
+        th:hx-get="'/testimonial/' + ${testimonial.id} + '?nextOrientation=' + ${testimonial.followupOrientation}"
+        hx-swap="outerHTML"
       >
         <div class="flex items-center">
           <img

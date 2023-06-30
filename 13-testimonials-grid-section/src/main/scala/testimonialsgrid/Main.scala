@@ -55,15 +55,20 @@ object Main {
       )
     }
     @cask.get("/testimonial/:id")
-    def getTestimonial(id: Int) = {
+    def getTestimonial(id: String, nextOrientation: Int) = {
+      // println(s"got params $nextOrientation")
       val context = new Context()
-      val test = Testimonial.sameAsRequested.head
-      context.setVariable(
-        "selectedTestimonials",
-        List(test).asJava
-        )
+      // wow, i need copy because attributes are vars and not vals,
+      // didn't have to think about this in a long long time
+      val foundTestimonial =
+        Testimonial.sameAsRequested.find(_.id == id).get.copy()
+
+      foundTestimonial.setNextSizeClass(nextOrientation)
+      // println(
+      //   s"should change size and orientation : $foundTestimonial "
+      // )
+      context.setVariable("selectedTestimonials", List(foundTestimonial).asJava)
       val result = templateEngine.process("testimonialSection", context)
-      println(s"will try with $test ; to get \n$result")
       cask.Response(
         result,
         headers = Seq("Content-Type" -> "text/html;charset=UTF-8")
