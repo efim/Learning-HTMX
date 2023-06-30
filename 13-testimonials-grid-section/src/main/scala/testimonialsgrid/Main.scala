@@ -54,6 +54,22 @@ object Main {
         headers = Seq("Content-Type" -> "text/html;charset=UTF-8")
       )
     }
+    @cask.get("/testimonial/:id")
+    def getTestimonial(id: Int) = {
+      val context = new Context()
+      val test = Testimonial.sameAsRequested.head
+      context.setVariable(
+        "selectedTestimonials",
+        List(test).asJava
+        )
+      val result = templateEngine.process("testimonialSection", context)
+      println(s"will try with $test ; to get \n$result")
+      cask.Response(
+        result,
+        headers = Seq("Content-Type" -> "text/html;charset=UTF-8")
+      )
+    }
+
     @cask.staticFiles("/dist")
     def distFiles() = "dist"
     @cask.staticFiles("/public")
