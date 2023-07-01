@@ -74,8 +74,8 @@
           <!-- This badge is fragment to be repeated in other pages as well -->
           <div
             th:fragment="choiceBadge (choiceBadgeData)"
-            id="paper"
             th:id="${choiceBadgeData.c.name}"
+            id="paper"
             class="top-[var(--top-offset)] left-[var(--left-offset)] w-[var(--diameter)] h-[var(--diameter)] bg-gradient-to-b rounded-full -translate-x-[var(--translation)] -translate-y-[var(--translation)] from-[var(--bg-bright)] to-[var(--bg-dark)]"
             style="
               --diameter: 8rem;

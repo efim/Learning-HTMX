@@ -63,7 +63,10 @@
              class="flex relative flex-col items-center pt-10"
         >
           <!-- This will be imported fragment -->
+          <!-- <p th:text="${playersChoiceData.c.toString}">Hello</p> -->
+          <div th:replace="index::choiceBadge (${playersChoiceData})"> </div>
           <div
+            th:remove="all"
             id="rock"
             class="top-[var(--top-offset)] left-[var(--left-offset)] w-[var(--diameter)] h-[var(--diameter)] bg-gradient-to-b rounded-full -translate-x-[var(--translation)] -translate-y-[var(--translation)] from-[var(--bg-bright)] to-[var(--bg-dark)]"
             style="
