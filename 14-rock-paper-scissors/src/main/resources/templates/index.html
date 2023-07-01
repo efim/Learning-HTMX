@@ -17,10 +17,11 @@
       href="../public/images/favicon-32x32.png"
       th:href="'public/images/favicon-32x32.png'"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Frontend Mentor | Rock, Paper, Scissors</title>
-
-    Score Rules You Picked The House Picked You Win You Lose Play Again
 
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
     <style>
@@ -34,11 +35,52 @@
     </style>
   </head>
   <body>
-    <div class="attribution">
+    <main
+      class="flex flex-col items-center pt-8 w-screen h-screen bg-gradient-to-b from-radial-gradient-top to-radial-gradient-bottom"
+    >
+      <section
+        class="flex flex-row items-center w-10/12 rounded-md border-[3px] border-header-outline h-[100px]"
+      >
+        <h1
+          class="pl-4 text-xl font-bold leading-none text-white uppercase grow"
+        >
+          <span class="block">rock</span> <span class="block">paper</span>
+          <span class="block">scissors</span>
+        </h1>
+        <h2
+          class="flex flex-col justify-around items-center py-2 mr-3 bg-white rounded-md w-[80px] h-[70px] text-score-text rouned-md"
+        >
+          <span class="text-xs uppercase">Score</span
+          ><span class="text-4xl font-extrabold">12</span>
+        </h2>
+      </section>
+      <section
+        class="w-full bg-center bg-no-repeat bg-50% bg-triangle-pattern h-[375px] h-[375px] relative"
+      >
+        <div
+          class="absolute relative top-28 left-28 w-32 h-32 bg-gradient-to-b rounded-full -translate-x-1/2 -translate-y-1/2 from-paper-brighter to-paper-darker"
+        >
+          <div
+            class="absolute top-1/2 left-1/2 w-24 h-24 bg-gradient-to-b from-gray-300 to-gray-100 rounded-full -translate-x-1/2 -translate-y-1/2"
+          ></div>
+          <img
+            src="../public/images/icon-paper.svg"
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          />
+        </div>
+        <div class="absolute top-20 right-20">
+          <img src="../public/images/icon-scissors.svg" />
+        </div>
+        <div class="absolute bottom-20 left-1/2 -translate-x-1/2">
+          <img src="../public/images/icon-rock.svg" />
+        </div>
+      </section>
+    </main>
+    <footer class="fixed inset-x-0 bottom-0 attribution">
       Challenge by
       <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
         >Frontend Mentor</a
       >. Coded by <a href="#">Your Name Here</a>.
-    </div>
+    </footer>
   </body>
 </html>
