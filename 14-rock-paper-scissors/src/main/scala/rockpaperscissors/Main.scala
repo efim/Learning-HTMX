@@ -11,6 +11,7 @@ import scala.jdk.CollectionConverters._
 import javax.swing.text.Position
 import rockpaperscissors.Models.Positioning
 import scala.util.Random
+import rockpaperscissors.Models.ShowdownState
 
 object Main {
   @main def run(
@@ -70,8 +71,13 @@ object Main {
         case Some(playersChoiceBadge) =>
           val badge = playersChoiceBadge.copy()
           badge.p = Positioning.Relative
-          context.setVariable("playersChoiceData", badge)
-          val result = templateEngine.process("showdown", Set("showdown-table").asJava, context)
+          val showdownState = ShowdownState(badge, None, false)
+          context.setVariable("showdownState", showdownState)
+          val result = templateEngine.process(
+            "showdown",
+            Set("showdown-table").asJava,
+            context
+          )
           cask.Response(
             result,
             headers = Seq("Content-Type" -> "text/html;charset=UTF-8")
@@ -82,9 +88,37 @@ object Main {
       response
     }
 
+    @cask.get("/house-choice/:playersChoice")
+    def requestHouseChoice(playersChoice: String) = {
+      val context = new Context()
+      val badge = Models.choiceSelectionItems.find(_.c.name == playersChoice)
+      val response = badge match {
+        case Some(playersChoiceBadge) =>
+          val badge = playersChoiceBadge.copy()
+          badge.p =
+            Positioning.Relative // this probably should be set in enclosing html tag
+          val houseChoice = Models.choiceSelectionItems(Random.nextInt(3)).copy()
+          houseChoice.p = Positioning.Relative
+          println(s"getting house choice $houseChoice")
+          val showdownState = ShowdownState(badge, Some(houseChoice), false)
+          context.setVariable("showdownState", showdownState)
+          val result = templateEngine.process(
+            "showdown",
+            Set("showdown-table").asJava,
+            context
+          )
+          cask.Response(
+            result,
+            headers = Seq("Content-Type" -> "text/html;charset=UTF-8")
+          )
+        case None =>
+          cask.Response(s"Unknown choice: '${playersChoice}'", 400)
+      }
+      response
+    }
+
     @cask.staticResources("/public")
     def publicFiles(req: cask.Request) = {
-      println(s"getting request for ${req.remainingPathSegments}")
       "public"
     }
 

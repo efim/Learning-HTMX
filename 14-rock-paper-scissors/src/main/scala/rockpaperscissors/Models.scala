@@ -83,4 +83,9 @@ position: absolute;
     )
   }
 
+  final case class ShowdownState(
+    var playersChoice: ChoiceBadge,
+    var houseChoice: Option[ChoiceBadge],
+    var gameEnded: Boolean
+  )
 }

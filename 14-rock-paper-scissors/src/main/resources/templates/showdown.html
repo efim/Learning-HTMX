@@ -56,64 +56,95 @@
         </h2>
       </section>
 
-      <section id="showdown-table" class="grid grid-cols-2 w-[375px] h-[375px]"
-               th:fragment="showdown-table"
-      >
-        <div id="players-choice"
-             class="flex relative flex-col items-center pt-10"
-        >
-          <!-- This will be imported fragment -->
-          <!-- <p th:text="${playersChoiceData.c.toString}">Hello</p> -->
-          <div th:replace="index::choiceBadge (${playersChoiceData})"> </div>
+      <div id="showdown-table" th:fragment="showdown-table (showdownState)">
+        <section class="grid grid-cols-2 w-[375px] h-[300px]">
           <div
-            th:remove="all"
-            id="rock"
-            class="top-[var(--top-offset)] left-[var(--left-offset)] w-[var(--diameter)] h-[var(--diameter)] bg-gradient-to-b rounded-full -translate-x-[var(--translation)] -translate-y-[var(--translation)] from-[var(--bg-bright)] to-[var(--bg-dark)]"
-            style="
-              --diameter: 8rem;
-              --bg-dark: hsl(349, 71%, 52%);
-              --bg-bright: hsl(349, 70%, 56%);
-              --top-offset: 0rem;
-              --left-offset: 0rem;
-              --translation: 0%;
-              position: relative;
-            "
+            id="players-choice"
+            class="flex relative flex-col items-center pt-14"
           >
+            <!-- This will be imported fragment -->
+            <!-- <p th:text="${showdownState}">Hello</p> -->
             <div
-              class="absolute top-1/2 left-1/2 w-3/4 h-3/4 bg-gradient-to-b from-gray-300 to-gray-100 rounded-full -translate-x-1/2 -translate-y-1/2"
+              th:replace="index::choiceBadge (${showdownState.playersChoice})"
             ></div>
-            <img
-              src="../public/images/icon-rock.svg"
-              class="absolute top-1/2 left-1/2 w-1/3 -translate-x-1/2 -translate-y-1/2"
-            />
+            <div
+              th:remove="all"
+              id="rock"
+              class="top-[var(--top-offset)] left-[var(--left-offset)] w-[var(--diameter)] h-[var(--diameter)] bg-gradient-to-b rounded-full -translate-x-[var(--translation)] -translate-y-[var(--translation)] from-[var(--bg-bright)] to-[var(--bg-dark)]"
+              style="
+                --diameter: 8rem;
+                --bg-dark: hsl(349, 71%, 52%);
+                --bg-bright: hsl(349, 70%, 56%);
+                --top-offset: 0rem;
+                --left-offset: 0rem;
+                --translation: 0%;
+                position: relative;
+              "
+            >
+              <div
+                class="absolute top-1/2 left-1/2 w-3/4 h-3/4 bg-gradient-to-b from-gray-300 to-gray-100 rounded-full -translate-x-1/2 -translate-y-1/2"
+              ></div>
+              <img
+                src="../public/images/icon-rock.svg"
+                class="absolute top-1/2 left-1/2 w-1/3 -translate-x-1/2 -translate-y-1/2"
+              />
+            </div>
+            <p
+              class="absolute top-2/3 tracking-widest text-center text-white uppercase text-md"
+            >
+              You picked
+            </p>
           </div>
-          <p class="absolute top-1/2 tracking-widest text-center text-white uppercase text-md">You picked</p>
-        </div>
 
-        <div id="house-choice"
-             class="flex relative flex-col items-center"
-        >
-          <!-- This will be imported fragment -->
-          <div
-            class="mt-14 rounded-full bg-radial-gradient-top h-[100px] w-[100px]"
+          <div id="house-choice"
+              class="flex relative flex-col items-center pt-14"
           >
+            <!-- Here will be imported fragment -->
+            <!-- conditionally either house choice or request for house choice -->
+            <!-- <div th:text="${showdownState.houseChoice.nonEmpty} ? 'nonEmpty' : 'empty'">...</div> -->
+            <div
+              th:replace="${showdownState.houseChoice.nonEmpty} ? ~{index::choiceBadge (${showdownState.houseChoice.get})} : ~{::house-choice-placeholder}"
+              class="w-0 h-0"
+              th:class=""
+            >
+              ...
+            </div>
+            <!-- This will be shown before the house made the choice, this will trigger timed request for house choice -->
+            <div class="w-full h-full" th:remove="all">
+              <div
+                class="flex relative flex-col items-center h-full"
+                th:fragment="house-choice-placeholder"
+                th:hx-get="'/house-choice/' + ${showdownState.playersChoice.c.name}"
+                hx-get="/house-choice/paper"
+                hx-target="#showdown-table"
+                hx-swap="outerHTML"
+              >
+                <div
+                  class="rounded-full mt-[1rem] bg-radial-gradient-top h-[100px] w-[100px]"
+                ></div>
+              </div>
+            </div>
+            <p
+              class="absolute top-2/3 tracking-widest text-center text-white uppercase text-md"
+            >
+              The house picked
+            </p>
           </div>
-          <p class="absolute top-1/2 tracking-widest text-center text-white uppercase text-md">The house picked</p>
-        </div>
-      </section>
+        </section>
 
-      <section
-        id="message"
-        class="text-white"
-      >
-        <p
-          class="text-6xl tracking-wide uppercase"
-        >You lose</p>
-        <button
-          class="mt-6 w-full h-12 tracking-widest uppercase bg-white rounded-xl text-radial-gradient-bottom"
-        >Play again</button>
-
-      </section>
+        <section
+          id="message"
+          class="flex flex-col items-center text-white"
+          th:classappend="${gameFinished} ? '' : 'invisible'"
+        >
+          <p class="text-6xl tracking-wide text-center uppercase">You lose</p>
+          <button
+            class="mt-6 w-9/12 h-12 tracking-widest uppercase bg-white rounded-xl text-radial-gradient-bottom"
+          >
+            Play again
+          </button>
+        </section>
+      </div>
 
       <div class="py-12">
         <button
