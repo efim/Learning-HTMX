@@ -36,10 +36,10 @@
   </head>
   <body>
     <main
-      class="flex flex-col items-center pt-8 w-screen h-screen bg-gradient-to-b from-radial-gradient-top to-radial-gradient-bottom"
+      class="flex flex-col justify-between items-center pt-8 w-screen h-screen bg-gradient-to-b from-radial-gradient-top to-radial-gradient-bottom"
     >
       <section
-        id="controls"
+        id="heading"
         class="flex flex-row items-center w-10/12 rounded-md border-[3px] border-header-outline h-[100px]"
       >
         <h1
@@ -57,7 +57,8 @@
       </section>
 
       <section
-        class="w-full bg-center bg-no-repeat bg-50% bg-triangle-pattern h-[375px] h-[375px] relative"
+        id="controls"
+        class=" bg-center bg-no-repeat bg-60% bg-triangle-pattern w-[375px] h-[375px] relative"
       >
         <div
           id="paper"
@@ -66,7 +67,7 @@
             --diameter: 8rem;
             --bg-dark: hsl(230, 89%, 62%);
             --bg-bright: hsl(230, 89%, 65%);
-            --top-offset: 7rem;
+            --top-offset: 6rem;
             --left-offset: 6rem;
           "
         >
@@ -86,7 +87,7 @@
             --diameter: 8rem;
             --bg-dark: hsl(39, 89%, 49%);
             --bg-bright: hsl(40, 84%, 53%);
-            --top-offset: 7rem;
+            --top-offset: 6rem;
             --left-offset: 17rem;
           "
         >
@@ -106,7 +107,7 @@
             --diameter: 8rem;
             --bg-dark: hsl(349, 71%, 52%);
             --bg-bright: hsl(349, 70%, 56%);
-            --top-offset: 16rem;
+            --top-offset: 15rem;
             --left-offset: 11.5rem;
           "
         >
@@ -120,6 +121,13 @@
         </div>
       </section>
 
+      <div class="py-12">
+        <button
+          class="w-32 h-10 text-base text-2xl tracking-widest text-white uppercase rounded-lg border border-white"
+        >
+          Rules
+        </button>
+      </div>
     </main>
     <footer class="fixed inset-x-0 bottom-0 attribution">
       Challenge by
