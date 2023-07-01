@@ -39,6 +39,7 @@
       class="flex flex-col items-center pt-8 w-screen h-screen bg-gradient-to-b from-radial-gradient-top to-radial-gradient-bottom"
     >
       <section
+        id="controls"
         class="flex flex-row items-center w-10/12 rounded-md border-[3px] border-header-outline h-[100px]"
       >
         <h1
@@ -54,27 +55,71 @@
           ><span class="text-4xl font-extrabold">12</span>
         </h2>
       </section>
+
       <section
         class="w-full bg-center bg-no-repeat bg-50% bg-triangle-pattern h-[375px] h-[375px] relative"
       >
         <div
-          class="absolute relative top-28 left-28 w-32 h-32 bg-gradient-to-b rounded-full -translate-x-1/2 -translate-y-1/2 from-paper-brighter to-paper-darker"
+          id="paper"
+          class="absolute top-[var(--top-offset)] left-[var(--left-offset)] w-[var(--diameter)] h-[var(--diameter)] bg-gradient-to-b rounded-full -translate-x-1/2 -translate-y-1/2 from-[var(--bg-bright)] to-[var(--bg-dark)]"
+          style="
+            --diameter: 8rem;
+            --bg-dark: hsl(230, 89%, 62%);
+            --bg-bright: hsl(230, 89%, 65%);
+            --top-offset: 7rem;
+            --left-offset: 6rem;
+          "
         >
           <div
-            class="absolute top-1/2 left-1/2 w-24 h-24 bg-gradient-to-b from-gray-300 to-gray-100 rounded-full -translate-x-1/2 -translate-y-1/2"
+            class="absolute top-1/2 left-1/2 w-3/4 h-3/4 bg-gradient-to-b from-gray-300 to-gray-100 rounded-full -translate-x-1/2 -translate-y-1/2"
           ></div>
           <img
             src="../public/images/icon-paper.svg"
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            class="absolute top-1/2 left-1/2 w-1/3 -translate-x-1/2 -translate-y-1/2"
           />
         </div>
-        <div class="absolute top-20 right-20">
-          <img src="../public/images/icon-scissors.svg" />
+
+        <div
+          id="scissors"
+          class="absolute top-[var(--top-offset)] left-[var(--left-offset)] w-[var(--diameter)] h-[var(--diameter)] bg-gradient-to-b rounded-full -translate-x-1/2 -translate-y-1/2 from-[var(--bg-bright)] to-[var(--bg-dark)]"
+          style="
+            --diameter: 8rem;
+            --bg-dark: hsl(39, 89%, 49%);
+            --bg-bright: hsl(40, 84%, 53%);
+            --top-offset: 7rem;
+            --left-offset: 17rem;
+          "
+        >
+          <div
+            class="absolute top-1/2 left-1/2 w-3/4 h-3/4 bg-gradient-to-b from-gray-300 to-gray-100 rounded-full -translate-x-1/2 -translate-y-1/2"
+          ></div>
+          <img
+            src="../public/images/icon-scissors.svg"
+            class="absolute top-1/2 left-1/2 w-1/3 -translate-x-1/2 -translate-y-1/2"
+          />
         </div>
-        <div class="absolute bottom-20 left-1/2 -translate-x-1/2">
-          <img src="../public/images/icon-rock.svg" />
+
+        <div
+          id="rock"
+          class="absolute top-[var(--top-offset)] left-[var(--left-offset)] w-[var(--diameter)] h-[var(--diameter)] bg-gradient-to-b rounded-full -translate-x-1/2 -translate-y-1/2 from-[var(--bg-bright)] to-[var(--bg-dark)]"
+          style="
+            --diameter: 8rem;
+            --bg-dark: hsl(349, 71%, 52%);
+            --bg-bright: hsl(349, 70%, 56%);
+            --top-offset: 16rem;
+            --left-offset: 11.5rem;
+          "
+        >
+          <div
+            class="absolute top-1/2 left-1/2 w-3/4 h-3/4 bg-gradient-to-b from-gray-300 to-gray-100 rounded-full -translate-x-1/2 -translate-y-1/2"
+          ></div>
+          <img
+            src="../public/images/icon-rock.svg"
+            class="absolute top-1/2 left-1/2 w-1/3 -translate-x-1/2 -translate-y-1/2"
+          />
         </div>
       </section>
+
     </main>
     <footer class="fixed inset-x-0 bottom-0 attribution">
       Challenge by

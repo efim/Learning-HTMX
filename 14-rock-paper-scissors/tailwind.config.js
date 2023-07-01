@@ -4,10 +4,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'scissors-from': 'hsl(39, 89%, 49%)',
-        'scissors-to': 'hsl(40, 84%, 53%)',
-        'paper-darker': 'hsl(230, 89%, 62%)',
-        'paper-brighter': 'hsl(230, 89%, 65%)',
+        'scissors-dark': 'hsl(39, 89%, 49%)',
+        'scissors-bright': 'hsl(40, 84%, 53%)',
+        'paper-dark': 'hsl(230, 89%, 62%)',
+        'paper-bright': 'hsl(230, 89%, 65%)',
         'rock-from': 'hsl(349, 71%, 52%)',
         'rock-to': 'hsl(349, 70%, 56%)',
         'cyan-from': 'hsl(189, 59%, 53%)',
