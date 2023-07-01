@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      href="../public/output.css"
+      th:href="'public/output.css'"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../public/images/favicon-32x32.png"
+      th:href="'public/images/favicon-32x32.png'"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Frontend Mentor | Rock, Paper, Scissors</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <main
+      class="flex flex-col justify-between items-center pt-8 w-screen h-screen bg-gradient-to-b from-radial-gradient-top to-radial-gradient-bottom"
+    >
+      <section
+        id="heading"
+        class="flex flex-row items-center w-10/12 rounded-md border-[3px] border-header-outline h-[100px]"
+      >
+        <h1
+          class="pl-4 text-xl font-bold leading-none text-white uppercase grow"
+        >
+          <span class="block">rock</span> <span class="block">paper</span>
+          <span class="block">scissors</span>
+        </h1>
+        <h2
+          class="flex flex-col justify-around items-center py-2 mr-3 bg-white rounded-md w-[80px] h-[70px] text-score-text rouned-md"
+        >
+          <span class="text-xs uppercase">Score</span
+          ><span class="text-4xl font-extrabold">12</span>
+        </h2>
+      </section>
+
+      <section id="showdown" class="grid grid-cols-2 w-[375px] h-[375px]">
+        <div id="players-choice"
+             class="flex relative flex-col items-center pt-10"
+        >
+          <!-- This will be imported fragment -->
+          <div
+            id="rock"
+            class="top-[var(--top-offset)] left-[var(--left-offset)] w-[var(--diameter)] h-[var(--diameter)] bg-gradient-to-b rounded-full -translate-x-[var(--translation)] -translate-y-[var(--translation)] from-[var(--bg-bright)] to-[var(--bg-dark)]"
+            style="
+              --diameter: 8rem;
+              --bg-dark: hsl(349, 71%, 52%);
+              --bg-bright: hsl(349, 70%, 56%);
+              --top-offset: 0rem;
+              --left-offset: 0rem;
+              --translation: 0%;
+              position: relative;
+            "
+          >
+            <div
+              class="absolute top-1/2 left-1/2 w-3/4 h-3/4 bg-gradient-to-b from-gray-300 to-gray-100 rounded-full -translate-x-1/2 -translate-y-1/2"
+            ></div>
+            <img
+              src="../public/images/icon-rock.svg"
+              class="absolute top-1/2 left-1/2 w-1/3 -translate-x-1/2 -translate-y-1/2"
+            />
+          </div>
+          <p class="absolute top-1/2 tracking-widest text-center text-white uppercase text-md">You picked</p>
+        </div>
+
+        <div id="house-choice"
+             class="flex relative flex-col items-center"
+        >
+          <!-- This will be imported fragment -->
+          <div
+            class="mt-14 rounded-full bg-radial-gradient-top h-[100px] w-[100px]"
+          >
+          </div>
+          <p class="absolute top-1/2 tracking-widest text-center text-white uppercase text-md">The house picked</p>
+        </div>
+
+      </section>
+
+      <div class="py-12">
+        <button
+          class="w-32 h-10 text-base text-2xl tracking-widest text-white uppercase rounded-lg border border-white"
+        >
+          Rules
+        </button>
+      </div>
+    </main>
+    <footer class="fixed inset-x-0 bottom-0 attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </footer>
+  </body>
+</html>
