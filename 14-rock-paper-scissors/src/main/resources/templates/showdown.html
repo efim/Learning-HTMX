@@ -117,6 +117,7 @@
                 th:hx-get="'/house-choice/' + ${showdownState.playersChoice.c.name}"
                 hx-get="/house-choice/paper"
                 hx-target="#showdown-table"
+                hx-trigger="load delay:3s"
                 hx-swap="outerHTML"
               >
                 <div
