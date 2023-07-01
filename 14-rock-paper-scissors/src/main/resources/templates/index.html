@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- displays site properly based on user's device -->
 
+    <script src="public/deps/htmx.min.js"></script>
     <link
       href="../public/output.css"
       th:href="'public/output.css'"
@@ -72,6 +73,9 @@
             --translation: 50%;
             position: absolute;
           "
+          hx-get="/select/paper"
+          hx-target="#controls"
+          hx-swap="outerHTML"
         >
           <div
             class="absolute top-1/2 left-1/2 w-3/4 h-3/4 bg-gradient-to-b from-gray-300 to-gray-100 rounded-full -translate-x-1/2 -translate-y-1/2"

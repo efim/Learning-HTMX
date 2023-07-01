@@ -5,6 +5,9 @@ import cask.main.Routes
 import org.thymeleaf.context.Context
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
 import org.thymeleaf.TemplateEngine
+import org.thymeleaf.Thymeleaf
+
+import scala.jdk.CollectionConverters._
 
 object Main {
   @main def run(
@@ -56,11 +59,22 @@ object Main {
       )
     }
 
+    @cask.get("/select/:choice")
+    def acceptPlayerVote(choice: String) = {
+      val context = new Context()
+      val result = templateEngine.process("showdown", Set("showdown-table").asJava, context)
+      cask.Response(
+        result,
+        headers = Seq("Content-Type" -> "text/html;charset=UTF-8")
+      )
+    }
+
     @cask.staticResources("/public")
     def publicFiles(req: cask.Request) = {
       println(s"getting request for ${req.remainingPathSegments}")
       "public"
     }
+
     initialize()
   }
 
