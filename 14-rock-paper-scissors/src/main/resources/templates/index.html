@@ -59,34 +59,52 @@
 
       <section
         id="controls"
-        class=" bg-center bg-no-repeat bg-60% bg-triangle-pattern w-[375px] h-[375px] relative"
+        class="bg-center bg-no-repeat bg-60% bg-triangle-pattern w-[375px] h-[375px] relative"
       >
+        <!-- This control will be repeated 3 times, with different htmx requests -->
         <div
-          id="paper"
-          class="top-[var(--top-offset)] left-[var(--left-offset)] w-[var(--diameter)] h-[var(--diameter)] bg-gradient-to-b rounded-full -translate-x-[var(--translation)] -translate-y-[var(--translation)] from-[var(--bg-bright)] to-[var(--bg-dark)]"
-          style="
-            --diameter: 8rem;
-            --bg-dark: hsl(230, 89%, 62%);
-            --bg-bright: hsl(230, 89%, 65%);
-            --top-offset: 6rem;
-            --left-offset: 6rem;
-            --translation: 50%;
-            position: absolute;
-          "
+          th:each="choiceBadgeData : ${choiceBadges}"
+          id="paper-control"
+          th:id="${choiceBadgeData.c.name} + '-control'"
           hx-get="/select/paper"
+          th:hx-get="'/select/' + ${choiceBadgeData.c.name}"
           hx-target="#controls"
           hx-swap="outerHTML"
         >
+          <!-- This badge is fragment to be repeated in other pages as well -->
           <div
-            class="absolute top-1/2 left-1/2 w-3/4 h-3/4 bg-gradient-to-b from-gray-300 to-gray-100 rounded-full -translate-x-1/2 -translate-y-1/2"
-          ></div>
-          <img
-            src="../public/images/icon-paper.svg"
-            class="absolute top-1/2 left-1/2 w-1/3 -translate-x-1/2 -translate-y-1/2"
-          />
+            th:fragment="choiceBadge (choiceBadgeData)"
+            id="paper"
+            th:id="${choiceBadgeData.c.name}"
+            class="top-[var(--top-offset)] left-[var(--left-offset)] w-[var(--diameter)] h-[var(--diameter)] bg-gradient-to-b rounded-full -translate-x-[var(--translation)] -translate-y-[var(--translation)] from-[var(--bg-bright)] to-[var(--bg-dark)]"
+            style="
+              --diameter: 8rem;
+              --bg-dark: hsl(230, 89%, 62%);
+              --bg-bright: hsl(230, 89%, 65%);
+              --top-offset: 6rem;
+              --left-offset: 6rem;
+              --translation: 50%;
+              position: absolute;
+            "
+            th:style="| --diameter: ${choiceBadgeData.c.diameter};
+                         --bg-dark: ${choiceBadgeData.c.bgDark};
+                         --bg-bright: ${choiceBadgeData.c.bgBright};
+                         ${choiceBadgeData.p.toStyle}; |"
+          >
+            <div
+              class="absolute top-1/2 left-1/2 w-3/4 h-3/4 bg-gradient-to-b from-gray-300 to-gray-100 rounded-full -translate-x-1/2 -translate-y-1/2"
+            ></div>
+            <img
+              src="../public/images/icon-paper.svg"
+              th:src="${choiceBadgeData.c.iconPath}"
+              class="absolute top-1/2 left-1/2 w-1/3 -translate-x-1/2 -translate-y-1/2"
+            />
+          </div>
         </div>
 
+        <!-- This controls is only for static preview -->
         <div
+          th:remove="all"
           id="scissors"
           class="top-[var(--top-offset)] left-[var(--left-offset)] w-[var(--diameter)] h-[var(--diameter)] bg-gradient-to-b rounded-full -translate-x-[var(--translation)] -translate-y-[var(--translation)] from-[var(--bg-bright)] to-[var(--bg-dark)]"
           style="
@@ -108,7 +126,9 @@
           />
         </div>
 
+        <!-- This controls is only for static preview -->
         <div
+          th:remove="all"
           id="rock"
           class="top-[var(--top-offset)] left-[var(--left-offset)] w-[var(--diameter)] h-[var(--diameter)] bg-gradient-to-b rounded-full -translate-x-[var(--translation)] -translate-y-[var(--translation)] from-[var(--bg-bright)] to-[var(--bg-dark)]"
           style="

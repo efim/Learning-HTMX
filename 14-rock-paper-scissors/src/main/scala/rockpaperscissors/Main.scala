@@ -47,10 +47,10 @@ object Main {
     @cask.get("/")
     def index(req: cask.Request) = {
       val context = new Context()
-      println(s"getting request for ${req.remainingPathSegments}")
+      val choices = Models.choiceSelectionItems.asJava
       context.setVariable(
-        "myVar",
-        "Hello, from Scala world!"
+        "choiceBadges",
+        choices
       )
       val result = templateEngine.process("index", context)
       cask.Response(

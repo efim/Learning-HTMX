@@ -6,14 +6,14 @@ object Models {
   sealed trait Positioning
   object Positioning {
     case object Relative extends Positioning {
-      override def toString(): String = " position: absolute; "
+      def toStyle(): String = " position: absolute; "
     }
     final case class Absolute(
         topOffset: String,
         leftOffset: String,
         translation: String = "50%"
     ) extends Positioning {
-      override def toString(): String =
+      def toStyle(): String =
         s"""
 --top-offset: $topOffset;
 --left-offset: $leftOffset;
@@ -27,6 +27,8 @@ position: absolute;
     def diameter: String
     def bgDark: String
     def bgBright: String
+    def name: String
+    def iconPath: String
   }
   object Choice {
     val scissorsDark = "hsl(39, 89%, 49%)"
@@ -40,39 +42,44 @@ position: absolute;
         diameter: String,
         bgDark: String = paperDark,
         bgBright: String = paperBright
-    ) extends Choice
+    ) extends Choice {
+      def name: String = "paper"
+      def iconPath: String = "public/images/icon-paper.svg"
+    }
     case class Scissors(
         diameter: String,
         bgDark: String = scissorsDark,
         bgBright: String = scissorsBright
-    ) extends Choice
+    ) extends Choice {
+      def name: String = "scissors"
+      def iconPath: String = "public/images/icon-scissors.svg"
+    }
     case class Rock(
         diameter: String,
         bgDark: String = rockDark,
         bgBright: String = rockBright
-    ) extends Choice
-  }
-
-  /**
-   * this will be Data Transfer Object, because Thymeleaf wants var and Bean Object Notation
-   * and i want vals and enums
-   */
-  final class ChoiceBadge(
-    var diameter: String = "",
-    var bgDark: String = "",
-    var bgBright: String = "",
-    var positioningStyle: String = "",
-  ) {
-    def this(c: Choice, p: Positioning) = {
-      this(c.diameter, c.bgDark, c.bgBright, p.toString())
+    ) extends Choice {
+      def name: String = "rock"
+      def iconPath: String = "public/images/icon-rock.svg"
     }
   }
+
+  /** this will be Data Transfer Object, because Thymeleaf wants var and i want
+    * vals and enums
+    */
+  final case class ChoiceBadge(
+      var c: Choice,
+      var p: Positioning
+  )
 
   val choiceSelectionItems = {
     List(
       ChoiceBadge(Choice.Paper("8rem"), Positioning.Absolute("6rem", "6rem")),
-      ChoiceBadge(Choice.Scissors("8rem"), Positioning.Absolute("6rem", "17rem")),
-      ChoiceBadge(Choice.Rock("8rem"), Positioning.Absolute("15rem", "11.5rem")),
+      ChoiceBadge(
+        Choice.Scissors("8rem"),
+        Positioning.Absolute("6rem", "17rem")
+      ),
+      ChoiceBadge(Choice.Rock("8rem"), Positioning.Absolute("15rem", "11.5rem"))
     )
   }
 
