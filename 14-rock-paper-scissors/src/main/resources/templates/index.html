@@ -175,12 +175,47 @@
         </div>
       </section>
 
+      <!-- This is rules overlay modal window -->
+      <dialog
+        id="rules-dialog"
+        class="w-screen h-screen"
+      >
+        <div
+        class="flex flex-col justify-between w-full h-full"
+        >
+          <h1
+            class="grid place-content-center h-1/4 text-3xl font-bold tracking-wide uppercase"
+          >Rules</h1>
+          <div class="grid place-content-center grow">
+            <img src="../public/images/image-rules.svg" alt="Rules of the game: rock beats scissors, scissors beat paper, paper beats rock." />
+          </div>
+          <button
+            id="close-dialog-button"
+            class="grid place-content-center h-32"
+          >
+            <img src="../public/images/icon-close.svg" alt="Close rules display" />
+          </button>
+        </div>
+      </dialog>
+
       <div class="py-12">
         <button
+          id="rules-button"
           class="w-32 h-10 text-base text-2xl tracking-widest text-white uppercase rounded-lg border border-white"
         >
           Rules
         </button>
+        <script type="text/javascript">
+         const dialog = document.getElementById("rules-dialog");
+         const openButton = document.getElementById("rules-button");
+         const closeButton = document.getElementById("close-dialog-button");
+         openButton.addEventListener("click", function() {
+           dialog.showModal();
+         });
+         closeButton.addEventListener("click", function() {
+           dialog.close();
+         });
+        </script>
       </div>
     </main>
     <footer class="fixed inset-x-0 bottom-0 attribution">

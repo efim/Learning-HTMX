@@ -603,6 +603,10 @@ video {
   height: 0px;
 }
 
+.h-1\/4 {
+  height: 25%;
+}
+
 .h-10 {
   height: 2.5rem;
 }
@@ -613,6 +617,10 @@ video {
 
 .h-3\/4 {
   height: 75%;
+}
+
+.h-32 {
+  height: 8rem;
 }
 
 .h-\[100px\] {
@@ -892,6 +900,11 @@ video {
   line-height: 2rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -933,6 +946,10 @@ video {
   line-height: 1;
 }
 
+.tracking-wide {
+  letter-spacing: 0.025em;
+}
+
 .tracking-widest {
   letter-spacing: 0.1em;
 }
@@ -960,7 +977,7 @@ video {
   opacity: 0.05;
 }
 
-/* div, section, span, p { */
+/* div, section, span, p, h1, button { */
 
 /*     outline: 1px solid red; */
 
