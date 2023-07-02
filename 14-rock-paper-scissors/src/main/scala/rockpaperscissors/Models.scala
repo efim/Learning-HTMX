@@ -75,7 +75,7 @@ position: absolute;
     case object Rock extends Choice {
       def name: String = "rock"
       def iconPath: String = "public/images/icon-rock.svg"
-      def isBeating: Set[Choice] = Set(Rock)
+      def isBeating: Set[Choice] = Set(Scissors)
     }
   }
 
