@@ -67,6 +67,19 @@
             <div
               th:replace="index::choiceBadge (${showdownState.playersChoice})"
             ></div>
+            <!-- This is end of the game animated halo -->
+            <div
+              class="absolute mt-16 bg-white rounded-full opacity-5 -translate-y-1/2 w-[150px] h-[150px]"
+          th:classappend="${showdownState.gameResult.isEmpty} ? 'invisible' : 'quickly-appear'"
+            ></div>
+            <div
+              class="absolute mt-16 bg-white rounded-full opacity-5 -translate-y-1/2 w-[200px] h-[200px]"
+          th:classappend="${showdownState.gameResult.isEmpty} ? 'invisible' : 'quickly-appear'"
+            ></div>
+            <div
+                class="absolute mt-16 bg-white rounded-full opacity-5 -translate-y-1/2 w-[260px] h-[260px]"
+          th:classappend="${showdownState.gameResult.isEmpty} ? 'invisible' : 'quickly-appear'"
+              ></div>
             <div
               th:remove="all"
               id="rock"

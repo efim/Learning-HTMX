@@ -37,3 +37,17 @@
   animation-iteration-count: 3;
   transform-origin: center;
 }
+
+@keyframes quickly-appear {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 0.05;
+  }
+}
+
+.quickly-appear {
+  animation: quickly-appear 2s;
+  transform-origin: center;
+}
