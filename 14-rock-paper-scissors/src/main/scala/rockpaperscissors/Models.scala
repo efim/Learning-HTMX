@@ -124,6 +124,8 @@ position: absolute;
         } else "lose"
       })
     }
+    def isHouseWin: Boolean = gameResult.contains("lose")
+    def isPlayerWin: Boolean = gameResult.contains("win")
     def scoreChange: Int = {
       houseChoice.map(houseSelectedChoice => {
         val player = playersChoice.c
