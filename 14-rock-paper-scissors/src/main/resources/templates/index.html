@@ -178,22 +178,28 @@
       <!-- This is rules overlay modal window -->
       <dialog
         id="rules-dialog"
-        class="w-screen h-screen"
+        class="w-screen h-screen md:rounded-lg md:w-[400px] md:h-[400px]"
       >
-        <div
-        class="flex flex-col justify-between w-full h-full"
-        >
+        <div class="flex flex-col justify-between w-full h-full">
           <h1
-            class="grid place-content-center h-1/4 text-3xl font-bold tracking-wide uppercase"
-          >Rules</h1>
+            class="grid place-content-center h-1/4 text-3xl font-bold tracking-wide uppercase md:h-12"
+          >
+            Rules
+          </h1>
           <div class="grid place-content-center grow">
-            <img src="../public/images/image-rules.svg" alt="Rules of the game: rock beats scissors, scissors beat paper, paper beats rock." />
+            <img
+              src="../public/images/image-rules.svg"
+              alt="Rules of the game: rock beats scissors, scissors beat paper, paper beats rock."
+            />
           </div>
           <button
             id="close-dialog-button"
-            class="grid place-content-center h-32"
+            class="grid place-content-center h-32 md:absolute md:top-5 md:w-12 md:h-12 md:end-5"
           >
-            <img src="../public/images/icon-close.svg" alt="Close rules display" />
+            <img
+              src="../public/images/icon-close.svg"
+              alt="Close rules display"
+            />
           </button>
         </div>
       </dialog>
@@ -206,15 +212,15 @@
           Rules
         </button>
         <script type="text/javascript">
-         const dialog = document.getElementById("rules-dialog");
-         const openButton = document.getElementById("rules-button");
-         const closeButton = document.getElementById("close-dialog-button");
-         openButton.addEventListener("click", function() {
-           dialog.showModal();
-         });
-         closeButton.addEventListener("click", function() {
-           dialog.close();
-         });
+          const dialog = document.getElementById("rules-dialog");
+          const openButton = document.getElementById("rules-button");
+          const closeButton = document.getElementById("close-dialog-button");
+          openButton.addEventListener("click", function () {
+            dialog.showModal();
+          });
+          closeButton.addEventListener("click", function () {
+            dialog.close();
+          });
         </script>
       </div>
     </main>

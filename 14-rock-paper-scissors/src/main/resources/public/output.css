@@ -1032,3 +1032,41 @@ video {
   animation: quickly-appear 2s;
   transform-origin: center;
 }
+
+@media (min-width: 768px) {
+  .md\:absolute {
+    position: absolute;
+  }
+
+  .md\:end-5 {
+    inset-inline-end: 1.25rem;
+  }
+
+  .md\:top-5 {
+    top: 1.25rem;
+  }
+
+  .md\:h-12 {
+    height: 3rem;
+  }
+
+  .md\:h-\[400px\] {
+    height: 400px;
+  }
+
+  .md\:w-\[400px\] {
+    width: 400px;
+  }
+
+  .md\:w-12 {
+    width: 3rem;
+  }
+
+  .md\:rounded-xl {
+    border-radius: 0.75rem;
+  }
+
+  .md\:rounded-lg {
+    border-radius: 0.5rem;
+  }
+}
