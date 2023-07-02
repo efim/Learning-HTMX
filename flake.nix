@@ -23,6 +23,10 @@
           inherit pkgs sbt-derivation;
           lib = pkgs.lib;
         };
+        rock-paper-scissors = import ./14-rock-paper-scissors/default.nix {
+          inherit pkgs sbt-derivation;
+          lib = pkgs.lib;
+        };
       in {
         devShells.default = pkgs.mkShell {
           buildInputs = [
@@ -40,6 +44,8 @@
         nixosModules.order-summary = order-summary.module;
         packages.testimonials-grid = testimonials-grid.package;
         nixosModules.testimonials-grid = testimonials-grid.module;
+        packages.rock-paper-scissors = rock-paper-scissors.package;
+        nixosModules.rock-paper-scissors = rock-paper-scissors.module;
       });
   # see https://serokell.io/blog/practical-nix-flakes
 }
