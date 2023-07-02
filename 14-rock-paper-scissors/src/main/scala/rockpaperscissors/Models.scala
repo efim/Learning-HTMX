@@ -120,7 +120,7 @@ position: absolute;
         if (player == house) {
           "tied"
         } else if (player.isBeating(house)) {
-          "won"
+          "win"
         } else "lose"
       })
     }

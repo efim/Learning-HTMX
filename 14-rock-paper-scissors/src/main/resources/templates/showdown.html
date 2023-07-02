@@ -141,7 +141,7 @@
           th:classappend="${showdownState.gameResult.nonEmpty} ? '' : 'invisible'"
         >
           <p
-            class="text-6xl tracking-wide text-center uppercase"
+            class="text-6xl font-bold text-center uppercase"
             th:text="${showdownState.gameResult.nonEmpty} ? 'You ' + ${showdownState.gameResult.get} : 'awesome'"
           >
             You lose
