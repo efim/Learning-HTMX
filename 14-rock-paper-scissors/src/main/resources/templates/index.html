@@ -41,19 +41,19 @@
     >
       <section
         id="heading"
-        class="flex flex-row items-center w-10/12 rounded-md border-[3px] border-header-outline h-[100px]"
+        class="flex flex-row items-center w-10/12 rounded-md md:w-1/2 md:h-36 md:rounded-xl border-[3px] border-header-outline h-[100px]"
       >
         <h1
-          class="pl-4 text-xl font-bold leading-none text-white uppercase grow"
+          class="pl-4 text-xl font-bold leading-none text-white uppercase md:text-5xl grow md:leading-[2.2rem]"
         >
           <span class="block">rock</span> <span class="block">paper</span>
           <span class="block">scissors</span>
         </h1>
         <h2
-          class="flex flex-col justify-around items-center py-2 mr-3 bg-white rounded-md w-[80px] h-[70px] text-score-text rouned-md"
+          class="flex flex-col justify-around items-center py-2 mr-3 bg-white rounded-md md:mr-5 md:w-40 md:h-4/5 md:rounded-lg w-[80px] h-[70px] text-score-text rouned-md"
         >
-          <span class="text-xs uppercase">Score</span>
-          <span id="the-score-number" class="text-4xl font-extrabold">12</span>
+          <span class="text-xs uppercase md:text-xl md:leading-none">Score</span>
+          <span id="the-score-number" class="text-4xl font-extrabold md:text-6xl">12</span>
           <script type="text/javascript">
             document.body.addEventListener("updateScore", function (evt) {
               let scoreElement = document.querySelector("#the-score-number");
