@@ -96,8 +96,9 @@
             </p>
           </div>
 
-          <div id="house-choice"
-              class="flex relative flex-col items-center pt-14"
+          <div
+            id="house-choice"
+            class="flex relative flex-col items-center pt-14"
           >
             <!-- Here will be imported fragment -->
             <!-- conditionally either house choice or request for house choice -->
@@ -133,12 +134,18 @@
           </div>
         </section>
 
+        <!-- FRAGMENT : showdown result -->
         <section
           id="message"
           class="flex flex-col items-center text-white"
-          th:classappend="${gameFinished} ? '' : 'invisible'"
+          th:classappend="${showdownState.gameResult.nonEmpty} ? '' : 'invisible'"
         >
-          <p class="text-6xl tracking-wide text-center uppercase">You lose</p>
+          <p
+            class="text-6xl tracking-wide text-center uppercase"
+            th:text="${showdownState.gameResult.nonEmpty} ? 'You ' + ${showdownState.gameResult.get} : 'awesome'"
+          >
+            You lose
+          </p>
           <button
             class="mt-6 w-9/12 h-12 tracking-widest uppercase bg-white rounded-xl text-radial-gradient-bottom"
           >

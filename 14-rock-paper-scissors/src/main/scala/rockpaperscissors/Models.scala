@@ -59,21 +59,24 @@ position: absolute;
   sealed trait Choice {
     def name: String
     def iconPath: String
+    def isBeating: Set[Choice]
   }
   object Choice {
     case object Paper extends Choice {
       def name: String = "paper"
       def iconPath: String = "public/images/icon-paper.svg"
+      def isBeating: Set[Choice] = Set(Rock)
     }
     case object Scissors extends Choice {
       def name: String = "scissors"
       def iconPath: String = "public/images/icon-scissors.svg"
+      def isBeating: Set[Choice] = Set(Paper)
     }
     case object Rock extends Choice {
       def name: String = "rock"
       def iconPath: String = "public/images/icon-rock.svg"
+      def isBeating: Set[Choice] = Set(Rock)
     }
-
   }
 
   /** this will be Data Transfer Object, because Thymeleaf wants var and i want
@@ -110,13 +113,16 @@ position: absolute;
       var houseChoice: Option[ChoiceBadge],
       var gameEnded: Boolean
   ) {
-    def isPlayerVictorious(): Option[Boolean] = {
+    def gameResult: Option[String] = {
       houseChoice.map(houseSelectedChoice => {
         val player = playersChoice.c
         val house = houseSelectedChoice.c
-        false
+        if (player == house) {
+          "tied"
+        } else if (player.isBeating(house)) {
+          "won"
+        } else "lose"
       })
-
     }
   }
 }
