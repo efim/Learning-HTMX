@@ -5,3 +5,19 @@
 /* div, section, span, p { */
 /*     outline: 1px solid red; */
 /* } */
+
+@keyframes slowly-appear {
+  0% {
+      opacity: 0;
+  }
+  30% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+.slowly-appear {
+  animation: slowly-appear 3s;
+}

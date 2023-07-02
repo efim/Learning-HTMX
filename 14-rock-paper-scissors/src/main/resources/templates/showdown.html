@@ -137,7 +137,7 @@
         <!-- FRAGMENT : showdown result -->
         <section
           id="message"
-          class="flex flex-col items-center text-white"
+          class="flex flex-col items-center text-white slowly-appear"
           th:classappend="${showdownState.gameResult.nonEmpty} ? '' : 'invisible'"
         >
           <p
@@ -146,11 +146,12 @@
           >
             You lose
           </p>
-          <button
-            class="mt-6 w-9/12 h-12 tracking-widest uppercase bg-white rounded-xl text-radial-gradient-bottom"
+          <a
+            class="grid place-content-center mt-6 w-9/12 h-12 tracking-widest uppercase bg-white rounded-xl text-radial-gradient-bottom"
+            href="/"
           >
             Play again
-          </button>
+          </a>
         </section>
       </div>
 
