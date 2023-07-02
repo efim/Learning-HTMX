@@ -52,8 +52,32 @@
         <h2
           class="flex flex-col justify-around items-center py-2 mr-3 bg-white rounded-md w-[80px] h-[70px] text-score-text rouned-md"
         >
-          <span class="text-xs uppercase">Score</span
-          ><span class="text-4xl font-extrabold">12</span>
+          <span class="text-xs uppercase">Score</span>
+          <span id="the-score-number" class="text-4xl font-extrabold">12</span>
+          <script type="text/javascript">
+            document.body.addEventListener("updateScore", function (evt) {
+              let scoreElement = document.querySelector("#the-score-number");
+              let newScore =
+                parseInt(scoreElement.textContent) + evt.detail.value;
+              console.log(
+                `the score will update by ${evt.detail.value} to ${newScore}`
+              );
+              localStorage.setItem("score", newScore);
+              scoreElement.textContent = newScore;
+            });
+          </script>
+          <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", (event) => {
+              let scoreElement = document.querySelector("#the-score-number");
+              let storedScore = localStorage.getItem("score");
+              if (storedScore !== null) {
+                scoreElement.textContent = storedScore;
+              } else {
+                scoreElement.textContent = 0;
+                localStorage.setItem("score", 0);
+              }
+            });
+          </script>
         </h2>
       </section>
 

@@ -124,5 +124,16 @@ position: absolute;
         } else "lose"
       })
     }
+    def scoreChange: Int = {
+      houseChoice.map(houseSelectedChoice => {
+        val player = playersChoice.c
+        val house = houseSelectedChoice.c
+        if (player == house) {
+          0
+        } else if (player.isBeating(house)) {
+          1
+        } else -1
+      }).getOrElse(0)
+    }
   }
 }

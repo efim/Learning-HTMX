@@ -97,7 +97,8 @@ object Main {
           val badge = playersChoiceBadge.copy()
           badge.p =
             Positioning.Relative // this probably should be set in enclosing html tag
-          val houseChoice = Models.choiceSelectionItems(Random.nextInt(3)).copy()
+          val houseChoice =
+            Models.choiceSelectionItems(Random.nextInt(3)).copy()
           houseChoice.p = Positioning.Relative
           println(s"getting house choice $houseChoice")
           val showdownState = ShowdownState(badge, Some(houseChoice), false)
@@ -109,7 +110,10 @@ object Main {
           )
           cask.Response(
             result,
-            headers = Seq("Content-Type" -> "text/html;charset=UTF-8")
+            headers = Seq(
+              "Content-Type" -> "text/html;charset=UTF-8",
+              "HX-Trigger-After-Settle" -> s"""{"updateScore": ${showdownState.scoreChange}}"""
+            )
           )
         case None =>
           cask.Response(s"Unknown choice: '${playersChoice}'", 400)
