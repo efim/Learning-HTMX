@@ -8,7 +8,7 @@ val toolkitV = "0.1.7"
 val toolkit = "org.scala-lang" %% "toolkit" % toolkitV
 val toolkitTest = "org.scala-lang" %% "toolkit-test" % toolkitV
 
-lazy val root = (project in file("."))
+lazy val orderSummaryComponent = (project in file("."))
   .settings(
     name := "order-summary-component",
     libraryDependencies += toolkit,

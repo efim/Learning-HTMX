@@ -38,7 +38,7 @@ object Main {
     ParserForMethods(this).runOrExit(args)
   }
 
-  case class AppRoutes()(implicit cc: castor.Context, log: cask.Logger)
+  case class AppRoutes(pathPrefix: String = "")(implicit cc: castor.Context, log: cask.Logger)
       extends cask.Routes {
     val templateResolver = new ClassLoaderTemplateResolver()
     templateResolver.setPrefix("templates/");
@@ -48,7 +48,7 @@ object Main {
     val templateEngine = new TemplateEngine()
     templateEngine.setTemplateResolver(templateResolver)
 
-    @cask.get("/")
+    @cask.get(s"$pathPrefix/")
     def index(req: cask.Request) = {
       val context = new Context()
       val choices = Models.choiceSelectionItems.asJava
@@ -63,7 +63,7 @@ object Main {
       )
     }
 
-    @cask.get("/select/:choice")
+    @cask.get(s"$pathPrefix/select/:choice")
     def acceptPlayerVote(choice: String) = {
       val context = new Context()
       val badge = Models.choiceSelectionItems.find(_.c.name == choice)
@@ -88,7 +88,7 @@ object Main {
       response
     }
 
-    @cask.get("/house-choice/:playersChoice")
+    @cask.get(s"$pathPrefix/house-choice/:playersChoice")
     def requestHouseChoice(playersChoice: String) = {
       val context = new Context()
       val badge = Models.choiceSelectionItems.find(_.c.name == playersChoice)
@@ -121,7 +121,7 @@ object Main {
       response
     }
 
-    @cask.staticResources("/public")
+    @cask.staticResources(s"$pathPrefix/public")
     def publicFiles(req: cask.Request) = {
       "public"
     }

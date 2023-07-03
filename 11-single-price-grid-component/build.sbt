@@ -4,7 +4,7 @@ fork := true
 ThisBuild / version := "0.0.1"
 ThisBuild / organization := "industries.sunshine"
 
-lazy val root = (project in file("."))
+lazy val singlePriceGridComponent = (project in file("."))
   .settings(
     name := "priceGrid",
 
