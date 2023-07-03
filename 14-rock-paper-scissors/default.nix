@@ -81,7 +81,24 @@ let
         };
       };
     };
+  image = pkgs.dockerTools.buildLayeredImage {
+    name = pname;
+    tag = "latest";
+    created = "now";
+    config = {
+      Cmd = [ "${pkgs.jdk}/bin/java" "-jar" "${package}/bin/${pname}.jar" "--host" "0.0.0.0" ];
+      ExposedPorts = {
+        "8080/tcp" = {};
+      };
+    };
+  };
+  # image =     pkgs.dockerTools.buildLayeredImage { # so, wow, this works
+  #     name = "hello2";
+  #     tag = "latest";
+  #     config.Cmd = [ "${pkgs.hello}/bin/hello" ];
+  #   };
 in {
   package = package;
   module = module;
+  image = image;
 }
