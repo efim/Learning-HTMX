@@ -40,6 +40,7 @@
         };
         packages.price-grid-app = price-grid.package;
         nixosModules.price-grid-app = price-grid.module;
+        packages.price-grid-app-image = price-grid.image;
         packages.order-summary = order-summary.package;
         nixosModules.order-summary = order-summary.module;
         packages.testimonials-grid = testimonials-grid.package;

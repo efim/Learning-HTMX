@@ -1,10 +1,10 @@
 { pkgs, lib, sbt-derivation }:
 
 let
+  pname =  "price-grid-app";
   package = sbt-derivation.lib.mkSbtDerivation {
-    inherit pkgs;
+    inherit pkgs pname;
     # ...and the rest of the arguments
-    pname = "price-grid-app";
     version = "0.0.1";
     src = pkgs.nix-gitignore.gitignoreSource [ ] ./.;
     nativeBuildInputs = [ pkgs.nodePackages.tailwindcss ];
@@ -84,7 +84,35 @@ let
         };
       };
     };
+  image = pkgs.dockerTools.buildLayeredImage {
+    name = pname;
+    tag = "latest";
+    created = "now";
+    config = {
+      Cmd = [ "${pkgs.jdk}/bin/java" "-jar" "${package}/bin/priceGridApp.jar" "--host" "0.0.0.0" ];
+      ExposedPorts = {
+        "8080/tcp" = {};
+      };
+      WorkingDir = "${package}/bin";
+    };
+  };
+  # image = pkgs.dockerTools.buildImage {
+  #   name = pname;
+  #   tag = "latest";
+  #   created = "now";
+  #     copyToRoot = pkgs.buildEnv {
+  #     name = "image-root";
+  #     paths = [ package pkgs.dockerTools.binSh pkgs.coreutils ];
+  #     pathsToLink = [ "/bin" "/dist" "/public" ];
+  #   };
+  #   config = {
+  #     Cmd = [ "${pkgs.jdk}/bin/java" "-jar" "${package}/bin/priceGridApp.jar" "--host" "0.0.0.0" ];
+  #     ExposedPorts = {
+  #       "8080/tcp" = {};
+  #     };
+  #     WorkingDir = "${package}/bin";
+  #   };
+  # };
 in {
-  package = package;
-  module = module;
+  inherit package module image;
 }
