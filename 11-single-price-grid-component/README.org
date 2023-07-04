@@ -1,0 +1,121 @@
+* Frontend Mentor - Single price grid component solution
+:PROPERTIES:
+:CUSTOM_ID: frontend-mentor---single-price-grid-component-solution
+:END:
+This is a solution to the
+[[https://www.frontendmentor.io/challenges/single-price-grid-component-5ce41129d0ff452fec5abbbc][Single
+price grid component challenge on Frontend Mentor]]. Frontend Mentor
+challenges help you improve your coding skills by building realistic
+projects.
+
+** Overview
+:PROPERTIES:
+:CUSTOM_ID: overview
+:END:
+*** The challenge
+:PROPERTIES:
+:CUSTOM_ID: the-challenge
+:END:
+Users should be able to:
+
+- View the optimal layout for the component depending on their device's
+  screen size
+- See a hover state on desktop for the Sign Up call-to-action
+
+*** Screenshot
+:PROPERTIES:
+:CUSTOM_ID: screenshot
+:END:
+[[./screenshot-desktop.png]]
+[[./screenshot-mobile.png]]
+
+*** Links
+:PROPERTIES:
+:CUSTOM_ID: links
+:END:
+- [[https://www.frontendmentor.io/solutions/tailwind-scala-ssr-scalatags-and-cask-deployed-with-docker-image-UPzyFXyf_L][Solution URL]]
+- [[https://efim-frontentmentor-price-grid-component.onrender.com/][Live Site URL]]
+
+** My process
+:PROPERTIES:
+:CUSTOM_ID: my-process
+:END:
+*** Built with
+:PROPERTIES:
+:CUSTOM_ID: built-with
+:END:
+- Semantic HTML5 markup
+- TailwindCSS
+- Scalatags
+  html generation on backend
+- Cask
+  simple Scala web server, with annotations to mark routes and simple functions to process request
+- Mobile-first workflow
+- Nix
+  for building the application, nix module for easy install to servers with NixOS, and docker image for other deployment
+
+*** What I learned
+:PROPERTIES:
+:CUSTOM_ID: what-i-learned
+:END:
+**** Setting up Cask server to serve static resources
+Previously in Vite the /public directory was just automagically made available to the production build.
+Now, with @cask.staticFiles("/public") the route /public would serve files from "public" directory
+
+The path is relative, so directory from which the server is started is important.
+But the thing works.
+
+**** First time installing TailwindCSS with cli, without the frontend bundler integration
+https://tailwindcss.com/docs/installation
+
+#+begin_src bash
+$ tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+#+end_src
+
+Idea for this exercise was to generate `out.css` of the final TailwindCSS stylesheet into /dist directory, which would be in .gitignore
+
+The problem I've encountered - the nix derivation doesn't like to have all of the files in the tmp build directory, so files are referenced and loaded by neat library function
+#+begin_src nix
+    src = pkgs.nix-gitignore.gitignoreSource [ ] ./.;
+#+end_src
+
+Which only puts unignored files into store.
+So one time for the build step i'm using tailwind this way:
+#+begin_src nix
+buildPhase = ''
+    sbt assembly
+    tailwindcss -i ./src/input.css -o ./output.css
+'';
+#+end_src
+
+and then copy resulting file where the server expects it to be.
+
+**** Written a NixOS module with Systemd service and a Nginx reverse proxy
+on my NixOS server i just need to reference the flake by the repository url, import the module, and then
+
+#+begin_src nix
+imports = [ inputs.htmx-examples.nixosModules.x86_64-linux.price-grid-app ];
+services.priceGridService = {
+  enable = true;
+  host = "price-grid.frontendmentor.sunshine.industries";
+  port = 12345;
+};
+#+end_src
+
+setting up config values, and =enable = true;= makes the server instantiate the systemd service, which will cover restarts and logs, and nginx reverse proxy.
+
+**** Found out about =Workdir= setting of systemd servcie and =WorkingDir= of docker image
+*** Continued development
+:PROPERTIES:
+:CUSTOM_ID: continued-development
+:END:
+This was first app (exercise #11) in the experiment with learning SSR in Scala, i've already completed exercise #14, and in the following steps I'm learning Thymeleaf templating engine, and HTMX - the library for extending html to make pages that allow easier partial page updates.
+
+** Acknowledgments
+:PROPERTIES:
+:CUSTOM_ID: acknowledgments
+:END:
+My gratitude to render.com who are providing free tier for the service hosting from the docker image.
+Which was necessary for me to submit the solution into frontendmentor.
+And to DockerHub for hosting my docker images gratis as well.
+And to Nix for their documentation!
