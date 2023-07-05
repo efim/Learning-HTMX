@@ -23,15 +23,16 @@ Users should be able to:
 :PROPERTIES:
 :CUSTOM_ID: screenshot
 :END:
-[[./screenshot.png]]
+[[screenshot-desktop.png]]
+[[screenshot-mobile.png]]
 
 *** Links
 :PROPERTIES:
 :CUSTOM_ID: links
 :END:
-- Solution URL: [[https://your-solution-url.com][Add solution URL here]]
-- Live Site URL: [[https://your-live-site-url.com][Add live site URL
-  here]]
+- [[https://www.frontendmentor.io/solutions/responsive-by-tailwindcss-ssr-on-scala-with-cask-thymeleaf-template-bMMgFdajHT][Solution URL]]
+- [[https://efim-frontentmentor-order-summary.onrender.com/][Live Site URL]]
+  Free instance on render.com is turned off after 15 minutes of inactivity, please give the server a moment to start up if you're visiting it at the moment of being turned off
 
 ** My process
 :PROPERTIES:
@@ -42,16 +43,11 @@ Users should be able to:
 :CUSTOM_ID: built-with
 :END:
 - Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
+- Tailwincss
 - Mobile-first workflow
-- [[https://reactjs.org/][React]] - JS library
-- [[https://nextjs.org/][Next.js]] - React framework
-- [[https://styled-components.com/][Styled Components]] - For styles
+- SSR in Scala & Cask webserver
+- Thymeleaf templates
 
-*Note: These are just examples. Delete this note and replace the list
-above with your own choices*
 **** running during development
 installing "sbt-revolver":
 #+begin_src scala
@@ -82,9 +78,10 @@ will look for file in "src/main/resources/templates/index.html" to treat as a te
 **** with these html templates I can start learning and using Emmet mode in Emacs
 https://github.com/smihica/emmet-mode
 
-**** importing Thymeleaf template
-
+**** Importing Thymeleaf template
 There are other methods to include templates like th:replace and th:include, which have slightly different behaviours. th:insert keeps the host tag (the div in your case), th:replace replaces the whole host tag with the fragment, and th:include replaces the inner content of the host tag with the fragment.
+
+So i can actually have the "Order Summary" as reusable part.
 **** getting responsive background image with Tailwincss
 #+begin_src html
     <div
@@ -96,28 +93,10 @@ There are other methods to include templates like th:replace and th:include, whi
 :PROPERTIES:
 :CUSTOM_ID: continued-development
 :END:
-Use this section to outline areas that you want to continue focusing on
-in future projects. These could be concepts you're still not completely
-comfortable with or techniques you found useful that you want to refine
-and perfect.
+This was first exercise I've done with Thymeleaf templates.
 
-*Note: Delete this note and the content within this section and replace
-with your own plans for continued development.*
-
-*** Useful resources
-:PROPERTIES:
-:CUSTOM_ID: useful-resources
-:END:
-- [[https://www.example.com][Example resource 1]] - This helped me for
-  XYZ reason. I really liked this pattern and will use it going forward.
-- [[https://www.example.com][Example resource 2]] - This is an amazing
-  article which helped me finally understand XYZ. I'd recommend it to
-  anyone still learning this concept.
-
-*Note: Delete this note and replace the list above with resources that
-helped you during the challenge. These could come in handy for anyone
-viewing your solution or for yourself when you look back on this project
-in the future.*
+Next is using fragments with some dynamic content and styling.
+Then attempting to include htmx fueled reactivity.
 
 ** Acknowledgments
 :PROPERTIES:

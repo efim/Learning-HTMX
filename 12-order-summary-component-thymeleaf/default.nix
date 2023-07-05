@@ -1,10 +1,10 @@
 { pkgs, lib, sbt-derivation }:
 
 let
+  pname = "order-summary-component-app";
   package = sbt-derivation.lib.mkSbtDerivation {
-    inherit pkgs;
+    inherit pkgs pname;
     # ...and the rest of the arguments
-    pname = "order-summary-component-app";
     version = "0.0.1";
     src = pkgs.nix-gitignore.gitignoreSource [ ] ./.;
     nativeBuildInputs = [ pkgs.nodePackages.tailwindcss ];
@@ -17,7 +17,7 @@ let
     # anyway copied to correct place
     installPhase = ''
       mkdir -p $out/bin
-      cp target/scala-*/order-summary-component-assembly-*.jar $out/bin/order-summary-component.jar
+      cp target/scala-*/order-summary-component-assembly-*.jar $out/bin/${pname}.jar
       mkdir -p $out/bin/dist
       cp ./output.css $out/bin/dist/output.css
       cp -r public $out/bin/public
@@ -26,6 +26,8 @@ let
     depsSha256 = "sha256-ADQB4qTl69ERlLAURrtR3fWa7PUdYjFLk5QdU5QgxRQ=";
   };
 
+in {
+  inherit package;
   module = { config, pkgs, ... }:
     let cfg = config.services.orderSummaryComponent;
     in {
@@ -67,7 +69,7 @@ let
             startLimitBurst = 10;
             serviceConfig = {
               ExecStart =
-                "${pkgs.jdk}/bin/java -jar ${package}/bin/order-summary-component.jar -p ${
+                "${pkgs.jdk}/bin/java -jar ${package}/bin/${pname}.jar -p ${
                   toString cfg.port
                 } --host ${serverHost}";
               WorkingDirectory = "${package}/bin";
@@ -84,7 +86,16 @@ let
         };
       };
     };
-in {
-  package = package;
-  module = module;
+  image = pkgs.dockerTools.buildLayeredImage {
+    name = pname;
+    tag = "latest";
+    created = "now";
+    config = {
+      Cmd = [ "${pkgs.jdk}/bin/java" "-jar" "${package}/bin/${pname}.jar" "--host" "0.0.0.0" ];
+      ExposedPorts = {
+        "8080/tcp" = {};
+      };
+      WorkingDir = "${package}/bin";
+    };
+  };
 }
