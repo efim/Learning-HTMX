@@ -1,0 +1,97 @@
+* Frontend Mentor - Testimonials grid section solution
+:PROPERTIES:
+:CUSTOM_ID: frontend-mentor---testimonials-grid-section-solution
+:END:
+This is a solution to the
+[[https://www.frontendmentor.io/challenges/testimonials-grid-section-Nnw6J7Un7][Testimonials
+grid section challenge on Frontend Mentor]]. Frontend Mentor challenges
+help you improve your coding skills by building realistic projects.
+
+** Overview
+:PROPERTIES:
+:CUSTOM_ID: overview
+:END:
+*** The challenge
+:PROPERTIES:
+:CUSTOM_ID: the-challenge
+:END:
+Users should be able to:
+
+- View the optimal layout for the site depending on their device's
+  screen size
+
+*** Screenshot
+:PROPERTIES:
+:CUSTOM_ID: screenshot
+:END:
+[[screenshot-desktop.png]]
+[[screenshot-mobile.png]]
+
+
+*** Links
+:PROPERTIES:
+:CUSTOM_ID: links
+:END:
+- [[https://efim-frontentmentor-testimoinals-grid.onrender.com/][Solution URL]]
+- Live Site URL
+
+** My process
+:PROPERTIES:
+:CUSTOM_ID: my-process
+:END:
+*** Built with
+:PROPERTIES:
+:CUSTOM_ID: built-with
+:END:
+- Semantic HTML5 markup
+- TailwindCSS
+- CSS Grid
+- SSR on Scala with Cask
+- Thymeleaf templates
+
+*** What I learned
+:PROPERTIES:
+:CUSTOM_ID: what-i-learned
+:END:
+**** defining template fragments in Thymeleaf that take parameters
+Bigger thing i didn't understand is that element marked by "th:fragment" are also rendered.
+
+I had a problem with 'th:each' being defined on the same element as 'th:fragment'
+
+even though due to th:each single 'testimonial' object is available for inserting. if i try to use that singular 'testimonial' as fragment argument, the also existing 'th:each' over "testimonials" runs and sinse there's no passed list of objects - nothing gets rendered.
+
+So 'th:each' should be around the single fragment in the future.
+Currently i've hacked this by passing List(testimonial) for re-rendering a single item.
+
+**** A way to style fragments from the code
+I've initially implemented the static page, with manually settin different testimonial colors and sizes, but then implemented a template fragment, which uses "th:classappend" to add tailwind color and size classes from the context objects.
+
+This way unfortunately the tag marked with "th:fragement" (and it is getting rendered when template file is opened as a static file) doesn't have stylings.
+
+And I'd really like a way that allows for having a fully displayed static template, which doesn't interfere with rendering.
+
+**** first attempt to use partial gragments as replies to htmx requests
+I've added logic for transposing the 2x1 card into 1x2 and vice-versa (as an exercise in using htmx).
+
+Backing in "next orientation" into argument for the hx-get request, which is executed on click, and receives new html markup to get inserted, with the testimonial orientation classes changed.
+
+*** Continued development
+:PROPERTIES:
+:CUSTOM_ID: continued-development
+:END:
+a better way to style the components, so that static file would also have the styling on the 'fragment' element
+
+already found a way to render fragments without needing to put them into a separate file.
+
+*** Useful resources
+:PROPERTIES:
+:CUSTOM_ID: useful-resources
+:END:
+- The htmx [[https://htmx.org/docs/][documentation]] and [[https://htmx.org/examples/][examples]]
+- [[https://htmx.org/essays/][The articles on htmx approach to web dev]]
+
+** Acknowledgments
+:PROPERTIES:
+:CUSTOM_ID: acknowledgments
+:END:
+Here I'll like to express gratitute to htmx, for writing examples and articles which helped me to go from totally not understanding their position, to actively wanting to learn this.

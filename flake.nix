@@ -15,10 +15,11 @@
           inherit pkgs sbt-derivation;
           lib = pkgs.lib;
         };
-        order-summary = import ./12-order-summary-component-thymeleaf/default.nix {
-          inherit pkgs sbt-derivation;
-          lib = pkgs.lib;
-        };
+        order-summary =
+          import ./12-order-summary-component-thymeleaf/default.nix {
+            inherit pkgs sbt-derivation;
+            lib = pkgs.lib;
+          };
         testimonials-grid = import ./13-testimonials-grid-section/default.nix {
           inherit pkgs sbt-derivation;
           lib = pkgs.lib;
@@ -45,6 +46,7 @@
         packages.order-summary-image = order-summary.image;
         nixosModules.order-summary = order-summary.module;
         packages.testimonials-grid = testimonials-grid.package;
+        packages.testimonials-grid-image = testimonials-grid.image;
         nixosModules.testimonials-grid = testimonials-grid.module;
         packages.rock-paper-scissors = rock-paper-scissors.package;
         packages.rock-paper-scissors-image = rock-paper-scissors.image;

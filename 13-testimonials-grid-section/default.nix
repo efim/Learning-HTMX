@@ -26,6 +26,8 @@ let
     depsSha256 = "sha256-Y5RktcE3fxUJci4o7LTuNlBEybTdVRqsG551AkVeRPw=";
   };
 
+in {
+  inherit package;
   module = { config, pkgs, ... }:
     let cfg = config.services.${pname};
     in {
@@ -84,7 +86,20 @@ let
         };
       };
     };
-in {
-  package = package;
-  module = module;
+  image = pkgs.dockerTools.buildLayeredImage {
+    name = pname;
+    tag = "latest";
+    created = "now";
+    config = {
+      Cmd = [
+        "${pkgs.jdk}/bin/java"
+        "-jar"
+        "${package}/bin/${pname}.jar"
+        "--host"
+        "0.0.0.0"
+      ];
+      ExposedPorts = { "8080/tcp" = { }; };
+      WorkingDir = "${package}/bin";
+    };
+  };
 }
