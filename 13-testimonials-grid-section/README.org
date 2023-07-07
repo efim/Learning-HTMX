@@ -70,6 +70,10 @@ This way unfortunately the tag marked with "th:fragement" (and it is getting ren
 
 And I'd really like a way that allows for having a fully displayed static template, which doesn't interfere with rendering.
 
+Also - had to remember to not have space in
+  content: ["./src/**/*.{html,scala}"],
+so that TailwindCSS would also monitor classes in the code
+
 **** first attempt to use partial gragments as replies to htmx requests
 I've added logic for transposing the 2x1 card into 1x2 and vice-versa (as an exercise in using htmx).
 

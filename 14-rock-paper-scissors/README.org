@@ -1,0 +1,166 @@
+* Frontend Mentor - Rock, Paper, Scissors solution
+:PROPERTIES:
+:CUSTOM_ID: frontend-mentor---rock-paper-scissors-solution
+:END:
+This is a solution to the
+[[https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH][Rock,
+Paper, Scissors challenge on Frontend Mentor]]. Frontend Mentor
+challenges help you improve your coding skills by building realistic
+projects.
+
+** Overview
+:PROPERTIES:
+:CUSTOM_ID: overview
+:END:
+*** The challenge
+:PROPERTIES:
+:CUSTOM_ID: the-challenge
+:END:
+Users should be able to:
+
+- View the optimal layout for the game depending on their device's
+  screen size
+- Play Rock, Paper, Scissors against the computer
+- Maintain the state of the score after refreshing the browser
+  /(optional)/
+- *Bonus*: Play Rock, Paper, Scissors, Lizard, Spock against the
+  computer /(optional)/
+
+*** Screenshot
+:PROPERTIES:
+:CUSTOM_ID: screenshot
+:END:
+[[screenshot-desktop.png]]
+[[screenshot-mobile.png]]
+
+*** Links
+:PROPERTIES:
+:CUSTOM_ID: links
+:END:
+- Solution URL
+- [[https://efim-frontendmentor-rock-paper-scissors.onrender.com/][Live Site URL]]
+
+** My process
+:PROPERTIES:
+:CUSTOM_ID: my-process
+:END:
+*** Built with
+:PROPERTIES:
+:CUSTOM_ID: built-with
+:END:
+- Semantic HTML5 markup
+- TailwindCSS, css animations
+- Flexbox & CSS Grid
+- Mobile-first workflow
+- SSR on Scala with Cask
+- Thymeleaf templates
+- htmx for partial page updates and interactivity
+
+*** What I learned
+:PROPERTIES:
+:CUSTOM_ID: what-i-learned
+:END:
+**** for template fragement styling - using CSS vars in <style> tag
+Allows for "initial" fragment specification to have static styling for viewing the page directly.
+
+This is useful for fragments that should have different stylings, like hand selection badges - should have different colors, so colors are specified in the code and passed as css var values via "th:style".
+
+Ordinary "style" attribute allows the tag which is marked by "th:fragment" to be viewed with some default styles. This is needed because for the "static" view of the page, browser ignores "th:fragment" attribute and just renders what it knows, as well as 'paper' and 'rock' badges, which are marked by "th:remove='all'" tag, which means they are only present in the "mockup static view"
+
+But! Syling sizes this way seems to be an error, i don't want to specify 8rem in my code for the fragments, and that also makes styling of responsive design complicated. I guess I'll want the fragment itself occupy "all parent" and control the size of parent from html where the fragment is inserted.
+**** different htmx controls:
+***** the hx-get on the click
+substitutes the hand selection part of the page to the initial "showdown" - with selected hand and animated wait on the "house choice".
+***** on load + delay:3s hx-get
+on "wait for house choice" fragemnt
+means the "get house choice" rest method executed automatically, and generates random choice.
+
+I'm substituting both hands \ whole 'showdown table' so i'm passing also a players choice into '/house-choice' rest endpoint.
+
+I could only substitue the house choice badge and the message, that would have been a simpler design.
+***** i wanted for message to show up with delay
+so initially i though I'll do another timed on load request to fetch message, but figured that i could use css animation to fade the message in.
+***** handling state of the fragment
+Creating a scala object "ShowdownState" allows for setting single variable into context, and then at least "having all attributes of state" is enforced by scala compiler.
+
+In documentaion i found that there's a shorthand for referencing attributes of single object:
+https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#expressions-on-selections-asterisk-syntax
+
+So i could set "th:object="${showdownState}"
+and then reference directly it's attributes by "*{playersChoice}"
+
+This can mitigate untyped nature of template variables.
+***** I got more experience with laying out template fragments.
+Putting 'showdown table' into separate file definitely helped, styling in the opened static file is nice.
+
+I'm not sure how much separate files are necessary. Maybe state of "player hand is present, house hand is not present" separate of "showdown and both hands are present" would be easier for styling. Because fragments could be shown at the page.
+
+Negative side of that - all other "not for render" parts of the page would have to be styled and kept in sync with the parts of pages for styling.
+Maybe I'll do put some bigger fragments into separate files, but not recrete the outer page for them, just keep them in center of blank page.
+
+***** Triggering client events from HTMX
+https://htmx.org/headers/hx-trigger/
+
+Adding header to REST response will trigger js event in the page.
+#+begin_src scala
+          cask.Response(
+            result,
+            headers = Seq(
+              "Content-Type" -> "text/html;charset=UTF-8",
+              "HX-Trigger-After-Settle" -> s"""{"updateScore": ${showdownState.scoreChange}}"""
+            )
+          )
+#+end_src
+
+This is a way to pass data from server into js code, executing on client.
+For exmaple +1 \ +0 \ -1 for the score change.
+
+***** Using small js scripts for browser functions
+
+I.e updating score, saving it into local storage and loading.
+
+Two simple scripts directly near the html markup which contains the score:
+#+begin_src html
+          <script type="text/javascript">
+            document.body.addEventListener("updateScore", function (evt) {
+              let scoreElement = document.querySelector("#the-score-number");
+              let newScore =
+                parseInt(scoreElement.textContent) + evt.detail.value;
+              console.log(
+                `the score will update by ${evt.detail.value} to ${newScore}`
+              );
+              localStorage.setItem("score", newScore);
+              scoreElement.textContent = newScore;
+            });
+          </script>
+          <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", (event) => {
+              let scoreElement = document.querySelector("#the-score-number");
+              let storedScore = localStorage.getItem("score");
+              if (storedScore !== null) {
+                scoreElement.textContent = storedScore;
+              } else {
+                scoreElement.textContent = 0;
+                localStorage.setItem("score", 0);
+              }
+            });
+          </script>
+#+end_src
+
+And debugging directly in the static preview.
+We can create event in the console and fire it from any element:
+
+#+begin_src js
+var myEvent2 = new CustomEvent('updateScore', {detail : {value: -1}});
+document.body.dispatchEvent(myEvent2)
+#+end_src
+
+*** Continued development
+:PROPERTIES:
+:CUSTOM_ID: continued-development
+:END:
+I could remake the html, to take into account the desktop layout. Which i didn't plan out and just didn't do - right now desktop only shows mobile layout increased in size.
+
+Overall in the future I'd want to practice more with features available in htmx, to know how to make websites with interactivity expected my modern users.
+And also - practice integration with js libraries - htmx examples show integration with sortable via events, and many others can be possible.
+
