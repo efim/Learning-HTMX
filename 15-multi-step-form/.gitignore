@@ -1,0 +1,16 @@
+.bsp/
+.scala-build/
+.metals/
+.direnv
+*/dist/
+/11-single-price-grid-component/.bloop/
+
+**/.bloop
+**/project/project/
+**/project/metals.sbt
+**/project/.bloop
+**/project/target/
+**/target/
+
+*/result
+result
