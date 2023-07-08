@@ -10,6 +10,12 @@ object Main {
       hostArg: String = "localhost"
   ): Unit = {
     println(s"Will start server on ${hostArg}:${portArg}")
+    val server = new cask.Main {
+      override def allRoutes: Seq[cask.main.Routes] = Seq(Routes())
+      override def port: Int = portArg
+      override def host: String = hostArg
+    }
+    server.main(Array.empty)
   }
 
   def main(args: Array[String]): Unit = ParserForMethods(this).runOrExit(args)
