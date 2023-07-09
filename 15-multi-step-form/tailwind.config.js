@@ -21,6 +21,14 @@ module.exports = {
         'sidebar-mobile': 'url("images/bg-sidebar-mobile.svg")',
         'sidebar-desktop': 'url("images/bg-sidebar-desktop.svg")',
       },
+      fontFamily: {
+        'sans': ['Ubuntu', 'sans-serif'], // This will set Roboto as the default sans font
+      },
+      fontWeight: {
+        'normal': 400,
+        'semibold': 600,
+        'bold': 700,
+      },
     },
   },
   plugins: [],

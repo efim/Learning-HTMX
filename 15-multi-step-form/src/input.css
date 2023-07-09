@@ -6,6 +6,28 @@ html {
     font-size: 16px;
 }
 
+/* path is relative to 'out.css' */
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('fonts/Ubuntu-Regular.ttf') format('truetype');
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('fonts/Ubuntu-Medium.ttf') format('truetype');
+  font-weight: 600; /* Semibold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('fonts/Ubuntu-Bold.ttf') format('truetype');
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
 div, p, button, ol, li, summary {
     outline: 1px solid red;
 }
