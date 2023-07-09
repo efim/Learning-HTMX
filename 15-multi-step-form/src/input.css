@@ -28,6 +28,6 @@ html {
   font-style: normal;
 }
 
-div, p, button, ol, li, summary {
-    outline: 1px solid red;
-}
+/* div, p, button, ol, li, summary, article { */
+/*     outline: 1px solid red; */
+/* } */

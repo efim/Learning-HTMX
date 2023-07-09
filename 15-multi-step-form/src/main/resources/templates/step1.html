@@ -26,7 +26,7 @@
       }
     </style>
   </head>
-  <body>
+  <body class="grid place-content-center h-screen bg-light-gray">
     <!--[if lt IE 8]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -36,54 +36,54 @@
     <![endif]-->
 
     <article
-      class="flex flex-col items-center w-screen h-screen bg-light-gray"
+      class="flex flex-col items-center w-screen h-screen md:grid md:grid-cols-2 md:p-5 md:bg-white md:w-desktop-form md:h-desktop-form"
       id="form-step"
     >
       <summary
-        class="w-full h-44 bg-no-repeat bg-sidebar-mobile md:bg-sidebar-desktop md:h-[570px] md:w-[280px]"
+        class="w-full h-44 bg-no-repeat md:row-span-2 bg-sidebar-mobile md:bg-sidebar-desktop md:h-[568px] md:w-[274px]"
         id="sidebar"
       >
         <ol
-          class="flex flex-row gap-x-5 items-center place-content-center h-24"
+          class="grid grid-cols-[repeat(4,_auto)] gap-x-5 content-center items-center place-content-center h-24 md:flex-col md:h-full md:grid-rows-[repeat(4,_auto)] md:grid-cols-1 md:content-start md:p-10 md:gap-y-7 text-white text-sm uppercase"
         >
-          <li>
+          <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
             <div
               class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
             >
               1
             </div>
-            <p class="hidden md:flex">
-              <span>Step 1</span><span>Your info</span>
+            <p class="hidden md:flex md:flex-col">
+              <span>Step 1</span><span class="font-bold">Your info</span>
             </p>
           </li>
-          <li>
+          <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
             <div
               class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
             >
               2
             </div>
-            <p class="hidden md:flex">
-              <span>Step 2</span><span>Select plan</span>
+            <p class="hidden md:flex md:flex-col">
+              <span>Step 2</span><span class="font-bold">Select plan</span>
             </p>
           </li>
-          <li>
+          <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
             <div
               class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
             >
               3
             </div>
-            <p class="hidden md:flex">
-              <span>Step 3</span><span>Add-ons</span>
+            <p class="hidden md:flex md:flex-col">
+              <span>Step 3</span><span class="font-bold">Add-ons</span>
             </p>
           </li>
-          <li>
+          <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
             <div
               class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
             >
               4
             </div>
-            <p class="hidden md:flex">
-              <span>Step 4</span><span>summary</span>
+            <p class="hidden md:flex md:flex-col">
+              <span>Step 4</span><span class="font-bold">summary</span>
             </p>
           </li>
         </ol>
@@ -96,22 +96,25 @@
         <h1>Personal info</h1>
         <p>Please provide your name, email address, and phone number.</p>
         <label for="name">Name</label>
-        <input id="name" placeholder="e.g. Stephen King"></input>
+        <input id="name" placeholder="e.g. Stephen King" />
         <label for="email">Email Address</label>
-        <input id="email" placeholder="e.g. stephenking@lorem.com"></input>
+        <input id="email" placeholder="e.g. stephenking@lorem.com" />
         <label for="phone">Phone Number</label>
-        <input id="phone" placeholder="e.g. +1 234 567 890 Next Step"></input>
+        <input id="phone" placeholder="e.g. +1 234 567 890 Next Step" />
 
         <!-- Step 1 end -->
       </section>
-      <div class="grow"></div>
-      <section id="footer-controls"
-               class="flex flex-row items-center w-full h-20 bg-white"
+      <div class="md:hidden grow"></div>
+      <section
+        id="footer-controls"
+        class="flex flex-row items-center py-4 w-full bg-white"
       >
         <div class="grow"></div>
         <a
           href="step2.html"
-          class="grid place-content-center mr-3 w-24 h-10 text-white rounded bg-marine-blue">Next Step</a>
+          class="grid place-content-center mr-3 w-24 h-10 text-white rounded bg-marine-blue"
+          >Next Step</a
+        >
       </section>
     </article>
     <div class="fixed inset-x-0 bottom-0 attribution">

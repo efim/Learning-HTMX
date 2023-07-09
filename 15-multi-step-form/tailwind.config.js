@@ -29,6 +29,12 @@ module.exports = {
         'semibold': 600,
         'bold': 700,
       },
+      width: {
+        'desktop-form': '60rem',
+      },
+      height: {
+        'desktop-form': '38rem',
+      },
     },
   },
   plugins: [],
