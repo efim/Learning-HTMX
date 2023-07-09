@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link href="../public/out.css" rel="stylesheet" />
+
+    <title>Frontend Mentor | Multi-step form</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <!--[if lt IE 8]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+        your experience.
+      </p>
+    <![endif]-->
+
+    <article
+      class="flex flex-col items-center w-screen h-screen bg-light-gray"
+      id="form-step"
+    >
+      <summary
+        class="w-full h-44 bg-no-repeat bg-sidebar-mobile md:bg-sidebar-desktop md:h-[570px] md:w-[280px]"
+        id="sidebar"
+      >
+        <ol
+          class="flex flex-row gap-x-5 items-center place-content-center h-24"
+        >
+          <li>
+            <div
+              class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+            >
+              1
+            </div>
+            <p class="hidden md:flex">
+              <span>Step 1</span><span>Your info</span>
+            </p>
+          </li>
+          <li>
+            <div
+              class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+            >
+              2
+            </div>
+            <p class="hidden md:flex">
+              <span>Step 2</span><span>Select plan</span>
+            </p>
+          </li>
+          <li>
+            <div
+              class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+            >
+              3
+            </div>
+            <p class="hidden md:flex">
+              <span>Step 3</span><span>Add-ons</span>
+            </p>
+          </li>
+          <li>
+            <div
+              class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+            >
+              4
+            </div>
+            <p class="hidden md:flex">
+              <span>Step 4</span><span>summary</span>
+            </p>
+          </li>
+        </ol>
+      </summary>
+      <section
+        id="multipage-form-container"
+        class="flex flex-col py-8 px-6 -mt-20 w-11/12 bg-white rounded-xl md:mt-0"
+      >
+        <!-- Step 1 start -->
+        <h1>Personal info</h1>
+        <p>Please provide your name, email address, and phone number.</p>
+        <label for="name">Name</label>
+        <input id="name" placeholder="e.g. Stephen King"></input>
+        <label for="email">Email Address</label>
+        <input id="email" placeholder="e.g. stephenking@lorem.com"></input>
+        <label for="phone">Phone Number</label>
+        <input id="phone" placeholder="e.g. +1 234 567 890 Next Step"></input>
+
+        <!-- Step 1 end -->
+      </section>
+      <div class="grow"></div>
+      <section id="footer-controls"
+               class="flex flex-row items-center w-full h-20 bg-white"
+      >
+        <div class="grow"></div>
+        <a
+          href="step2.html"
+          class="grid place-content-center mr-3 w-24 h-10 text-white rounded bg-marine-blue">Next Step</a>
+      </section>
+    </article>
+    <div class="fixed inset-x-0 bottom-0 attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div>
+  </body>
+</html>
