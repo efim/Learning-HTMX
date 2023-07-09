@@ -26,7 +26,7 @@
       }
     </style>
   </head>
-  <body class="grid place-content-center h-screen bg-light-gray">
+  <body class="grid place-content-center h-screen bg-magnolia">
     <!--[if lt IE 8]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -90,17 +90,38 @@
       </summary>
       <section
         id="multipage-form-container"
-        class="flex flex-col py-8 px-6 -mt-20 w-11/12 bg-white rounded-xl md:mt-0"
+        class="flex flex-col py-8 px-6 -mt-20 w-11/12 bg-white rounded-xl md:mt-0 drop-shadow-xl"
       >
         <!-- Step 1 start -->
-        <h1>Personal info</h1>
-        <p>Please provide your name, email address, and phone number.</p>
-        <label for="name">Name</label>
-        <input id="name" placeholder="e.g. Stephen King" />
-        <label for="email">Email Address</label>
-        <input id="email" placeholder="e.g. stephenking@lorem.com" />
-        <label for="phone">Phone Number</label>
-        <input id="phone" placeholder="e.g. +1 234 567 890 Next Step" />
+        <h1 class="text-2xl font-bold text-marine-blue">Personal info</h1>
+        <p class="py-3 text-cool-gray">
+          Please provide your name, email address, and phone number.
+        </p>
+        <label for="name" class="pt-3 text-sm text-marine-blue">Name</label>
+        <input
+          id="name"
+          type="text"
+          placeholder="e.g. Stephen King"
+          class="p-1 px-4 h-10 text-sm font-semibold rounded border placeholder:text-cool-gray"
+        />
+        <label for="email" class="pt-3 text-sm text-marine-blue"
+          >Email Address</label
+        >
+        <input
+          id="email"
+          type="email"
+          placeholder="e.g. stephenking@lorem.com"
+          class="p-1 px-4 h-10 text-sm font-semibold rounded border placeholder:text-cool-gray"
+        />
+        <label for="phone" class="pt-3 text-sm text-marine-blue"
+          >Phone Number</label
+        >
+        <input
+          id="phone"
+          type="tel"
+          placeholder="e.g. +1 234 567 890"
+          class="p-1 px-4 h-10 text-sm font-semibold rounded border placeholder:text-cool-gray"
+        />
 
         <!-- Step 1 end -->
       </section>
@@ -112,7 +133,7 @@
         <div class="grow"></div>
         <a
           href="step2.html"
-          class="grid place-content-center mr-3 w-24 h-10 text-white rounded bg-marine-blue"
+          class="grid place-content-center mr-3 w-24 h-10 text-sm font-semibold text-white rounded bg-marine-blue"
           >Next Step</a
         >
       </section>
