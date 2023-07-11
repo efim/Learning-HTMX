@@ -35,7 +35,7 @@
       </p>
     <![endif]-->
 
-    <main class="grid place-content-center">
+    <main class="grid place-content-center h-screen">
       <article
         class="flex flex-col items-center w-screen h-screen md:grid md:items-start md:p-5 md:bg-white md:rounded-2xl md:grid-cols-[auto_1fr] md:w-desktop-form md:h-desktop-form md:drop-shadow-2xl"
         id="form-step"
@@ -104,51 +104,55 @@
           <p class="py-3 text-cool-gray">
             You have the option of monthly or yearly billing.
           </p>
-          <label for="ArcadePlanType" class="relative h-20">
-            <input
-              id="ArcadePlanType"
-              type="radio"
-              name="plan-type"
-              value="Arcade"
-              class="hidden peer"
-              checked
-            />
-            <div
-              class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia"
-            >
-              <span class="">Arcade</span>
-            </div>
-          </label>
+          <div
+            class="flex flex-col w-full md:flex-row"
+          >
+            <label for="ArcadePlanType" class="relative h-20 md:w-32">
+              <input
+                id="ArcadePlanType"
+                type="radio"
+                name="plan-type"
+                value="Arcade"
+                class="hidden peer"
+                checked
+              />
+              <div
+                class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia"
+              >
+                <span class="">Arcade</span>
+              </div>
+            </label>
 
-          <label for="AdvancedPlanType" class="relative h-20">
-            <input
-              id="AdvancedPlanType"
-              type="radio"
-              name="plan-type"
-              value="Advanced"
-              class="hidden peer"
-            />
-            <div
-              class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia"
-            >
-              <span>Advanced</span>
-            </div>
-          </label>
+            <label for="AdvancedPlanType" class="relative h-20 md:w-32">
+              <input
+                id="AdvancedPlanType"
+                type="radio"
+                name="plan-type"
+                value="Advanced"
+                class="hidden peer"
+              />
+              <div
+                class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia"
+              >
+                <span>Advanced</span>
+              </div>
+            </label>
 
-          <label for="ProPlanType" class="relative h-20">
-            <input
-              id="ProPlanType"
-              type="radio"
-              name="plan-type"
-              value="Pro"
-              class="hidden peer"
-            />
-            <div
-              class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia"
-            >
-              <span>Pro</span>
-            </div>
-          </label>
+            <label for="ProPlanType" class="relative h-20 md:w-32">
+              <input
+                id="ProPlanType"
+                type="radio"
+                name="plan-type"
+                value="Pro"
+                class="hidden peer"
+              />
+              <div
+                class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia"
+              >
+                <span>Pro</span>
+              </div>
+            </label>
+          </div>
 
           <div class="grid grid-flow-col-dense place-content-center w-full rounded-lg bg-magnolia">
             <div
