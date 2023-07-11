@@ -35,28 +35,156 @@
       </p>
     <![endif]-->
 
-    <main class="bg-green-200">
-  <!-- Step 2 start -->
+    <main class="grid place-content-center">
+      <article
+        class="flex flex-col items-center w-screen h-screen md:grid md:items-start md:p-5 md:bg-white md:rounded-2xl md:grid-cols-[auto_1fr] md:w-desktop-form md:h-desktop-form md:drop-shadow-2xl"
+        id="form-step"
+      >
+        <summary
+          class="w-full h-44 bg-no-repeat md:row-span-2 bg-sidebar-mobile marker:text-white md:bg-sidebar-desktop md:h-[568px] md:w-[274px]"
+          id="sidebar"
+        >
+          <ol
+            class="grid grid-cols-[repeat(4,_auto)] gap-x-5 content-center items-center place-content-center h-24 md:flex-col md:h-full md:grid-rows-[repeat(4,_auto)] md:grid-cols-1 md:content-start md:p-10 md:gap-y-7 text-white text-sm uppercase"
+          >
+            <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+              <div
+                class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+              >
+                1
+              </div>
+              <p class="hidden md:flex md:flex-col">
+                <span class="text-light-gray">Step 1</span
+                ><span class="font-bold">Your info</span>
+              </p>
+            </li>
+            <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+              <div
+                class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+              >
+                2
+              </div>
+              <p class="hidden md:flex md:flex-col">
+                <span class="text-light-gray">Step 2</span
+                ><span class="font-bold">Select plan</span>
+              </p>
+            </li>
+            <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+              <div
+                class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+              >
+                3
+              </div>
+              <p class="hidden md:flex md:flex-col">
+                <span class="text-light-gray">Step 3</span
+                ><span class="font-bold">Add-ons</span>
+              </p>
+            </li>
+            <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+              <div
+                class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+              >
+                4
+              </div>
+              <p class="hidden md:flex md:flex-col">
+                <span class="text-light-gray">Step 4</span
+                ><span class="font-bold">summary</span>
+              </p>
+            </li>
+          </ol>
+        </summary>
+        <section
+          id="multipage-form-container"
+          class="flex flex-col py-8 px-6 -mt-20 w-11/12 bg-white rounded-xl md:px-24 md:mt-0 md:w-full drop-shadow-xl md:drop-shadow-none"
+        >
+          <!-- Step 2 start -->
+          <h1 class="text-2xl font-bold md:text-4xl text-marine-blue">
+            Select your plan
+          </h1>
+          <p class="py-3 text-cool-gray">
+            You have the option of monthly or yearly billing.
+          </p>
+          <label for="ArcadePlanType" class="relative h-20">
+            <input
+              id="ArcadePlanType"
+              type="radio"
+              name="plan-type"
+              value="Arcade"
+              class="hidden peer"
+              checked
+            />
+            <div
+              class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia"
+            >
+              <span class="">Arcade</span>
+            </div>
+          </label>
 
-  Select your plan
-  You have the option of monthly or yearly billing.
+          <label for="AdvancedPlanType" class="relative h-20">
+            <input
+              id="AdvancedPlanType"
+              type="radio"
+              name="plan-type"
+              value="Advanced"
+              class="hidden peer"
+            />
+            <div
+              class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia"
+            >
+              <span>Advanced</span>
+            </div>
+          </label>
 
-  Arcade
-  $9/mo
+          <label for="ProPlanType" class="relative h-20">
+            <input
+              id="ProPlanType"
+              type="radio"
+              name="plan-type"
+              value="Pro"
+              class="hidden peer"
+            />
+            <div
+              class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia"
+            >
+              <span>Pro</span>
+            </div>
+          </label>
 
-  Advanced
-  $12/mo
+          <div class="grid grid-flow-col-dense place-content-center w-full rounded-lg bg-magnolia">
+            <div
+              class="inline-grid grid-cols-3 place-items-center h-12 text-sm font-bold"
+            >
+              <input
+                class="mr-2 w-9 h-5 ml-2 rounded-full appearance-none mt-[0.3rem] bg-marine-blue after:absolute after:h-3 after:w-3 after:rounded-full after:border-none after:bg-neutral-100  after:transition-[background-color_0.2s,transform_0.2s] checked:after:ml-[1.2rem] after:ml-[0.25rem] after:mt-[0.25rem] hover:cursor-pointer col-start-2 row-start-1 peer"
+                type="checkbox"
+                role="switch"
+                id="packageDuration"
+              />
+              <span class="row-start-1 text-marine-blue peer-checked:text-cool-gray">Monthly</span>
+              <span class="row-start-1 text-cool-gray peer-checked:text-marine-blue">Yearly</span>
+            </div>
+          </div>
 
-  Pro
-  $15/mo
-
-  Monthly
-  Yearly
-
-  Go Back
-  Next Step
-
-  <!-- Step 2 end -->
+          <!-- Step 2 end -->
+        </section>
+        <div class="md:hidden grow"></div>
+        <section
+          id="footer-controls"
+          class="flex flex-row items-center py-4 w-full bg-white md:items-end md:h-full"
+        >
+          <a
+            href="step1.html"
+            class="ml-6 text-sm font-semibold md:pb-3 md:ml-20 md:text-base text-cool-gray"
+            >Go Back</a
+          >
+          <div class="grow"></div>
+          <a
+            href="step3.html"
+            class="grid place-content-center mr-3 w-24 h-10 text-sm font-semibold text-white rounded md:mr-24 md:w-32 md:h-12 md:text-base md:rounded-lg bg-marine-blue"
+            >Next Step</a
+          >
+        </section>
+      </article>
     </main>
   </body>
 </html>
