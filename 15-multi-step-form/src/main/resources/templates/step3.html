@@ -35,28 +35,153 @@
       </p>
     <![endif]-->
 
-    <main class="bg-green-200">
-  <!-- Step 3 start -->
+    <main class="grid place-content-center h-screen">
+      <article
+        class="flex flex-col items-center w-screen h-screen md:grid md:items-start md:p-5 md:bg-white md:rounded-2xl md:grid-cols-[auto_1fr] md:w-desktop-form md:h-desktop-form md:drop-shadow-2xl"
+        id="form-step"
+      >
+        <summary
+          class="w-full h-44 bg-no-repeat md:row-span-2 bg-sidebar-mobile marker:text-white md:bg-sidebar-desktop md:h-[568px] md:w-[274px]"
+          id="sidebar"
+        >
+          <ol
+            class="grid grid-cols-[repeat(4,_auto)] gap-x-5 content-center items-center place-content-center h-24 md:flex-col md:h-full md:grid-rows-[repeat(4,_auto)] md:grid-cols-1 md:content-start md:p-10 md:gap-y-7 text-white text-sm uppercase"
+          >
+            <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+              <div
+                class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+              >
+                1
+              </div>
+              <p class="hidden md:flex md:flex-col">
+                <span class="text-light-gray">Step 1</span
+                ><span class="font-bold">Your info</span>
+              </p>
+            </li>
+            <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+              <div
+                class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+              >
+                2
+              </div>
+              <p class="hidden md:flex md:flex-col">
+                <span class="text-light-gray">Step 2</span
+                ><span class="font-bold">Select plan</span>
+              </p>
+            </li>
+            <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+              <div
+                class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+              >
+                3
+              </div>
+              <p class="hidden md:flex md:flex-col">
+                <span class="text-light-gray">Step 3</span
+                ><span class="font-bold">Add-ons</span>
+              </p>
+            </li>
+            <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+              <div
+                class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+              >
+                4
+              </div>
+              <p class="hidden md:flex md:flex-col">
+                <span class="text-light-gray">Step 4</span
+                ><span class="font-bold">summary</span>
+              </p>
+            </li>
+          </ol>
+        </summary>
+        <section
+          id="multipage-form-container"
+          class="flex flex-col py-8 px-6 -mt-20 w-11/12 bg-white rounded-xl md:px-24 md:mt-0 md:w-full drop-shadow-xl md:drop-shadow-none"
+        >
+          <!-- Step 3 start -->
+          <h1 class="text-2xl font-bold md:text-4xl text-marine-blue">
+            Pick add-ons
+          </h1>
+          <p class="py-3 text-cool-gray">
+            Add-ons help enhance your gaming experience.
+          </p>
+          <div
+            class="flex flex-col w-full text-sm md:text-base"
+          >
+            <label for="multiplayer-games" class="relative pl-6 h-20 md:w-full">
+              <input
+                id="multiplayer-games"
+                type="checkbox"
+                name="addon-services"
+                class="my-7 w-6 h-6 peer"
+              />
+              <div
+                class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia/50"
+              >
+                <div class="grid place-content-center ml-20 h-full grid-cols-[1fr_100px]">
+                  <h1>Online Service</h1>
+                  <p>Access to multiplayer games</p>
+                  <p class="col-start-2 row-span-2 row-start-1 self-center">+$1/mo</p>
+                </div>
+              </div>
+            </label>
 
-  Pick add-ons
-  Add-ons help enhance your gaming experience.
+            <label for="larger-storage" class="relative pl-6 h-20 md:w-full">
+              <input
+                id="larger-storage"
+                type="checkbox"
+                name="addon-services"
+                class="my-7 w-6 h-6 peer"
+              />
+              <div
+                class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia/50"
+              >
+                <div class="grid place-content-center ml-20 h-full grid-cols-[1fr_100px]">
+                  <h1>Larger storage</h1>
+                  <p>Extra 1TB of cloud save</p>
+                  <p class="col-start-2 row-span-2 row-start-1 self-center">+$2/mo</p>
+                </div>
+              </div>
+            </label>
 
-  Online service
-  Access to multiplayer games
-  +$1/mo
+            <label for="custom-profile" class="relative pl-6 h-20 md:w-full">
+              <input
+                id="custom-profile"
+                type="checkbox"
+                name="addon-services"
+                class="my-7 w-6 h-6 peer"
+              />
+              <div
+                class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia/50"
+              >
+                <div class="grid place-content-center ml-20 h-full grid-cols-[1fr_100px]">
+                  <h1>Customizable Profile</h1>
+                  <p>Custom theme on your profile</p>
+                  <p class="col-start-2 row-span-2 row-start-1 self-center">+$2/mo</p>
+                </div>
+              </div>
+            </label>
+          </div>
 
-  Larger storage
-  Extra 1TB of cloud save
-  +$2/mo
-
-  Customizable Profile
-  Custom theme on your profile
-  +$2/mo
-
-  Go Back
-  Next Step
-
-  <!-- Step 3 end -->
+          <!-- Step 3 end -->
+        </section>
+        <div class="md:hidden grow"></div>
+        <section
+          id="footer-controls"
+          class="flex flex-row items-center py-4 w-full bg-white md:items-end md:h-full"
+        >
+          <a
+            href="step2.html"
+            class="ml-6 text-sm font-semibold md:pb-3 md:ml-20 md:text-base text-cool-gray"
+            >Go Back</a
+          >
+          <div class="grow"></div>
+          <a
+            href="step4.html"
+            class="grid place-content-center mr-3 w-24 h-10 text-sm font-semibold text-white rounded md:mr-24 md:w-32 md:h-12 md:text-base md:rounded-lg bg-marine-blue"
+            >Next Step</a
+          >
+        </section>
+      </article>
     </main>
   </body>
 </html>

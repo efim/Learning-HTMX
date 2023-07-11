@@ -548,12 +548,63 @@ video {
   bottom: 0px;
 }
 
+.z-0 {
+  z-index: 0;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.z-40 {
+  z-index: 40;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
 .col-start-2 {
   grid-column-start: 2;
 }
 
+.row-span-full {
+  grid-row: 1 / -1;
+}
+
+.row-span-2 {
+  grid-row: span 2 / span 2;
+}
+
 .row-start-1 {
   grid-row-start: 1;
+}
+
+.m-8 {
+  margin: 2rem;
+}
+
+.m-4 {
+  margin: 1rem;
+}
+
+.m-6 {
+  margin: 1.5rem;
+}
+
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.my-7 {
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
 }
 
 .-mt-20 {
@@ -578,6 +629,22 @@ video {
 
 .mt-\[0\.3rem\] {
   margin-top: 0.3rem;
+}
+
+.ml-\[200px\] {
+  margin-left: 200px;
+}
+
+.ml-\[100px\] {
+  margin-left: 100px;
+}
+
+.ml-\[70px\] {
+  margin-left: 70px;
+}
+
+.ml-20 {
+  margin-left: 5rem;
 }
 
 .flex {
@@ -632,6 +699,14 @@ video {
   height: 100%;
 }
 
+.h-6 {
+  height: 1.5rem;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
 .w-11\/12 {
   width: 91.666667%;
 }
@@ -656,6 +731,14 @@ video {
   width: 100vw;
 }
 
+.w-6 {
+  width: 1.5rem;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
 .grow {
   flex-grow: 1;
 }
@@ -676,6 +759,10 @@ video {
 
 .grid-cols-\[repeat\(4\2c _auto\)\] {
   grid-template-columns: repeat(4, auto);
+}
+
+.grid-cols-\[1fr_100px\] {
+  grid-template-columns: 1fr 100px;
 }
 
 .flex-row {
@@ -705,6 +792,14 @@ video {
 .gap-x-5 {
   -moz-column-gap: 1.25rem;
        column-gap: 1.25rem;
+}
+
+.self-center {
+  align-self: center;
+}
+
+.justify-self-center {
+  justify-self: center;
 }
 
 .rounded {
@@ -762,6 +857,11 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-yellow-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(234 179 8 / var(--tw-bg-opacity));
+}
+
 .bg-sidebar-mobile {
   background-image: url("images/bg-sidebar-mobile.svg");
 }
@@ -801,6 +901,18 @@ video {
 
 .pt-3 {
   padding-top: 0.75rem;
+}
+
+.pl-8 {
+  padding-left: 2rem;
+}
+
+.pl-5 {
+  padding-left: 1.25rem;
+}
+
+.pl-6 {
+  padding-left: 1.5rem;
 }
 
 .text-2xl {
@@ -986,6 +1098,14 @@ html {
 .peer:checked ~ .peer-checked\:bg-magnolia {
   --tw-bg-opacity: 1;
   background-color: hsl(217 100% 97% / var(--tw-bg-opacity));
+}
+
+.peer:checked ~ .peer-checked\:bg-magnolia\/50 {
+  background-color: hsl(217 100% 97% / 0.5);
+}
+
+.peer:checked ~ .peer-checked\:bg-magnolia\/20 {
+  background-color: hsl(217 100% 97% / 0.2);
 }
 
 .peer:checked ~ .peer-checked\:text-cool-gray {
