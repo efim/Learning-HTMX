@@ -17,7 +17,11 @@ case class Routes()(implicit cc: castor.Context, log: cask.Logger)
   templateEngine.setTemplateResolver(templateResolver)
 
   val sessoinCookieName = "sessionId"
-
+  /**
+   * This route works with and without 'sessionId' cookie present
+   * set's this cookie if not present, and returns initial 'index.html'
+   * where the form is not yet initialized, and will be requested for the session
+   */
   @cask.get("/")
   def getIndex(ctx: cask.Request) = {
     val sessionCookie = ctx.cookies.get(sessoinCookieName)
@@ -46,6 +50,16 @@ case class Routes()(implicit cc: castor.Context, log: cask.Logger)
       headers = Seq("Content-Type" -> "text/html;charset=UTF-8"),
       cookies = Seq(newSessionCookie)
     )
+  }
+
+  /**
+   * This method only works when cookie 'sessionId' is present
+   * will get or init Form State for the session,
+   * and return last unsubmitted form step fragment
+   */
+  @cask.get("/get-form")
+  def getForm(sessionId: cask.Cookie) = {
+    cask.Response("yoyo")
   }
 
   @cask.staticResources("/public")
