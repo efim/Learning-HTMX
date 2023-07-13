@@ -9,10 +9,14 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./assets/images/favicon-32x32.png"
+      th:href="'public/images/favicon-32x32.png'"
+      href="../public/images/favicon-32x32.png"
     />
-    <link href="../public/out.css" rel="stylesheet" />
-
+    <link th:href="'public/out.css'" href="../public/out.css" rel="stylesheet" />
+    <script
+      th:src="'public/htmx.min.js'"
+      src="../public/htmx.min.js"
+    ></script>
     <title>Frontend Mentor | Multi-step form</title>
 
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
@@ -28,6 +32,14 @@
   </head>
   <body>
     <main class="bg-light-gray h-screen w-screen">
+      <section
+        class="absolute top-0 end-0"
+      >
+        <button
+          hx-get="/force-new-session"
+        >Request new session</button>
+      </section>
       <!-- here be immediate hx-get for the form. to subscitute the body -->
+    </main>
   </body>
 </html>
