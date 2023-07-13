@@ -35,16 +35,83 @@
       </p>
     <![endif]-->
 
-    <main class="bg-green-200">
-  <!-- Step 5 start -->
+    <main class="grid place-content-center h-screen">
+      <article
+        class="flex flex-col items-center w-screen h-screen md:grid md:items-start md:p-5 md:bg-white md:rounded-2xl md:grid-cols-[auto_1fr] md:w-desktop-form md:h-desktop-form md:drop-shadow-2xl"
+        id="form-step"
+      >
+        <summary
+          class="w-full h-44 bg-no-repeat md:row-span-2 bg-sidebar-mobile marker:text-white md:bg-sidebar-desktop md:h-[568px] md:w-[274px]"
+          id="sidebar"
+        >
+          <ol
+            class="grid grid-cols-[repeat(4,_auto)] gap-x-5 content-center items-center place-content-center h-24 md:flex-col md:h-full md:grid-rows-[repeat(4,_auto)] md:grid-cols-1 md:content-start md:p-10 md:gap-y-7 text-white text-sm uppercase"
+          >
+            <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+              <div
+                class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+              >
+                1
+              </div>
+              <p class="hidden md:flex md:flex-col">
+                <span class="text-light-gray">Step 1</span
+                ><span class="font-bold">Your info</span>
+              </p>
+            </li>
+            <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+              <div
+                class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+              >
+                2
+              </div>
+              <p class="hidden md:flex md:flex-col">
+                <span class="text-light-gray">Step 2</span
+                ><span class="font-bold">Select plan</span>
+              </p>
+            </li>
+            <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+              <div
+                class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+              >
+                3
+              </div>
+              <p class="hidden md:flex md:flex-col">
+                <span class="text-light-gray">Step 3</span
+                ><span class="font-bold">Add-ons</span>
+              </p>
+            </li>
+            <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+              <div
+                class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+              >
+                4
+              </div>
+              <p class="hidden md:flex md:flex-col">
+                <span class="text-light-gray">Step 4</span
+                ><span class="font-bold">summary</span>
+              </p>
+            </li>
+          </ol>
+        </summary>
+        <section
+          id="multipage-form-container"
+          class="flex flex-col gap-y-4 items-center py-8 py-20 px-6 -mt-20 w-11/12 bg-white rounded-xl md:px-24 md:mt-0 md:w-full drop-shadow-xl md:drop-shadow-none"
+        >
+            <!-- Step 5 start -->
 
-  Thank you!
-
-  Thanks for confirming your subscription! We hope you have fun
-  using our platform. If you ever need support, please feel free
-  to email us at support@loremgaming.com.
+          <img src="../public/images/icon-thank-you.svg" alt="" class="mb-2 w-14 h-14" />
+          <h2 class="text-2xl font-bold">Thank you!</h2>
+          <p class="text-center text-cool-gray">
+            Thanks for confirming your subscription! We hope you have fun
+            using our platform. If you ever need support, please feel free
+            to email us at support@loremgaming.com.
+          </p>
 
   <!-- Step 5 end -->
+
+        </section>
+        <div class="md:hidden grow"></div>
+      </article>
     </main>
   </body>
 </html>
