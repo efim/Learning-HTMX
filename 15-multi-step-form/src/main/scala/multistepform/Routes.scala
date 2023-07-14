@@ -69,7 +69,9 @@ case class Routes()(implicit cc: castor.Context, log: cask.Logger)
     */
   @cask.get("/get-form")
   def getForm(sessionId: cask.Cookie) = {
-    val state = Models.Answers(currentStep = 1)
+    val id = sessionId.value
+    val state = Sessions.sessionReplies.getOrElse(id, Answers(id))
+    println(s"starting form for $state")
     val context = new Context()
     context.setVariable(formDataContextVarName, state)
     val formFragment = templateEngine.process(
@@ -96,6 +98,9 @@ case class Routes()(implicit cc: castor.Context, log: cask.Logger)
     val userAnswers = Sessions.sessionReplies.getOrElse(id, Answers(id))
 
     val updatedAnswers = userAnswers.updateStep(stepNum, request.text())
+
+    Sessions.sessionReplies.update(id, updatedAnswers)
+
     val context = new Context()
     context.setVariable(formDataContextVarName, updatedAnswers)
     val nextFormFragment = templateEngine.process(
