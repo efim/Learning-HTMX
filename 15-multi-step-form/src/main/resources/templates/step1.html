@@ -39,6 +39,9 @@
       class="flex flex-col items-center w-screen h-screen md:grid md:items-start md:p-5 md:bg-white md:rounded-2xl md:grid-cols-[auto_1fr] md:w-desktop-form md:h-desktop-form md:drop-shadow-2xl"
       id="form-step"
       th:fragment="formFragment(formData)"
+      hx-post="/submit-step/1"
+      action="/submit-step/1"
+      method="post"
     >
       <summary
         class="w-full h-44 bg-no-repeat md:row-span-2 bg-sidebar-mobile marker:text-white md:bg-sidebar-desktop md:h-[568px] md:w-[274px]"
@@ -101,6 +104,7 @@
         <label for="name" class="pt-3 text-sm md:pt-5 md:pb-2 text-marine-blue">Name</label>
         <input
           id="name"
+          name="name"
           type="text"
           placeholder="e.g. Stephen King"
           class="p-1 px-4 h-10 text-sm font-semibold rounded border md:p-6 md:px-4 md:text-base md:rounded-lg placeholder:text-cool-gray"
@@ -110,6 +114,7 @@
         >
         <input
           id="email"
+          name="email"
           type="email"
           placeholder="e.g. stephenking@lorem.com"
           class="p-1 px-4 h-10 text-sm font-semibold rounded border md:p-6 md:px-4 md:text-base md:rounded-lg placeholder:text-cool-gray"
@@ -119,6 +124,7 @@
         >
         <input
           id="phone"
+          name="phone"
           type="tel"
           placeholder="e.g. +1 234 567 890"
           class="p-1 px-4 h-10 text-sm font-semibold rounded border md:p-6 md:px-4 md:text-base md:rounded-lg placeholder:text-cool-gray"
@@ -132,7 +138,13 @@
         class="flex flex-row items-center py-4 w-full bg-white md:items-end md:h-full"
       >
         <div class="grow"></div>
+        <input
+          type="submit"
+          class="grid place-content-center mr-3 w-24 h-10 text-sm font-semibold text-white rounded md:mr-24 md:w-32 md:h-12 md:text-base md:rounded-lg bg-marine-blue"
+          value="Next Step"
+          >
         <a
+          th:remove="all"
           href="step2.html"
           class="grid place-content-center mr-3 w-24 h-10 text-sm font-semibold text-white rounded md:mr-24 md:w-32 md:h-12 md:text-base md:rounded-lg bg-marine-blue"
           >Next Step</a

@@ -6,6 +6,7 @@ import org.thymeleaf.context.Context
 import cask.endpoints.ParamReader
 import java.util.UUID
 import scala.jdk.CollectionConverters._
+import multistepform.Models.Answers
 
 case class Routes()(implicit cc: castor.Context, log: cask.Logger)
     extends cask.Routes {
@@ -69,6 +70,24 @@ case class Routes()(implicit cc: castor.Context, log: cask.Logger)
       formFragment,
       headers = Seq("Content-Type" -> "text/html;charset=UTF-8")
     )
+  }
+
+  // i guess let's make step a hidden input?
+  @cask.post("/submit-step/:stepNum")
+  def submitStep(sessionId: cask.Cookie, stepNum: Int, request: cask.Request) = {
+    val id = sessionId.value
+    println(s"got $request for $id")
+
+    val userAnswers = Sessions.sessionReplies.getOrElse(id, Answers(id))
+
+    // now i want to do what?
+    // select 'answerStep' form userAnswers
+    // delegate parsing and saving of the request.text to it
+    // set current step to next
+    // and return next rendered form step
+    // with the 'form data' caclulated from the updated answers
+
+    cask.Response(s"what i got is $request and ${request.text()}")
   }
 
   @cask.staticResources("/public")
