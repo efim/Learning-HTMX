@@ -5,6 +5,7 @@ import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.Context
 import cask.endpoints.ParamReader
 import java.util.UUID
+import scala.jdk.CollectionConverters._
 
 case class Routes()(implicit cc: castor.Context, log: cask.Logger)
     extends cask.Routes {
@@ -59,7 +60,15 @@ case class Routes()(implicit cc: castor.Context, log: cask.Logger)
    */
   @cask.get("/get-form")
   def getForm(sessionId: cask.Cookie) = {
+    val state = Models.Answers(currentStep = 1)
     cask.Response("yoyo")
+    val context = new Context()
+    context.setVariable("formData", state)
+    val formFragment = templateEngine.process(state.fragmentName, Set("formFragment").asJava, context)
+    cask.Response(
+      formFragment,
+      headers = Seq("Content-Type" -> "text/html;charset=UTF-8")
+    )
   }
 
   @cask.staticResources("/public")

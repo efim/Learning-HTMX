@@ -33,15 +33,18 @@
   </head>
   <body>
     <main class="grid place-content-center w-screen h-screen bg-magnolia">
-
-      <section>
+      <section
+        hx-get="/get-form"
+        hx-trigger="load"
+        hx-swap="outerHTML"
+      >
+        <!-- here be immediate hx-get for the form. to subscitute the body -->
         <img class="w-14 text-green-500 fill-current" th:src="'public/images/tail-spin.svg'" src="../public/images/tail-spin.svg" alt="loading..." />
       </section>
 
       <section class="absolute top-0 end-0" id="new-session-control">
         <button hx-get="/force-new-session">Request new session</button>
       </section>
-      <!-- here be immediate hx-get for the form. to subscitute the body -->
       <div class="fixed inset-x-0 bottom-0 attribution">
         Challenge by
         <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
