@@ -8,7 +8,8 @@ object Models {
       currentStep: Int = 1,
       step1: StepAnswers.Step1 = StepAnswers.Step1(),
       step2: StepAnswers.Step2 = StepAnswers.Step2(),
-      step3: StepAnswers.Step3 = StepAnswers.Step3()
+      step3: StepAnswers.Step3 = StepAnswers.Step3(),
+      step4: StepAnswers.Step4 = StepAnswers.Step4()
   ) {
     // this is not enforced by compiler, sad, maintain by hand in html template files
     def fragmentName: String = s"step${currentStep}"
@@ -31,7 +32,8 @@ object Models {
           )
         case 4 =>
           this.copy(
-            currentStep = stepNum + 1
+            currentStep = stepNum + 1,
+            step4 = this.step4
           )
         case _ => this
       }
@@ -46,12 +48,14 @@ object Models {
 
   sealed trait StepAnswers {
     def fromFormData(rawData: String): StepAnswers
+    def submitted: Boolean
   }
   object StepAnswers {
     final case class Step1(
         name: String = "",
         email: String = "",
-        phone: String = ""
+        phone: String = "",
+        override val submitted: Boolean = false
     ) extends StepAnswers {
       override def fromFormData(rawData: String): Step1 = {
         println(s"parsing step 1 data $rawData")
@@ -67,12 +71,13 @@ object Models {
         val email = fieldValues.getOrElse("email", "")
         val phone = fieldValues.getOrElse("phone", "")
 
-        Step1(name, email, phone)
+        Step1(name, email, phone, submitted = true)
       }
     }
     final case class Step2(
         planType: PlanType = PlanType.Arcade,
-        isYearly: Boolean = false
+        isYearly: Boolean = false,
+        override val submitted: Boolean = false
     ) extends StepAnswers {
       override def fromFormData(rawData: String): Step2 = {
         println(s"parsing step 2 data $rawData")
@@ -88,11 +93,13 @@ object Models {
           PlanType.valueOf(fieldValues.getOrElse("plan-type", "Arcade"))
         val isYearly = fieldValues.get("isPackageYearly").contains("on")
 
-        Step2(planType, isYearly)
+        Step2(planType, isYearly, submitted = true)
       }
     }
-    final case class Step3(addons: Set[Addons] = Set.empty)
-        extends StepAnswers {
+    final case class Step3(
+        addons: Set[Addons] = Set.empty,
+        override val submitted: Boolean = false
+    ) extends StepAnswers {
       override def fromFormData(rawData: String): Step3 = {
         println(s"parsing step 3 data $rawData")
         // for multiple checkboxes data comes in form of
@@ -104,13 +111,19 @@ object Models {
             name -> value
           }
 
-        val addonsStrings = fieldValues.groupMap(_._1)(_._2)
+        val addonsStrings = fieldValues
+          .groupMap(_._1)(_._2)
           .getOrElse("addon-services", Array.empty[String])
         println(s"in step 3 got strings $addonsStrings")
         val addons = addonsStrings.map(Addons.valueOf(_)).toSet
 
-        Step3(addons)
+        Step3(addons, submitted = true)
       }
+    }
+    final case class Step4(
+        override val submitted: Boolean = false
+    ) extends StepAnswers {
+      override def fromFormData(rawData: String): Step4 = Step4(true)
     }
   }
 }

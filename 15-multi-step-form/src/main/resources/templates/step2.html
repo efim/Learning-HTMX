@@ -183,6 +183,9 @@
           class="flex flex-row items-center py-4 w-full bg-white md:items-end md:h-full"
         >
           <a
+            hx-get="/get-form/1"
+            hx-target="#form-step"
+            hx-swap="outerHTML"
             href="step1.html"
             class="ml-6 text-sm font-semibold md:pb-3 md:ml-20 md:text-base text-cool-gray"
             >Go Back</a
