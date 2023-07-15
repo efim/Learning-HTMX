@@ -19,6 +19,8 @@ object Models {
   final case class FormData(
       userAnswers: Answers
   ) {
+    val stepsAmount = Steps.values.toList.asJava
+
     // yeah, in real world it will not be this simple
     def yearlyCost(monthlyCost: Int): Int = 10 * monthlyCost
 
@@ -93,6 +95,16 @@ object Models {
       }
     }
   }
+
+  /**
+   * TODO would be nice to connect answers to the steps enum
+   * in some helpful way.
+   */
+  enum Steps(val index: Int, val name: String):
+    case Step1 extends Steps(1, "Your info")
+    case Step2 extends Steps(2, "Select plan")
+    case Step3 extends Steps(3, "Add-ons")
+    case Step4 extends Steps(4, "Summary")
 
   enum PlanType(val monthlyCost: Int):
     case Arcade extends PlanType(9)

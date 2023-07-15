@@ -48,6 +48,7 @@
         <summary
           class="w-full h-44 bg-no-repeat md:row-span-2 bg-sidebar-mobile marker:text-white md:bg-sidebar-desktop md:h-[568px] md:w-[274px]"
           id="sidebar"
+          th:replace="~{step1::stepsSummary (${formData})}"
         >
           <ol
             class="grid grid-cols-[repeat(4,_auto)] gap-x-5 content-center items-center place-content-center h-24 md:flex-col md:h-full md:grid-rows-[repeat(4,_auto)] md:grid-cols-1 md:content-start md:p-10 md:gap-y-7 text-white text-sm uppercase"

@@ -38,7 +38,7 @@
     <form
       class="flex flex-col items-center w-screen h-screen md:grid md:items-start md:p-5 md:bg-white md:rounded-2xl md:grid-cols-[auto_1fr] md:w-desktop-form md:h-desktop-form md:drop-shadow-2xl"
       id="form-step"
-      th:fragment="formFragment(formData.userAnswers)"
+      th:fragment="formFragment(formData)"
       hx-post="/submit-step/1/2"
       hx-swap="outerHTML"
       action="/submit-step/1/2"
@@ -47,48 +47,70 @@
       <summary
         class="w-full h-44 bg-no-repeat md:row-span-2 bg-sidebar-mobile marker:text-white md:bg-sidebar-desktop md:h-[568px] md:w-[274px]"
         id="sidebar"
+        th:fragment="stepsSummary(formData)"
       >
         <ol
           class="grid grid-cols-[repeat(4,_auto)] gap-x-5 content-center items-center place-content-center h-24 md:flex-col md:h-full md:grid-rows-[repeat(4,_auto)] md:grid-cols-1 md:content-start md:p-10 md:gap-y-7 text-white text-sm uppercase"
         >
-          <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+          <li
+            class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]"
+            th:each="stepNum: ${formData.stepsAmount}"
+          >
             <div
-              class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
+              class="grid place-content-center w-8 h-8 font-bold text-white rounded-full border border-white"
+              th:classappend="${stepNum.index} == ${formData.userAnswers.currentStep} ? '!bg-light-blue !text-marine-blue'"
+              th:text="${stepNum.index}"
             >
               1
             </div>
             <p class="hidden md:flex md:flex-col">
-              <span class="text-light-gray">Step 1</span><span class="font-bold">Your info</span>
+              <span class="text-light-gray"
+                >Step <span th:text="${stepNum.index}">1</span></span
+              ><span class="font-bold" th:text="${stepNum.name}"
+                >Your info</span
+              >
             </p>
           </li>
-          <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+          <li
+            class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]"
+            th:remove="all"
+          >
             <div
               class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
             >
               2
             </div>
             <p class="hidden md:flex md:flex-col">
-              <span class="text-light-gray">Step 2</span><span class="font-bold">Select plan</span>
+              <span class="text-light-gray">Step 2</span
+              ><span class="font-bold">Select plan</span>
             </p>
           </li>
-          <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+          <li
+            class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]"
+            th:remove="all"
+          >
             <div
               class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
             >
               3
             </div>
             <p class="hidden md:flex md:flex-col">
-              <span class="text-light-gray">Step 3</span><span class="font-bold">Add-ons</span>
+              <span class="text-light-gray">Step 3</span
+              ><span class="font-bold">Add-ons</span>
             </p>
           </li>
-          <li class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]">
+          <li
+            class="items-center md:grid md:gap-x-4 md:grid-cols-[auto_1fr]"
+            th:remove="all"
+          >
             <div
               class="grid place-content-center w-8 h-8 text-white rounded-full border border-white"
             >
               4
             </div>
             <p class="hidden md:flex md:flex-col">
-              <span class="text-light-gray">Step 4</span><span class="font-bold">summary</span>
+              <span class="text-light-gray">Step 4</span
+              ><span class="font-bold">summary</span>
             </p>
           </li>
         </ol>
@@ -98,11 +120,15 @@
         class="flex flex-col py-8 px-6 -mt-20 w-11/12 bg-white rounded-xl md:px-24 md:mt-0 md:w-full drop-shadow-xl md:drop-shadow-none"
       >
         <!-- Step 1 start -->
-        <h1 class="text-2xl font-bold md:text-4xl text-marine-blue">Personal info</h1>
+        <h1 class="text-2xl font-bold md:text-4xl text-marine-blue">
+          Personal info
+        </h1>
         <p class="py-3 text-cool-gray">
           Please provide your name, email address, and phone number.
         </p>
-        <label for="name" class="pt-3 text-sm md:pt-5 md:pb-2 text-marine-blue">Name</label>
+        <label for="name" class="pt-3 text-sm md:pt-5 md:pb-2 text-marine-blue"
+          >Name</label
+        >
         <input
           id="name"
           th:value="${formData.userAnswers.step1.name}"
@@ -146,7 +172,7 @@
           type="submit"
           class="grid place-content-center mr-3 w-24 h-10 text-sm font-semibold text-white rounded md:mr-24 md:w-32 md:h-12 md:text-base md:rounded-lg bg-marine-blue"
           value="Next Step"
-          >
+        />
         <a
           th:remove="all"
           href="step2.html"
