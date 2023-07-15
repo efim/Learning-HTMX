@@ -49,10 +49,12 @@ object Models {
 
   final case class Answers(
       sessionId: String = "",
-      currentStep: Int = 1,
+      currentStep: Int = 4,
       step1: StepAnswers.Step1 = StepAnswers.Step1(),
       step2: StepAnswers.Step2 = StepAnswers.Step2(),
-      step3: StepAnswers.Step3 = StepAnswers.Step3(),
+      step3: StepAnswers.Step3 = StepAnswers.Step3(
+        addons = Addons.values.toSet
+      ),
       step4: StepAnswers.Step4 = StepAnswers.Step4()
   ) {
     // this is not enforced by compiler, sad, maintain by hand in html template files
@@ -94,10 +96,10 @@ object Models {
     case Step3 extends Steps(3, "Add-ons")
     case Step4 extends Steps(4, "Summary")
 
-  enum PlanType(val monthlyCost: Int):
-    case Arcade extends PlanType(9)
-    case Advanced extends PlanType(12)
-    case Pro extends PlanType(15)
+  enum PlanType(val monthlyCost: Int, val iconPath: String):
+    case Arcade extends PlanType(9, "public/images/icon-arcade.svg")
+    case Advanced extends PlanType(12, "public/images/icon-advanced.svg")
+    case Pro extends PlanType(15, "public/images/icon-pro.svg")
     def name(): String = {
       this.toString().replaceAll("([a-z])([A-Z])", "$1 $2")
     }

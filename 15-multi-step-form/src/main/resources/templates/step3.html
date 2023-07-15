@@ -107,15 +107,15 @@
           <h1 class="text-2xl font-bold md:text-4xl text-marine-blue">
             Pick add-ons
           </h1>
-          <p class="py-3 text-cool-gray">
+          <p class="py-3 md:pb-10 text-cool-gray">
             Add-ons help enhance your gaming experience.
           </p>
-          <div class="flex flex-col w-full text-sm md:text-base">
+          <div class="flex flex-col gap-y-3 w-full text-sm md:text-base">
             <label
               th:each="addon: ${formData.availableAddons}"
               for="multiplayer-games"
               th:for="${addon}"
-              class="relative pl-6 h-20 md:w-full"
+              class="relative pl-5 h-16 md:w-full md:h-20"
             >
               <input
                 id="multiplayer-games"
@@ -124,21 +124,25 @@
                 value="OnlineService"
                 th:value="${addon}"
                 name="addon-services"
-                class="my-7 w-6 h-6 peer"
+                class="absolute z-40 my-5 w-6 h-6 text-white rounded-lg border md:my-7 accent-purplish-blue border-light-gray peer"
                 th:checked="${formData.userAnswers.step3.containsAddon(addon)}"
               />
               <div
-                class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia/50"
+                class="absolute inset-y-0 inset-x-0 z-20 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia/75 hover:bg-magnolia/[.1] hover:border-purplish-blue"
               >
                 <div
-                  class="grid place-content-center ml-20 h-full grid-cols-[1fr_100px]"
+                  class="grid place-content-center ml-16 h-full grid-cols-[1fr_70px]"
                 >
-                  <h1 th:text="${addon.name}">Online Service</h1>
-                  <p th:text="${addon.description}">
+                  <h1 th:text="${addon.name}"
+                      class="font-bold text-marine-blue"
+                  >Online Service</h1>
+                  <p th:text="${addon.description}"
+                     class="text-xs text-cool-gray"
+                  >
                     Access to multiplayer games
                   </p>
                   <p
-                    class="col-start-2 row-span-2 row-start-1 self-center"
+                    class="col-start-2 row-span-2 row-start-1 self-center text-purplish-blue"
                     th:text="|+$${formData.addonCost(addon)}/${formData.periodCostLabel}|"
                   >
                     +$1/mo
@@ -214,7 +218,7 @@
             hx-swap="outerHTML"
             hx-target="#form-step"
             href="step2.html"
-            class="ml-6 text-sm font-semibold md:pb-3 md:ml-20 md:text-base text-cool-gray"
+            class="ml-6 text-sm font-semibold md:pb-3 md:ml-24 md:text-base text-cool-gray"
             >Go Back</a
           >
           <div class="grow"></div>

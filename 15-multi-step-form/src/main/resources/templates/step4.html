@@ -107,18 +107,20 @@
           <h1 class="text-2xl font-bold md:text-4xl text-marine-blue">
             Finishing up
           </h1>
-          <p class="py-3 text-cool-gray">
+          <p class="pt-3 pb-5 text-cool-gray">
             Double-check everything looks OK before confirming.
           </p>
           <div
-            class="flex flex-col w-full text-sm rounded-lg divide-y md:text-base bg-magnolia"
+            class="flex flex-col px-3 w-full text-sm rounded-lg divide-y md:text-base bg-magnolia/75"
             id="selection-overview"
           >
-            <div id="selected-plan" class="grid grid-cols-[1fr_auto]">
-              <h2 th:text="${formData.fullPlanName}">Arcade (Monthly)</h2>
+            <div id="selected-plan" class="grid py-3 grid-cols-[1fr_auto]">
+              <h2 th:text="${formData.fullPlanName}"
+                  class="font-bold text-marine-blue"
+              >Arcade (Monthly)</h2>
               <p
                 th:text="|$${formData.selectedPlanCost}/${formData.periodCostLabel}|"
-                class="row-span-2"
+                class="row-span-2 self-end font-bold text-marine-blue"
               >
                 $90/y
               </p>
@@ -128,15 +130,18 @@
                 hx-target="#form-step"
                 href="step3.html"
                 hx-params="not form-confirmed"
+                class="underline text-cool-gray"
                 >Change</a
               >
             </div>
-            <div id="selected-addons" class="flex flex-col">
+            <div id="selected-addons" class="flex flex-col gap-y-4 py-3 mp-10"
+                 th:if="not ${formData.userAnswers.step3.addonsAsJava.isEmpty}"
+            >
               <div
                 th:each="addon: ${formData.userAnswers.step3.addonsAsJava}"
                 class="flex flex-row"
               >
-                <p th:text="${addon.name}" class="grow">Online service</p>
+                <p th:text="${addon.name}" class="grow text-cool-gray">Online service</p>
                 <p
                   th:text="|+$${formData.addonCost(addon)}/${formData.periodCostLabel}|"
                 >
@@ -147,8 +152,8 @@
             </div>
           </div>
 
-          <section class="flex flex-row">
-            <p class="grow">
+          <section class="flex flex-row p-3 mt-5">
+            <p class="grow text-cool-gray">
               Total (per
               <span
                 th:text="${formData.userAnswers.step2.isYearly} ? 'year' : 'month'"
@@ -156,7 +161,8 @@
               >)
             </p>
             <p
-              th:text="|$${formData.fullOrderPrice}/${formData.periodCostLabel}|"
+              th:text="|+$${formData.fullOrderPrice}/${formData.periodCostLabel}|"
+              class="font-bold text-purplish-blue"
             >
               $120
             </p>
