@@ -38,7 +38,7 @@
     <form
       class="flex flex-col items-center w-screen h-screen md:grid md:items-start md:p-5 md:bg-white md:rounded-2xl md:grid-cols-[auto_1fr] md:w-desktop-form md:h-desktop-form md:drop-shadow-2xl"
       id="form-step"
-      th:fragment="formFragment(formData)"
+      th:fragment="formFragment(formData.userAnswers)"
       hx-post="/submit-step/1/2"
       hx-swap="outerHTML"
       action="/submit-step/1/2"
@@ -105,7 +105,7 @@
         <label for="name" class="pt-3 text-sm md:pt-5 md:pb-2 text-marine-blue">Name</label>
         <input
           id="name"
-          th:value="${formData.step1.name}"
+          th:value="${formData.userAnswers.step1.name}"
           name="name"
           type="text"
           placeholder="e.g. Stephen King"
@@ -116,7 +116,7 @@
         >
         <input
           id="email"
-          th:value="${formData.step1.email}"
+          th:value="${formData.userAnswers.step1.email}"
           name="email"
           type="email"
           placeholder="e.g. stephenking@lorem.com"
@@ -127,7 +127,7 @@
         >
         <input
           id="phone"
-          th:value="${formData.step1.phone}"
+          th:value="${formData.userAnswers.step1.phone}"
           name="phone"
           type="tel"
           placeholder="e.g. +1 234 567 890"

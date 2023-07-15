@@ -12,6 +12,53 @@ object Models {
     step4 = StepAnswers.Step4(true)
   )
 
+  /** Labels and form info which dynamically depend on user answers e.g plan
+    * name 'Arcade (Yearly)' vs 'Pro (Monthly)'
+    */
+  final case class FormData(
+      userAnswers: Answers
+  ) {
+    def planDiscountMessage: Option[String] =
+      if (userAnswers.step2.isYearly) Some("2 monts free") else None
+
+    // yeah, in real world it will not be this simple
+    def yearlyCost(monthlyCost: Int): Int = 10 * monthlyCost
+
+    def periodCostLabel: String = {
+      if (userAnswers.step2.isYearly) "yr" else "mo"
+    }
+
+    def planCost: Int = {
+      val monthlyPlanCost = userAnswers.step2.planType match {
+        case PlanType.Arcade   => 9
+        case PlanType.Advanced => 12
+        case PlanType.Pro      => 15
+      }
+      if (userAnswers.step2.isYearly) yearlyCost(monthlyPlanCost)
+      else monthlyPlanCost
+    }
+
+    def addonMontlyCost: Addons => Int = {
+      case Addons.OnlineService => 1
+      case Addons.LargerStorage => 2
+      case Addons.CustomProfile => 2
+    }
+
+    def addonCost(addon: Addons): Int = {
+      val monthCost = addonMontlyCost(addon)
+      if (userAnswers.step2.isYearly) yearlyCost(monthCost) else monthCost
+    }
+
+    def fullPlanName: String = {
+      val period = if (userAnswers.step2.isYearly) "Yearly" else "Monthly"
+      s"${userAnswers.step2.planType} (${period})"
+    }
+
+    def fullOrderPrice: Int = {
+      planCost + userAnswers.step3.addons.map(addonCost).sum
+    }
+  }
+
   final case class Answers(
       sessionId: String = "id1",
       currentStep: Int = 1,

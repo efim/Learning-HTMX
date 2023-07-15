@@ -43,7 +43,7 @@
         hx-swap="outerHTML"
         action="/submit-step/3/4"
         method="post"
-        th:fragment="formFragment(formData)"
+        th:fragment="formFragment(formData.userAnswers)"
       >
         <summary
           class="w-full h-44 bg-no-repeat md:row-span-2 bg-sidebar-mobile marker:text-white md:bg-sidebar-desktop md:h-[568px] md:w-[274px]"
@@ -117,7 +117,7 @@
                 value="OnlineService"
                 name="addon-services"
                 class="my-7 w-6 h-6 peer"
-                th:checked="${formData.step3.containsAddon('OnlineService')}"
+                th:checked="${formData.userAnswers.step3.containsAddon('OnlineService')}"
               />
               <div
                 class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia/50"
@@ -141,7 +141,7 @@
                 name="addon-services"
                 value="LargerStorage"
                 class="my-7 w-6 h-6 peer"
-                th:checked="${formData.step3.containsAddon('LargerStorage')}"
+                th:checked="${formData.userAnswers.step3.containsAddon('LargerStorage')}"
               />
               <div
                 class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia/50"
@@ -165,7 +165,7 @@
                 name="addon-services"
                 value="CustomProfile"
                 class="my-7 w-6 h-6 peer"
-                th:checked="${formData.step3.containsAddon('CustomProfile')}"
+                th:checked="${formData.userAnswers.step3.containsAddon('CustomProfile')}"
               />
               <div
                 class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia/50"

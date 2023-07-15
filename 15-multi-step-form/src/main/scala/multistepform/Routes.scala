@@ -75,7 +75,8 @@ case class Routes()(implicit cc: castor.Context, log: cask.Logger)
     val state = Sessions.sessionReplies.getOrElse(id, Answers(id))
     println(s"starting form for $state")
     val context = new Context()
-    context.setVariable(formDataContextVarName, state)
+    val formData = Models.FormData(state)
+    context.setVariable(formDataContextVarName, formData)
     val formFragment = templateEngine.process(
       state.fragmentName,
       Set("formFragment").asJava,
@@ -106,7 +107,8 @@ case class Routes()(implicit cc: castor.Context, log: cask.Logger)
     Sessions.sessionReplies.update(id, updatedAnswers)
 
     val context = new Context()
-    context.setVariable(formDataContextVarName, updatedAnswers)
+    val formData = Models.FormData(updatedAnswers)
+    context.setVariable(formDataContextVarName, formData)
     val nextFormFragment = templateEngine.process(
       updatedAnswers.fragmentName,
       Set("formFragment").asJava,
