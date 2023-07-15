@@ -105,6 +105,7 @@
         <label for="name" class="pt-3 text-sm md:pt-5 md:pb-2 text-marine-blue">Name</label>
         <input
           id="name"
+          th:value="${formData.step1.name}"
           name="name"
           type="text"
           placeholder="e.g. Stephen King"
@@ -115,6 +116,7 @@
         >
         <input
           id="email"
+          th:value="${formData.step1.email}"
           name="email"
           type="email"
           placeholder="e.g. stephenking@lorem.com"
@@ -125,6 +127,7 @@
         >
         <input
           id="phone"
+          th:value="${formData.step1.phone}"
           name="phone"
           type="tel"
           placeholder="e.g. +1 234 567 890"

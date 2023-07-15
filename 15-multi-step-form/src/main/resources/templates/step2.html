@@ -119,6 +119,7 @@
                 name="plan-type"
                 value="Arcade"
                 class="hidden peer"
+                th:checked="${formData.step2.planType.toString()} == 'Acrade'"
                 checked
               />
               <div
@@ -135,6 +136,7 @@
                 name="plan-type"
                 value="Advanced"
                 class="hidden peer"
+                th:checked="${formData.step2.planType.toString()} == 'Advanced'"
               />
               <div
                 class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia"
@@ -150,6 +152,7 @@
                 name="plan-type"
                 value="Pro"
                 class="hidden peer"
+                th:checked="${formData.step2.planType.toString()} == 'Pro'"
               />
               <div
                 class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia"
@@ -169,6 +172,7 @@
                 name="isPackageYearly"
                 role="switch"
                 id="packageDuration"
+                th:checked="${formData.step2.isYearly}"
               />
               <span class="row-start-1 text-marine-blue peer-checked:text-cool-gray">Monthly</span>
               <span class="row-start-1 text-cool-gray peer-checked:text-marine-blue">Yearly</span>

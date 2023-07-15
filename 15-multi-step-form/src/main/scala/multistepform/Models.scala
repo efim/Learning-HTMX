@@ -3,12 +3,21 @@ package multistepform
 import java.util.UUID
 
 object Models {
+  val testAnsw = Answers(
+      sessionId= "id1",
+      currentStep = 1,
+      step1 = StepAnswers.Step1("Test Name", "some@email.com", "+9876", true),
+      step2 = StepAnswers.Step2(PlanType.Advanced, true, true),
+      step3 = StepAnswers.Step3(Set(Addons.LargerStorage), true),
+      step4 = StepAnswers.Step4(true)
+  )
+
   final case class Answers(
       sessionId: String = "id1",
       currentStep: Int = 1,
-      step1: StepAnswers.Step1 = StepAnswers.Step1(),
-      step2: StepAnswers.Step2 = StepAnswers.Step2(),
-      step3: StepAnswers.Step3 = StepAnswers.Step3(),
+      step1: StepAnswers.Step1 = StepAnswers.Step1("Test Name", "some@email.com", "+9876", true),
+      step2: StepAnswers.Step2 = StepAnswers.Step2(PlanType.Advanced, true, true),
+      step3: StepAnswers.Step3 = StepAnswers.Step3(Set(Addons.LargerStorage), true),
       step4: StepAnswers.Step4 = StepAnswers.Step4()
   ) {
     // this is not enforced by compiler, sad, maintain by hand in html template files
@@ -100,6 +109,11 @@ object Models {
         addons: Set[Addons] = Set.empty,
         override val submitted: Boolean = false
     ) extends StepAnswers {
+
+      def containsAddon(addonName: String): Boolean = {
+        addons.contains(Addons.valueOf(addonName))
+      }
+
       override def fromFormData(rawData: String): Step3 = {
         println(s"parsing step 3 data $rawData")
         // for multiple checkboxes data comes in form of
