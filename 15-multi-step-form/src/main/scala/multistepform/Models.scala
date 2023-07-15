@@ -45,7 +45,7 @@ object Models {
     }
 
     def fullOrderPrice: Int = {
-      selectedPlanCost + userAnswers.step3.addons.map(addonCost).sum
+      selectedPlanCost + userAnswers.step3.addons.toList.map(addonCost).sum
     }
 
     def availablePlans = PlanType.values.toList.asJava
@@ -106,6 +106,7 @@ object Models {
     case OnlineService extends Addons(1, "Access to multiplayer games")
     case LargerStorage extends Addons(2, "Extra 1TB of cloud storage")
     case CustomProfile extends Addons(2, "Custom theme on your profile")
+
     /** Change camel case into human readable. Adding single space before each
       * uppercase
       */
