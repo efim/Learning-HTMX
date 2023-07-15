@@ -4,15 +4,6 @@ import java.util.UUID
 import scala.jdk.CollectionConverters._
 
 object Models {
-  val testAnsw = Answers(
-    sessionId = "id1",
-    currentStep = 1,
-    step1 = StepAnswers.Step1("Test Name", "some@email.com", "+9876", true),
-    step2 = StepAnswers.Step2(PlanType.Advanced, true, true),
-    step3 = StepAnswers.Step3(Set(Addons.LargerStorage), true),
-    step4 = StepAnswers.Step4(true)
-  )
-
   /** Labels and form info which dynamically depend on user answers e.g plan
     * name 'Arcade (Yearly)' vs 'Pro (Monthly)'
     */
@@ -88,7 +79,7 @@ object Models {
           )
         case 4 =>
           this.copy(
-            step4 = this.step4,
+            step4 = this.step4.fromFormData(rawData),
             currentStep = nextStep
           )
         case _ => this
@@ -200,7 +191,7 @@ object Models {
         val addonsStrings = fieldValues
           .groupMap(_._1)(_._2)
           .getOrElse("addon-services", Array.empty[String])
-        println(s"in step 3 got strings $addonsStrings")
+        println(s"in step 3 got strings ${addonsStrings.mkString(", ")}")
         val addons = addonsStrings.map(Addons.valueOf(_)).toSet
 
         Step3(addons, submitted = true)
@@ -209,7 +200,20 @@ object Models {
     final case class Step4(
         override val submitted: Boolean = false
     ) extends StepAnswers {
-      override def fromFormData(rawData: String): Step4 = Step4(true)
+      override def fromFormData(rawData: String): Step4 =
+      {
+        val fieldValues = rawData
+          .split("&").filterNot(_.isEmpty())
+          .map { field =>
+            println(s"working with field $field")
+            val Array(name, value) = field.split("=")
+            name -> value
+          }
+          .toMap
+
+        val isConfirmed = fieldValues.contains("form-confirmed")
+        Step4(isConfirmed)
+      }
     }
   }
 }

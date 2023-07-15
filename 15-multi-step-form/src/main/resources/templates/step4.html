@@ -122,7 +122,14 @@
               >
                 $90/y
               </p>
-              <p>Change</p>
+              <a
+                hx-post="/submit-step/4/2"
+                hx-swap="outerHTML"
+                hx-target="#form-step"
+                href="step3.html"
+                hx-params="not form-confirmed"
+                >Change</a
+              >
             </div>
             <div id="selected-addons" class="flex flex-col">
               <div
@@ -140,9 +147,7 @@
             </div>
           </div>
 
-          <section
-            class="flex flex-row"
-          >
+          <section class="flex flex-row">
             <p class="grow">
               Total (per
               <span
@@ -150,7 +155,11 @@
                 >year</span
               >)
             </p>
-            <p th:text="|$${formData.fullOrderPrice}/${formData.periodCostLabel}|">$120</p>
+            <p
+              th:text="|$${formData.fullOrderPrice}/${formData.periodCostLabel}|"
+            >
+              $120
+            </p>
           </section>
 
           <!-- Step 3 end -->
@@ -166,9 +175,11 @@
             hx-target="#form-step"
             href="step3.html"
             class="ml-6 text-sm font-semibold md:pb-3 md:ml-20 md:text-base text-cool-gray"
+            hx-params="not form-confirmed"
             >Go Back</a
           >
           <div class="grow"></div>
+          <input type="hidden" name="form-confirmed" value="true" />
           <input
             type="submit"
             class="grid place-content-center mr-3 w-24 h-10 text-sm font-semibold text-white rounded md:mr-24 md:w-32 md:h-12 md:text-base md:rounded-lg bg-purplish-blue"
