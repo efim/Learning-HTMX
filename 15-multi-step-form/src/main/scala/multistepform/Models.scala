@@ -4,6 +4,7 @@ import java.util.UUID
 import scala.jdk.CollectionConverters._
 
 object Models {
+
   /** Labels and form info which dynamically depend on user answers e.g plan
     * name 'Arcade (Yearly)' vs 'Pro (Monthly)'
     */
@@ -47,14 +48,11 @@ object Models {
   }
 
   final case class Answers(
-      sessionId: String = "id1",
+      sessionId: String = "",
       currentStep: Int = 1,
-      step1: StepAnswers.Step1 =
-        StepAnswers.Step1("Test Name", "some@email.com", "+9876", true),
-      step2: StepAnswers.Step2 =
-        StepAnswers.Step2(PlanType.Advanced, true, true),
-      step3: StepAnswers.Step3 =
-        StepAnswers.Step3(Set(Addons.LargerStorage), true),
+      step1: StepAnswers.Step1 = StepAnswers.Step1(),
+      step2: StepAnswers.Step2 = StepAnswers.Step2(),
+      step3: StepAnswers.Step3 = StepAnswers.Step3(),
       step4: StepAnswers.Step4 = StepAnswers.Step4()
   ) {
     // this is not enforced by compiler, sad, maintain by hand in html template files
@@ -87,10 +85,9 @@ object Models {
     }
   }
 
-  /**
-   * TODO would be nice to connect answers to the steps enum
-   * in some helpful way.
-   */
+  /** TODO would be nice to connect answers to the steps enum in some helpful
+    * way.
+    */
   enum Steps(val index: Int, val name: String):
     case Step1 extends Steps(1, "Your info")
     case Step2 extends Steps(2, "Select plan")
@@ -132,6 +129,7 @@ object Models {
         println(s"parsing step 1 data $rawData")
         val fieldValues = rawData
           .split("&")
+          .filterNot(_.isEmpty())
           .map { field =>
             val Array(name, value) = field.split("=")
             name -> value
@@ -154,6 +152,7 @@ object Models {
         println(s"parsing step 2 data $rawData")
         val fieldValues = rawData
           .split("&")
+          .filterNot(_.isEmpty())
           .map { field =>
             val Array(name, value) = field.split("=")
             name -> value
@@ -183,6 +182,7 @@ object Models {
         // addon-services=OnlineService&addon-services=CustomProfile
         val fieldValues = rawData
           .split("&")
+          .filterNot(_.isEmpty())
           .map { field =>
             val Array(name, value) = field.split("=")
             name -> value
@@ -200,10 +200,10 @@ object Models {
     final case class Step4(
         override val submitted: Boolean = false
     ) extends StepAnswers {
-      override def fromFormData(rawData: String): Step4 =
-      {
+      override def fromFormData(rawData: String): Step4 = {
         val fieldValues = rawData
-          .split("&").filterNot(_.isEmpty())
+          .split("&")
+          .filterNot(_.isEmpty())
           .map { field =>
             println(s"working with field $field")
             val Array(name, value) = field.split("=")
