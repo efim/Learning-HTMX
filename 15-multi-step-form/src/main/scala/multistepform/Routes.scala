@@ -7,6 +7,8 @@ import cask.endpoints.ParamReader
 import java.util.UUID
 import scala.jdk.CollectionConverters._
 import multistepform.Models.Answers
+import scala.annotation.internal.requiresCapability
+import java.net.URLDecoder
 
 case class Routes()(implicit cc: castor.Context, log: cask.Logger)
     extends cask.Routes {
@@ -85,54 +87,11 @@ case class Routes()(implicit cc: castor.Context, log: cask.Logger)
     )
   }
 
-  @cask.get("/get-form/:stepNum")
-  def getFormByStep(stepNum: Int, sessionId: cask.Cookie) = {
-    val id = sessionId.value
-    val answersData = Sessions.sessionReplies.get(id)
-    println(s"returning to step $stepNum with data $answersData")
-    answersData match {
-      case Some(state) => {
-        val stepData = stepNum match {
-          case 1 => state.step1
-          case 2 => state.step2
-          case 3 => state.step3
-          case 4 => state.step4
-        }
-
-        if (!stepData.submitted) {
-          cask.Response(
-            s"Your previous answer for step $stepNum not found, please reload the page"
-          )
-        } else {
-          val context = new Context()
-          val updatedState = state.copy(currentStep = stepNum)
-          Sessions.sessionReplies.update(id, updatedState)
-          context.setVariable(formDataContextVarName, updatedState)
-          val formFragment = templateEngine.process(
-            updatedState.fragmentName,
-            Set("formFragment").asJava,
-            context
-          )
-          cask.Response(
-            formFragment,
-            headers = Seq("Content-Type" -> "text/html;charset=UTF-8")
-          )
-        }
-      }
-      case None =>
-        cask.Response(
-          "Your previous answers not found, please reload the page",
-          404
-        )
-    }
-
-  }
-
-  // i guess let's make step a hidden input?
-  @cask.post("/submit-step/:stepNum")
+  @cask.post("/submit-step/:stepNum/:nextStep")
   def submitStep(
       sessionId: cask.Cookie,
       stepNum: Int,
+      nextStep: Int,
       request: cask.Request
   ) = {
     val id = sessionId.value
@@ -140,7 +99,9 @@ case class Routes()(implicit cc: castor.Context, log: cask.Logger)
 
     val userAnswers = Sessions.sessionReplies.getOrElse(id, Answers(id))
 
-    val updatedAnswers = userAnswers.updateStep(stepNum, request.text())
+    val submittedData = URLDecoder.decode(request.text() , "UTF-8")
+
+    val updatedAnswers = userAnswers.updateStep(stepNum, submittedData, nextStep)
 
     Sessions.sessionReplies.update(id, updatedAnswers)
 

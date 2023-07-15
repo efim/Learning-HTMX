@@ -4,45 +4,48 @@ import java.util.UUID
 
 object Models {
   val testAnsw = Answers(
-      sessionId= "id1",
-      currentStep = 1,
-      step1 = StepAnswers.Step1("Test Name", "some@email.com", "+9876", true),
-      step2 = StepAnswers.Step2(PlanType.Advanced, true, true),
-      step3 = StepAnswers.Step3(Set(Addons.LargerStorage), true),
-      step4 = StepAnswers.Step4(true)
+    sessionId = "id1",
+    currentStep = 1,
+    step1 = StepAnswers.Step1("Test Name", "some@email.com", "+9876", true),
+    step2 = StepAnswers.Step2(PlanType.Advanced, true, true),
+    step3 = StepAnswers.Step3(Set(Addons.LargerStorage), true),
+    step4 = StepAnswers.Step4(true)
   )
 
   final case class Answers(
       sessionId: String = "id1",
       currentStep: Int = 1,
-      step1: StepAnswers.Step1 = StepAnswers.Step1("Test Name", "some@email.com", "+9876", true),
-      step2: StepAnswers.Step2 = StepAnswers.Step2(PlanType.Advanced, true, true),
-      step3: StepAnswers.Step3 = StepAnswers.Step3(Set(Addons.LargerStorage), true),
+      step1: StepAnswers.Step1 =
+        StepAnswers.Step1("Test Name", "some@email.com", "+9876", true),
+      step2: StepAnswers.Step2 =
+        StepAnswers.Step2(PlanType.Advanced, true, true),
+      step3: StepAnswers.Step3 =
+        StepAnswers.Step3(Set(Addons.LargerStorage), true),
       step4: StepAnswers.Step4 = StepAnswers.Step4()
   ) {
     // this is not enforced by compiler, sad, maintain by hand in html template files
     def fragmentName: String = s"step${currentStep}"
-    def updateStep(stepNum: Int, rawData: String): Answers = {
+    def updateStep(stepNum: Int, rawData: String, nextStep: Int): Answers = {
       stepNum match {
         case 1 =>
           this.copy(
             step1 = this.step1.fromFormData(rawData),
-            currentStep = stepNum + 1
+            currentStep = nextStep
           )
         case 2 =>
           this.copy(
             step2 = this.step2.fromFormData(rawData),
-            currentStep = stepNum + 1
+            currentStep = nextStep
           )
         case 3 =>
           this.copy(
             step3 = this.step3.fromFormData(rawData),
-            currentStep = stepNum + 1
+            currentStep = nextStep
           )
         case 4 =>
           this.copy(
-            currentStep = stepNum + 1,
-            step4 = this.step4
+            step4 = this.step4,
+            currentStep = nextStep
           )
         case _ => this
       }

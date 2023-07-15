@@ -39,8 +39,8 @@
       <form
         class="flex flex-col items-center w-screen h-screen md:grid md:items-start md:p-5 md:bg-white md:rounded-2xl md:grid-cols-[auto_1fr] md:w-desktop-form md:h-desktop-form md:drop-shadow-2xl"
         id="form-step"
-        hx-post="/submit-step/4"
-        action="/submit-step/4"
+        hx-post="/submit-step/4/5"
+        action="/submit-step/4/5"
         hx-swap="outerHTML"
         method="post"
         th:fragment="formFragment(formData)"
@@ -134,9 +134,9 @@
           class="flex flex-row items-center py-4 w-full bg-white md:items-end md:h-full"
         >
           <a
-            hx-get="/get-form/3"
-            hx-target="#form-step"
+            hx-post="/submit-step/4/3"
             hx-swap="outerHTML"
+            hx-target="#form-step"
             href="step3.html"
             class="ml-6 text-sm font-semibold md:pb-3 md:ml-20 md:text-base text-cool-gray"
             >Go Back</a
