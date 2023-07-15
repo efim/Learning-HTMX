@@ -110,7 +110,11 @@
           <p class="py-3 text-cool-gray">
             You have the option of monthly or yearly billing.
           </p>
-          <div class="flex flex-col w-full md:flex-row">
+          <div
+            class="flex flex-col w-full md:flex-row"
+            id="plan-type-inputs"
+            th:fragment="planTypesInputs(formData)"
+          >
             <label
               for="ArcadePlanType"
               class="relative h-20 md:w-32"
@@ -132,8 +136,14 @@
                 class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia"
               >
                 <h2 th:text="${planType}" class="">Arcade</h2>
-                <p th:text="|${formData.planCost(planType)}/${formData.periodCostLabel}|">$90/yr</p>
-                <p th:if="${formData.userAnswers.step2.isYearly}">2 months free</p>
+                <p
+                  th:text="|${formData.planCost(planType)}/${formData.periodCostLabel}|"
+                >
+                  $90/yr
+                </p>
+                <p th:if="${formData.userAnswers.step2.isYearly}">
+                  2 months free
+                </p>
               </div>
             </label>
 
@@ -191,6 +201,9 @@
                 role="switch"
                 id="packageDuration"
                 th:checked="${formData.userAnswers.step2.isYearly}"
+                hx-get="/step2/planTypeInputs"
+                hx-target="#plan-type-inputs"
+                hx-swap="outerHTML"
               />
               <p
                 class="row-start-1 text-marine-blue peer-checked:text-cool-gray"
