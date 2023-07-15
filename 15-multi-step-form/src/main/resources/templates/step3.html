@@ -110,14 +110,21 @@
             Add-ons help enhance your gaming experience.
           </p>
           <div class="flex flex-col w-full text-sm md:text-base">
-            <label for="multiplayer-games" class="relative pl-6 h-20 md:w-full">
+            <label
+              th:each="addon: ${formData.availableAddons}"
+              for="multiplayer-games"
+              th:for="${addon}"
+              class="relative pl-6 h-20 md:w-full"
+            >
               <input
                 id="multiplayer-games"
+                th:id="${addon}"
                 type="checkbox"
                 value="OnlineService"
+                th:value="${addon}"
                 name="addon-services"
                 class="my-7 w-6 h-6 peer"
-                th:checked="${formData.userAnswers.step3.containsAddon('OnlineService')}"
+                th:checked="${formData.userAnswers.step3.containsAddon(addon)}"
               />
               <div
                 class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia/50"
@@ -125,16 +132,24 @@
                 <div
                   class="grid place-content-center ml-20 h-full grid-cols-[1fr_100px]"
                 >
-                  <h1>Online Service</h1>
-                  <p>Access to multiplayer games</p>
-                  <p class="col-start-2 row-span-2 row-start-1 self-center">
+                  <h1 th:text="${addon.name}">Online Service</h1>
+                  <p th:text="${addon.description}">
+                    Access to multiplayer games
+                  </p>
+                  <p
+                    class="col-start-2 row-span-2 row-start-1 self-center"
+                    th:text="|+$${formData.addonCost(addon)}/${formData.periodCostLabel}|"
+                  >
                     +$1/mo
                   </p>
                 </div>
               </div>
             </label>
-
-            <label for="larger-storage" class="relative pl-6 h-20 md:w-full">
+            <label
+              for="larger-storage"
+              class="relative pl-6 h-20 md:w-full"
+              th:remove="all"
+            >
               <input
                 id="larger-storage"
                 type="checkbox"
@@ -157,8 +172,11 @@
                 </div>
               </div>
             </label>
-
-            <label for="custom-profile" class="relative pl-6 h-20 md:w-full">
+            <label
+              for="custom-profile"
+              class="relative pl-6 h-20 md:w-full"
+              th:remove="all"
+            >
               <input
                 id="custom-profile"
                 type="checkbox"

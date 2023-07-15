@@ -116,7 +116,7 @@
             <div id="selected-plan" class="grid grid-cols-[1fr_auto]">
               <h2 th:text="${formData.fullPlanName}">Arcade (Monthly)</h2>
               <p
-                th:text="|${formData.planCost}/${formData.periodCostLabel}|"
+                th:text="|$${formData.selectedPlanCost}/${formData.periodCostLabel}|"
                 class="row-span-2"
               >
                 $90/y
@@ -130,7 +130,7 @@
               >
                 <p th:text="${addon.name}" class="grow">Online service</p>
                 <p
-                  th:text="|+${formData.addonCost(addon)}/${formData.periodCostLabel}|"
+                  th:text="|+$${formData.addonCost(addon)}/${formData.periodCostLabel}|"
                 >
                   +$10/yr
                 </p>
@@ -149,7 +149,7 @@
                 >year</span
               >)
             </p>
-            <p th:text="|${formData.fullOrderPrice}$/${formData.periodCostLabel}|">$120</p>
+            <p th:text="|$${formData.fullOrderPrice}/${formData.periodCostLabel}|">$120</p>
           </section>
 
           <!-- Step 3 end -->

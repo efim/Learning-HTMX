@@ -29,23 +29,13 @@ object Models {
     def selectedPlanCost: Int = planCost(userAnswers.step2.planType)
 
     def planCost(plan: PlanType): Int = {
-      val monthlyPlanCost = plan match {
-        case PlanType.Arcade   => 9
-        case PlanType.Advanced => 12
-        case PlanType.Pro      => 15
-      }
+      val monthlyPlanCost = plan.monthlyCost
       if (userAnswers.step2.isYearly) yearlyCost(monthlyPlanCost)
       else monthlyPlanCost
     }
 
-    def addonMontlyCost: Addons => Int = {
-      case Addons.OnlineService => 1
-      case Addons.LargerStorage => 2
-      case Addons.CustomProfile => 2
-    }
-
     def addonCost(addon: Addons): Int = {
-      val monthCost = addonMontlyCost(addon)
+      val monthCost = addon.monthlyCost
       if (userAnswers.step2.isYearly) yearlyCost(monthCost) else monthCost
     }
 
@@ -59,6 +49,8 @@ object Models {
     }
 
     def availablePlans = PlanType.values.toList.asJava
+
+    def availableAddons = Addons.values.toList.asJava
   }
 
   final case class Answers(
@@ -102,12 +94,18 @@ object Models {
     }
   }
 
-  enum PlanType:
-    case Arcade, Advanced, Pro
+  enum PlanType(val monthlyCost: Int):
+    case Arcade extends PlanType(9)
+    case Advanced extends PlanType(12)
+    case Pro extends PlanType(15)
+    def name(): String = {
+      this.toString().replaceAll("([a-z])([A-Z])", "$1 $2")
+    }
 
-  enum Addons:
-    case OnlineService, LargerStorage, CustomProfile
-
+  enum Addons(val monthlyCost: Int, val description: String):
+    case OnlineService extends Addons(1, "Access to multiplayer games")
+    case LargerStorage extends Addons(2, "Extra 1TB of cloud storage")
+    case CustomProfile extends Addons(2, "Custom theme on your profile")
     /** Change camel case into human readable. Adding single space before each
       * uppercase
       */
