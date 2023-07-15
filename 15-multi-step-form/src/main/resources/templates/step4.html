@@ -103,28 +103,54 @@
           class="flex flex-col py-8 px-6 -mt-20 w-11/12 bg-white rounded-xl md:px-24 md:mt-0 md:w-full drop-shadow-xl md:drop-shadow-none"
         >
           <!-- Step 3 start -->
-          <h1 class="text-2xl font-bold md:text-4xl text-marine-blue">Finishing up</h1>
-          <p class="py-3 text-cool-gray">Double-check everything looks OK before confirming.</p>
+          <h1 class="text-2xl font-bold md:text-4xl text-marine-blue">
+            Finishing up
+          </h1>
+          <p class="py-3 text-cool-gray">
+            Double-check everything looks OK before confirming.
+          </p>
           <div
             class="flex flex-col w-full text-sm rounded-lg divide-y md:text-base bg-magnolia"
             id="selection-overview"
           >
-            <div id="selected-plan">
-              Arcade (Monthly) Change $90/y
+            <div id="selected-plan" class="grid grid-cols-[1fr_auto]">
+              <h2 th:text="${formData.fullPlanName}">Arcade (Monthly)</h2>
+              <p
+                th:text="|${formData.planCost}/${formData.periodCostLabel}|"
+                class="row-span-2"
+              >
+                $90/y
+              </p>
+              <p>Change</p>
             </div>
-            <div id="selected-addons"
-                 class="flex flex-col"
-            >
-              <div>
-                Online service +$10/yr
+            <div id="selected-addons" class="flex flex-col">
+              <div
+                th:each="addon: ${formData.userAnswers.step3.addonsAsJava}"
+                class="flex flex-row"
+              >
+                <p th:text="${addon.name}" class="grow">Online service</p>
+                <p
+                  th:text="|+${formData.addonCost(addon)}/${formData.periodCostLabel}|"
+                >
+                  +$10/yr
+                </p>
               </div>
-              <div>
-                Larger storage +$20/yr
-              </div>
+              <div th:remove="all">Larger storage +$20/yr</div>
             </div>
           </div>
 
-          <p>Total (per year) $120</p>
+          <section
+            class="flex flex-row"
+          >
+            <p class="grow">
+              Total (per
+              <span
+                th:text="${formData.userAnswers.step2.isYearly} ? 'year' : 'month'"
+                >year</span
+              >)
+            </p>
+            <p th:text="|${formData.fullOrderPrice}$/${formData.periodCostLabel}|">$120</p>
+          </section>
 
           <!-- Step 3 end -->
         </section>
@@ -146,7 +172,7 @@
             type="submit"
             class="grid place-content-center mr-3 w-24 h-10 text-sm font-semibold text-white rounded md:mr-24 md:w-32 md:h-12 md:text-base md:rounded-lg bg-purplish-blue"
             value="Confirm"
-            >
+          />
           <a
             th:remove="all"
             href="step5.html"

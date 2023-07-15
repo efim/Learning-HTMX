@@ -1,6 +1,7 @@
 package multistepform
 
 import java.util.UUID
+import scala.jdk.CollectionConverters._
 
 object Models {
   val testAnsw = Answers(
@@ -105,6 +106,13 @@ object Models {
   enum Addons:
     case OnlineService, LargerStorage, CustomProfile
 
+    /** Change camel case into human readable. Adding single space before each
+      * uppercase
+      */
+    def name(): String = {
+      this.toString().replaceAll("([a-z])([A-Z])", "$1 $2")
+    }
+
   sealed trait StepAnswers {
     def fromFormData(rawData: String): StepAnswers
     def submitted: Boolean
@@ -159,6 +167,7 @@ object Models {
         addons: Set[Addons] = Set.empty,
         override val submitted: Boolean = false
     ) extends StepAnswers {
+      def addonsAsJava = addons.asJava
 
       def containsAddon(addonName: String): Boolean = {
         addons.contains(Addons.valueOf(addonName))
