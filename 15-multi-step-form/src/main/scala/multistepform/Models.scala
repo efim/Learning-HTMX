@@ -19,9 +19,6 @@ object Models {
   final case class FormData(
       userAnswers: Answers
   ) {
-    def planDiscountMessage: Option[String] =
-      if (userAnswers.step2.isYearly) Some("2 monts free") else None
-
     // yeah, in real world it will not be this simple
     def yearlyCost(monthlyCost: Int): Int = 10 * monthlyCost
 
@@ -29,8 +26,10 @@ object Models {
       if (userAnswers.step2.isYearly) "yr" else "mo"
     }
 
-    def planCost: Int = {
-      val monthlyPlanCost = userAnswers.step2.planType match {
+    def selectedPlanCost: Int = planCost(userAnswers.step2.planType)
+
+    def planCost(plan: PlanType): Int = {
+      val monthlyPlanCost = plan match {
         case PlanType.Arcade   => 9
         case PlanType.Advanced => 12
         case PlanType.Pro      => 15
@@ -56,8 +55,10 @@ object Models {
     }
 
     def fullOrderPrice: Int = {
-      planCost + userAnswers.step3.addons.map(addonCost).sum
+      selectedPlanCost + userAnswers.step3.addons.map(addonCost).sum
     }
+
+    def availablePlans = PlanType.values.toList.asJava
   }
 
   final case class Answers(
@@ -73,6 +74,7 @@ object Models {
   ) {
     // this is not enforced by compiler, sad, maintain by hand in html template files
     def fragmentName: String = s"step${currentStep}"
+
     def updateStep(stepNum: Int, rawData: String, nextStep: Int): Answers = {
       stepNum match {
         case 1 =>

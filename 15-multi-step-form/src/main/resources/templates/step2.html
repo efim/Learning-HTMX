@@ -109,27 +109,38 @@
           <p class="py-3 text-cool-gray">
             You have the option of monthly or yearly billing.
           </p>
-          <div
-            class="flex flex-col w-full md:flex-row"
-          >
-            <label for="ArcadePlanType" class="relative h-20 md:w-32">
+          <div class="flex flex-col w-full md:flex-row">
+            <label
+              for="ArcadePlanType"
+              class="relative h-20 md:w-32"
+              th:each="planType: ${formData.availablePlans}"
+              th:for="${planType}"
+            >
               <input
                 id="ArcadePlanType"
+                th:id="${planType}"
                 type="radio"
                 name="plan-type"
                 value="Arcade"
+                th:value="${planType}"
                 class="hidden peer"
-                th:checked="${formData.userAnswers.step2.planType.toString()} == 'Arcade'"
+                th:checked="${formData.userAnswers.step2.planType.toString()} == ${planType.toString()}"
                 checked
               />
               <div
                 class="absolute inset-y-0 inset-x-0 rounded-lg border border-cool-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia"
               >
-                <h2 class="">Arcade</h2>
+                <h2 th:text="${planType}" class="">Arcade</h2>
+                <p th:text="|${formData.planCost(planType)}/${formData.periodCostLabel}|">$90/yr</p>
+                <p th:if="${formData.userAnswers.step2.isYearly}">2 months free</p>
               </div>
             </label>
 
-            <label for="AdvancedPlanType" class="relative h-20 md:w-32">
+            <label
+              for="AdvancedPlanType"
+              class="relative h-20 md:w-32"
+              th:remove="all"
+            >
               <input
                 id="AdvancedPlanType"
                 type="radio"
@@ -145,7 +156,11 @@
               </div>
             </label>
 
-            <label for="ProPlanType" class="relative h-20 md:w-32">
+            <label
+              for="ProPlanType"
+              class="relative h-20 md:w-32"
+              th:remove="all"
+            >
               <input
                 id="ProPlanType"
                 type="radio"
@@ -162,20 +177,30 @@
             </label>
           </div>
 
-          <div class="grid grid-flow-col-dense place-content-center w-full rounded-lg bg-magnolia">
+          <div
+            class="grid grid-flow-col-dense place-content-center w-full rounded-lg bg-magnolia"
+          >
             <div
               class="inline-grid grid-cols-3 place-items-center h-12 text-sm font-bold"
             >
               <input
-                class="mr-2 w-9 h-5 ml-2 rounded-full appearance-none mt-[0.3rem] bg-marine-blue after:absolute after:h-3 after:w-3 after:rounded-full after:border-none after:bg-neutral-100  after:transition-[background-color_0.2s,transform_0.2s] checked:after:ml-[1.2rem] after:ml-[0.25rem] after:mt-[0.25rem] hover:cursor-pointer col-start-2 row-start-1 peer"
+                class="mr-2 w-9 h-5 ml-2 rounded-full appearance-none mt-[0.3rem] bg-marine-blue after:absolute after:h-3 after:w-3 after:rounded-full after:border-none after:bg-neutral-100 after:transition-[background-color_0.2s,transform_0.2s] checked:after:ml-[1.2rem] after:ml-[0.25rem] after:mt-[0.25rem] hover:cursor-pointer col-start-2 row-start-1 peer"
                 type="checkbox"
                 name="isPackageYearly"
                 role="switch"
                 id="packageDuration"
                 th:checked="${formData.userAnswers.step2.isYearly}"
               />
-              <p class="row-start-1 text-marine-blue peer-checked:text-cool-gray">Monthly</p>
-              <p class="row-start-1 text-cool-gray peer-checked:text-marine-blue">Yearly</p>
+              <p
+                class="row-start-1 text-marine-blue peer-checked:text-cool-gray"
+              >
+                Monthly
+              </p>
+              <p
+                class="row-start-1 text-cool-gray peer-checked:text-marine-blue"
+              >
+                Yearly
+              </p>
             </div>
           </div>
 
@@ -199,7 +224,7 @@
             type="submit"
             class="grid place-content-center mr-3 w-24 h-10 text-sm font-semibold text-white rounded md:mr-24 md:w-32 md:h-12 md:text-base md:rounded-lg bg-marine-blue"
             value="Next Step"
-            >
+          />
           <a
             th:remove="all"
             href="step3.html"
