@@ -28,6 +28,10 @@
           inherit pkgs sbt-derivation;
           lib = pkgs.lib;
         };
+        multi-step-form = import ./15-multi-step-form/default.nix {
+          inherit pkgs sbt-derivation;
+          lib = pkgs.lib;
+        };
       in {
         devShells.default = pkgs.mkShell {
           buildInputs = [
@@ -51,6 +55,9 @@
         packages.rock-paper-scissors = rock-paper-scissors.package;
         packages.rock-paper-scissors-image = rock-paper-scissors.image;
         nixosModules.rock-paper-scissors = rock-paper-scissors.module;
+        packages.multi-step-form = multi-step-form.package;
+        packages.multi-step-form-image = multi-step-form.image;
+        nixosModules.multi-step-form = multi-step-form.module;
       });
   # see https://serokell.io/blog/practical-nix-flakes
 }
