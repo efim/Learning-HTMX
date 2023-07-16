@@ -126,42 +126,81 @@
         <p class="py-3 text-cool-gray">
           Please provide your name, email address, and phone number.
         </p>
-        <label for="name" class="pt-3 text-sm md:pt-5 md:pb-2 text-marine-blue"
-          >Name</label
+        <div class="contents">
+          <label
+            for="name"
+            class="pt-3 text-sm md:pt-5 md:pb-2 text-marine-blue"
+            >Name</label
+          >
+          <input
+            id="name"
+            th:value="${formData.userAnswers.step1.name}"
+            name="name"
+            type="text"
+            required
+            placeholder="e.g. Stephen King"
+            class="p-1 px-4 h-10 text-sm font-semibold rounded border md:p-6 md:px-4 md:text-base md:rounded-lg focus:outline-none placeholder:text-cool-gray invalid:border-strawberry-red focus:border-marine-blue"
+          />
+        </div>
+        <div class="contents">
+          <label
+            for="email"
+            class="pt-3 text-sm md:pt-5 md:pb-2 text-marine-blue"
+            >Email Address</label
+          >
+          <input
+            id="email"
+            th:value="${formData.userAnswers.step1.email}"
+            name="email"
+            type="email"
+            required
+            placeholder="e.g. stephenking@lorem.com"
+            class="p-1 px-4 h-10 text-sm font-semibold rounded border md:p-6 md:px-4 md:text-base md:rounded-lg focus:outline-none placeholder:text-cool-gray invalid:border-strawberry-red focus:border-marine-blue"
+          />
+        </div>
+        <!-- Following is email input field
+             it has outer div that sets separate 'value' variable
+             and innder div which denotes fragment, parametrized by this only variable
+             now i should be able to render only this input field as fragment -->
+        <div
+          th:with="value=${formData.userAnswers.step1.phone},error=''"
+          class="contents relative"
         >
-        <input
-          id="name"
-          th:value="${formData.userAnswers.step1.name}"
-          name="name"
-          type="text"
-          required
-          placeholder="e.g. Stephen King"
-          class="p-1 px-4 h-10 text-sm font-semibold rounded border md:p-6 md:px-4 md:text-base md:rounded-lg focus:outline-none placeholder:text-cool-gray invalid:border-strawberry-red focus:border-marine-blue"
-        />
-        <label for="email" class="pt-3 text-sm md:pt-5 md:pb-2 text-marine-blue"
-          >Email Address</label
-        >
-        <input
-          id="email"
-          th:value="${formData.userAnswers.step1.email}"
-          name="email"
-          type="email"
-          required
-          placeholder="e.g. stephenking@lorem.com"
-          class="p-1 px-4 h-10 text-sm font-semibold rounded border md:p-6 md:px-4 md:text-base md:rounded-lg focus:outline-none placeholder:text-cool-gray invalid:border-strawberry-red focus:border-marine-blue"
-        />
-        <label for="phone" class="pt-3 text-sm md:pt-5 md:pb-2 text-marine-blue"
-          >Phone Number</label
-        >
-        <input
-          id="phone"
-          th:value="${formData.userAnswers.step1.phone}"
-          name="phone"
-          type="tel"
-          required
-          placeholder="e.g. +1 234 567 890"
-          class="p-1 px-4 h-10 text-sm font-semibold rounded border md:p-6 md:px-4 md:text-base md:rounded-lg focus:outline-none placeholder:text-cool-gray invalid:border-strawberry-red focus:border-marine-blue"
-        />
+          <div
+            class="contents"
+            hx-target="this"
+            hx-swap="outerHTML"
+            th:fragment="email-input (value,error)"
+          >
+            <label
+              for="phone"
+              class="pt-3 text-sm md:pt-5 md:pb-2 text-marine-blue"
+              >Phone Number</label
+            >
+            <input
+              id="phone"
+              th:value="${value}"
+              name="phone"
+              type="tel"
+              required
+              placeholder="e.g. +1 234 567 890"
+              class="p-1 px-4 h-10 text-sm font-semibold rounded border md:p-6 md:px-4 md:text-base md:rounded-lg focus:outline-none placeholder:text-cool-gray invalid:border-strawberry-red focus:border-marine-blue"
+              th:classappend="${!error.isEmpty} ? 'border-strawberry-red' : ''"
+              hx-post="/step1/phonenumber"
+              hx-indicator="#ind"
+            />
+            <div
+              th:if="${error} != null"
+              th:text="${error}"
+              class="text-sm text-strawberry-red">Please enter valid phone number</div>
+            <img
+              id="ind"
+              src="../public/images/tail-spin.svg"
+              th:src="'public/images/tail-spin.svg'"
+              class="absolute w-14 h-14 htmx-indicator"
+            />
+          </div>
+        </div>
 
         <!-- Step 1 end -->
       </section>

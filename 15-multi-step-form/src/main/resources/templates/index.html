@@ -33,13 +33,14 @@
   </head>
   <body>
     <main class="grid place-content-center w-screen h-screen bg-magnolia">
-      <section
-        hx-get="/get-form"
-        hx-trigger="load"
-        hx-swap="outerHTML"
-      >
+      <section hx-get="/get-form" hx-trigger="load" hx-swap="outerHTML">
         <!-- here be immediate hx-get for the form. to subscitute the body -->
-        <img class="w-14 text-green-500 fill-current" th:src="'public/images/tail-spin.svg'" src="../public/images/tail-spin.svg" alt="loading..." />
+        <img
+          class="w-14 text-green-500 fill-current"
+          th:src="'public/images/tail-spin.svg'"
+          src="../public/images/tail-spin.svg"
+          alt="loading..."
+        />
       </section>
 
       <section class="absolute top-0 end-0" id="new-session-control">

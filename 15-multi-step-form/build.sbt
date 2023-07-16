@@ -11,6 +11,7 @@ lazy val multiStepForm = (project in file("."))
     libraryDependencies ++= Seq(
       "com.lihaoyi" %% "cask" % "0.9.1",
       "com.lihaoyi" %% "mainargs" % "0.5.0",
-      "org.thymeleaf" % "thymeleaf" % "3.1.1.RELEASE"
+      "org.thymeleaf" % "thymeleaf" % "3.1.1.RELEASE",
+      "com.googlecode.libphonenumber" % "libphonenumber" % "8.13.16"
     )
   )
