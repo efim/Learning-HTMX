@@ -17,7 +17,7 @@ let
       cp target/scala-*/${pname}-assembly-*.jar $out/bin/${pname}.jar
     '';
 
-    depsSha256 = "sha256-Y5RktcE3fxUJci4o7LTuNlBEybTdVRqsG551AkVeRPw=";
+    depsSha256 = "sha256-zG4e7ERdi/WxzACymaYUQ0x8v4/peGARuqPAK8xvBmE=";
   };
 
   module = { config, pkgs, ... }:
