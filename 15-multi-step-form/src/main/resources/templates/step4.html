@@ -107,14 +107,14 @@
           <h1 class="text-2xl font-bold md:text-4xl text-marine-blue">
             Finishing up
           </h1>
-          <p class="pt-3 pb-5 text-cool-gray">
+          <p class="pt-3 pb-5 md:pb-8 text-cool-gray">
             Double-check everything looks OK before confirming.
           </p>
           <div
-            class="flex flex-col px-3 w-full text-sm rounded-lg divide-y md:text-base bg-magnolia/75"
+            class="flex flex-col w-full text-sm rounded-lg divide-y md:text-base bg-magnolia/75"
             id="selection-overview"
           >
-            <div id="selected-plan" class="grid py-3 grid-cols-[1fr_auto]">
+            <div id="selected-plan" class="grid p-3 md:p-6 grid-cols-[1fr_auto]">
               <h2 th:text="${formData.fullPlanName}"
                   class="font-bold text-marine-blue"
               >Arcade (Monthly)</h2>
@@ -134,7 +134,7 @@
                 >Change</a
               >
             </div>
-            <div id="selected-addons" class="flex flex-col gap-y-4 py-3 mp-10"
+            <div id="selected-addons" class="flex flex-col gap-y-4 p-3 md:p-6 mp-10"
                  th:if="not ${formData.userAnswers.step3.addonsAsJava.isEmpty}"
             >
               <div
@@ -152,7 +152,7 @@
             </div>
           </div>
 
-          <section class="flex flex-row p-3 mt-5">
+          <section class="flex flex-row p-3 mt-5 md:px-6">
             <p class="grow text-cool-gray">
               Total (per
               <span
@@ -162,7 +162,7 @@
             </p>
             <p
               th:text="|+$${formData.fullOrderPrice}/${formData.periodCostLabel}|"
-              class="font-bold text-purplish-blue"
+              class="font-bold md:text-lg text-purplish-blue"
             >
               $120
             </p>
@@ -180,7 +180,7 @@
             hx-swap="outerHTML"
             hx-target="#form-step"
             href="step3.html"
-            class="ml-6 text-sm font-semibold md:pb-3 md:ml-20 md:text-base text-cool-gray"
+            class="ml-6 text-sm font-semibold md:pb-3 md:ml-24 md:text-base text-cool-gray"
             hx-params="not form-confirmed"
             >Go Back</a
           >
