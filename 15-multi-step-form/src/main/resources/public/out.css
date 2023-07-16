@@ -1729,6 +1729,18 @@ html {
     line-height: 1.75rem;
   }
 
+  .md\:tracking-widest {
+    letter-spacing: 0.1em;
+  }
+
+  .md\:tracking-wide {
+    letter-spacing: 0.025em;
+  }
+
+  .md\:tracking-\[0rem\] {
+    letter-spacing: 0rem;
+  }
+
   .md\:drop-shadow-2xl {
     --tw-drop-shadow: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
     filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);

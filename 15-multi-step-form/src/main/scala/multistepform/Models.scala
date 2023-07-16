@@ -49,12 +49,10 @@ object Models {
 
   final case class Answers(
       sessionId: String = "",
-      currentStep: Int = 5,
+      currentStep: Int = 1,
       step1: StepAnswers.Step1 = StepAnswers.Step1(),
       step2: StepAnswers.Step2 = StepAnswers.Step2(),
-      step3: StepAnswers.Step3 = StepAnswers.Step3(
-        addons = Addons.values.toSet
-      ),
+      step3: StepAnswers.Step3 = StepAnswers.Step3(),
       step4: StepAnswers.Step4 = StepAnswers.Step4()
   ) {
     // this is not enforced by compiler, sad, maintain by hand in html template files
