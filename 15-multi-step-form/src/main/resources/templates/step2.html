@@ -136,18 +136,20 @@
                 class="grid absolute inset-y-0 inset-x-0 place-content-center h-full rounded-lg border md:grid-cols-1 md:p-4 grid-cols-[auto_1fr] border-light-gray peer-checked:border-purplish-blue peer-checked:bg-magnolia/50 md:grid-rows-[1fr_auto_auto] hover:bg-magnolia/[.1] hover:border-purplish-blue"
               >
                 <img
-                  class="row-span-2 place-self-center px-4 md:row-span-1 md:place-self-start md:px-0"
+                  class="place-self-center px-4 md:row-span-1 md:place-self-start md:px-0"
                   th:src="${planType.iconPath}" src="../public/images/icon-arcade.svg" alt="" />
-                <h2 th:text="${planType}" class="font-semibold text-marine-blue">Arcade</h2>
-                <p
-                  th:text="|$${formData.planCost(planType)}/${formData.periodCostLabel}|"
-                  class="text-sm text-cool-gray"
-                >
-                  $90/yr
-                </p>
-                <p th:if="${formData.userAnswers.step2.isYearly}" class="text-xs text-marine-blue">
-                  2 months free
-                </p>
+                <div class="flex flex-col items-start">
+                  <h2 th:text="${planType}" class="font-semibold text-marine-blue">Arcade</h2>
+                  <p
+                    th:text="|$${formData.planCost(planType)}/${formData.periodCostLabel}|"
+                    class="text-sm text-cool-gray"
+                  >
+                    $9/mo
+                  </p>
+                  <p th:if="${formData.userAnswers.step2.isYearly}" class="text-xs text-marine-blue">
+                    2 months free
+                  </p>
+                </div>
               </div>
             </label>
 
