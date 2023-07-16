@@ -1,0 +1,158 @@
+* Frontend Mentor - Multi-step form solution
+:PROPERTIES:
+:CUSTOM_ID: frontend-mentor---multi-step-form-solution
+:END:
+This is a solution to the
+[[https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ][Multi-step
+form challenge on Frontend Mentor]]. Frontend Mentor challenges help you
+improve your coding skills by building realistic projects.
+
+** Overview
+:PROPERTIES:
+:CUSTOM_ID: overview
+:END:
+*** The challenge
+:PROPERTIES:
+:CUSTOM_ID: the-challenge
+:END:
+Users should be able to:
+
+- Complete each step of the sequence
+- Go back to a previous step to update their selections
+- See a summary of their selections on the final step and confirm their
+  order
+- View the optimal layout for the interface depending on their device's
+  screen size
+- See hover and focus states for all interactive elements on the page
+- Receive form validation messages if:
+  - A field has been missed
+  - The email address is not formatted correctly
+  - A step is submitted, but no selection has been made
+
+*** Screenshot
+:PROPERTIES:
+:CUSTOM_ID: screenshot
+:END:
+[[screenshot-desktop.png]]
+[[screenshot-mobile.png]]
+
+*** Links
+:PROPERTIES:
+:CUSTOM_ID: links
+:END:
+- Solution URL
+- [[https://efim-frontentmentor-multi-step-form.onrender.com][Live Site URL]]
+
+** My process
+:PROPERTIES:
+:CUSTOM_ID: my-process
+:END:
+*** Built with
+:PROPERTIES:
+:CUSTOM_ID: built-with
+:END:
+- Semantic HTML5 markup
+  well, i tried, but yeah
+- TailwinCSS
+- Mobile-first workflow
+- Server-side rendering, in Scala and Cask
+- htmx
+- Thymeleaf html templates
+
+
+*** What I learned
+:PROPERTIES:
+:CUSTOM_ID: what-i-learned
+:END:
+**** hx-get and hx-post
+***** How i show correct form stage for each user on same URL
+on 'index.html' i use "initial loading" element
+#+begin_src html
+      <section hx-get="/get-form" hx-trigger="load" hx-swap="outerHTML">
+        <!-- here be immediate hx-get for the form. to subscitute the body -->
+        <img class="w-14 text-green-500 fill-current" src="../public/images/tail-spin.svg" alt="loading..." />
+      </section>
+#+end_src
+
+This element will do single GET request to server to /get-form
+And user already has cookie with sessionId set from visiting the root enpoint, which returned 'index.html'
+
+So request to /get-form already includes 'sessionId' cookie, and server can find \ initialize Answers data for this particular session,
+and 'currentStep' is part of the Answers
+
+so reloading 'index.html' would trigger /get-form, which would render correct step.
+***** hx-post
+This will make POST request.
+If we do GET request from <input> only current input value is included, as query para.
+POST request from <input> or from <form> would include all filelds of the form.
+
+So form submittion on "Next" and "Back" done via htmx POST requests, which parse and save passed attributes, but also server selects required next form step, renders it and returns for the 'hx-swap="outerHTML"'
+
+hx-post on <input> allows for 'inline validation' (see useful resources)
+this allows for validating field value - in isolation or together with all other form field values.
+
+**** Learned format in which browser sends POST attributes to the server
+Request payload as text:
+name=e&email=emails%40la.la&phone=%2B7%20(911)%2084-35644%20ext%20155
+
+I chose this exercise also because i wanted more experience in working with forms.
+Single form would still be much nicer, even with htmx, but yeah.
+Current exercise felt like full-fledged application.
+
+**** Styling of the checkbox and radiobuttons as big selectable areas
+This was first time I attempted something like this.
+Insight was to use <label> as overall container for the input and other data - descriptions and icons.
+
+Because user clicking on label automatically translates into toggling of the input, no js needed.
+
+Either hide (for radio button part on step 2) or keep (for checkboxes on step 3) the input, and put descriptions and icons as next element.
+
+So that =peer-= styling can be used.
+
+**** htmx inline validation of the phone number field
+Almost exactly as in example.
+Separate rest endpoint for the input field, which returns new rendered state.
+
+hx-post is triggered on input field default trigger = "changed",
+and i guess only on focus leaving field. So this seems quite efficient.
+
+This way validation can be done with very heavy libraries and access to DB and such. Over single field, or over all of them at once.
+Seems unusual, but cool
+*** Continued development
+:PROPERTIES:
+:CUSTOM_ID: continued-development
+:END:
+I want to learn more about Thymeleaf - how to use files for efficient fragment
+storage. Currently it feels that i have separate files, and it's nice, but some
+files have several fragments, and maybe need more documentation or markings.
+
+Look for other templating solutions for java \ scala, maybe there are others
+with 'fragment' functionality
+
+Would be nice to refactor the code, to have smaller and more directed files.
+
+I am also getting better at doing flex \ grid layouts without specific
+paddings\margins on the lements, but feel that i'm still abusing that, and that
+future tinkering with layouts could be painful due to free space being
+constructed from manual paddings\margings
+
+For htmx - would be nice to learn transition animations, and try to use it in a bigger exercise already.
+
+*** Useful resources
+:PROPERTIES:
+:CUSTOM_ID: useful-resources
+:END:
+- htmx inline validation
+  https://htmx.org/examples/inline-validation/
+- htmx control of parameters sent with response
+  https://htmx.org/docs/#parameters
+** Acknowledgments
+:PROPERTIES:
+:CUSTOM_ID: acknowledgments
+:END:
+- svg animated spinner - from SamHerbert
+  https://github.com/SamHerbert/SVG-Loaders/tree/master
+  http://samherbert.net/svg-loaders/
+- tailwind elements - for their example of 'switch styled' checkbox
+  which I used as inspiration for my styling
+  https://tailwind-elements.com/docs/standard/forms/switch/
