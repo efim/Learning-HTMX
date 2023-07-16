@@ -40,7 +40,7 @@ Users should be able to:
 :PROPERTIES:
 :CUSTOM_ID: links
 :END:
-- Solution URL
+- [[https://www.frontendmentor.io/solutions/responsive-ssr-on-scala-interactivity-by-htmx-thymeleaf-templates-QIGkOSgRa4][Solution URL]]
 - [[https://efim-frontentmentor-multi-step-form.onrender.com][Live Site URL]]
 
 ** My process
@@ -156,3 +156,6 @@ For htmx - would be nice to learn transition animations, and try to use it in a 
 - tailwind elements - for their example of 'switch styled' checkbox
   which I used as inspiration for my styling
   https://tailwind-elements.com/docs/standard/forms/switch/
+- to render.com for allowing DockerImage deployments on a free tier
+  they get shut down after 15 minutes of inactivity, and image has to be < 10Gb
+  but this is great! no credit card needed
