@@ -49,7 +49,7 @@ object Models {
 
   final case class Answers(
       sessionId: String = "",
-      currentStep: Int = 4,
+      currentStep: Int = 5,
       step1: StepAnswers.Step1 = StepAnswers.Step1(),
       step2: StepAnswers.Step2 = StepAnswers.Step2(),
       step3: StepAnswers.Step3 = StepAnswers.Step3(
