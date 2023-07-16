@@ -207,7 +207,7 @@
                 role="switch"
                 id="packageDuration"
                 th:checked="${formData.userAnswers.step2.isYearly}"
-                hx-get="/step2/planTypeInputs"
+                hx-post="/step2/planTypeInputs"
                 hx-target="#plan-type-inputs"
                 hx-swap="outerHTML"
               />

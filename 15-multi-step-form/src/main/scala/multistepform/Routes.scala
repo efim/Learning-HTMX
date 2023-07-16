@@ -128,20 +128,22 @@ case class Routes()(implicit cc: castor.Context, log: cask.Logger)
    * This endpoint re-renders 'plan type inputs'
    * so that togglng monthly\yearly could redraw their html
    */
-  @cask.get("/step2/planTypeInputs")
-  def getPlanTypeInputs(sessionId: cask.Cookie, isPackageYearly: Option[String] = None) = {
+  @cask.post("/step2/planTypeInputs")
+  def getPlanTypeInputs(sessionId: cask.Cookie, request: cask.Request) = {
     val id = sessionId.value
-    val isPackageYearlyBool = isPackageYearly.contains("on")
-    println(s"requesting plan type inputs for $id and $isPackageYearlyBool")
+    val submittedData = URLDecoder.decode(request.text() , "UTF-8")
+    println(s"requesting plan type inputs for $id and $request")
     Sessions.sessionReplies.get(id) match {
       case None =>
         cask.Response("Can't find answers for your session, please reload the page", 404)
       case Some(answers) => {
         // here changing yearly/monthly part of state based on passed checkbox value
+        // and selected plan
         // only for purposes of rendering the fragment
         // not persisting, unless next or previous buttons are pressed
-        val withYearlyParamSet = answers.copy(step2 = answers.step2.copy(isYearly = isPackageYearlyBool))
-        val formData = Models.FormData(withYearlyParamSet)
+        val withYearlyParamSetAndSelectedPlan = answers.step2.fromFormData(submittedData)
+        val updatedState = answers.copy(step2 = withYearlyParamSetAndSelectedPlan)
+        val formData = Models.FormData(updatedState)
         val context = new Context()
         context.setVariable(formDataContextVarName, formData)
         val planTypesInputsHtml = templateEngine.process(
