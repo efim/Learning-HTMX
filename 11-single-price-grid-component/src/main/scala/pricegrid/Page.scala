@@ -128,8 +128,8 @@ object Page {
         target := "_blank",
         "Frontend Mentor. "
       ),
-      "Coded by ",
-      a(href := "#", "Your Name Here")
+      "Source code at",
+      a(href := "https://github.com/efim/Learning-HTMX", "Your Name Here")
     )
   )
 }
