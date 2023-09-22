@@ -32,6 +32,10 @@
           inherit pkgs sbt-derivation;
           lib = pkgs.lib;
         };
+        flags-page = import ./16-countries-page-from-api {
+          inherit pkgs sbt-derivation;
+          lib = pkgs.lib;
+        };
       in {
         devShells.default = pkgs.mkShell {
           buildInputs = [
@@ -58,6 +62,7 @@
         packages.multi-step-form = multi-step-form.package;
         packages.multi-step-form-image = multi-step-form.image;
         nixosModules.multi-step-form = multi-step-form.module;
+        packages.flag-page = flags-page.package;
       });
   # see https://serokell.io/blog/practical-nix-flakes
 }
