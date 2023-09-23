@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="../public/output.css" th:href=@{~/public/output.css}
     rel="stylesheet" />
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Place favicon.ico in the root directory -->
   </head>
@@ -41,8 +42,12 @@
         <select
           class="block w-62 mt-1 h-12 w-64 bg-white shadow-md rounded-md shadow-sm focus:outline-none"
         >
-          <option value="" selected disabled>Filter by Region</option>
-          <option th:each="region: ${regionsSet}" th:value="${region}" th:text="${region}" value="Africa">Africa</option>
+          <option value="" selected disabled
+                  th:selected=${#strings.isEmpty(selectedRegion)}
+          >Filter by Region</option>
+          <option th:each="region: ${regionsSet}" th:value="${region}" th:text="${region}"
+                  th:selected="${selectedRegion == region}"
+                  value="Africa">Africa</option>
           <option th:remove="all" value="Americas">Americas</option>
           <option th:remove="all" value="Asia">Asia</option>
           <option th:remove="all" value="Europe">Europe</option>
@@ -52,6 +57,7 @@
     </nav>
     <main class="flex flex-col items-center gap-10 pb-8"
           th:remove="all-but-first"
+          th:fragment="countries-main (countriesList)"
     >
       <article
         th:each="country : ${countriesList}"

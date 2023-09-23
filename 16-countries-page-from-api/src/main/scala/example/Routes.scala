@@ -6,6 +6,7 @@ import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.Context
 import org.thymeleaf.templatemode.TemplateMode
 import scala.jdk.CollectionConverters._
+import cask.model.Request
 
 case class Routes(countries: List[Country])(implicit
     cc: castor.Context,
@@ -27,12 +28,18 @@ case class Routes(countries: List[Country])(implicit
   val engine: TemplateEngine = buildTemplateEngine()
 
   @cask.get("/")
-  def hello() = {
+  def indexPage(region: Option[String] = None) = {
     val context = new Context()
 
     val regions = countries.map(_.region).distinct.sorted.asJava
+    val selectedCountries = region match {
+      case None => countries
+      case Some(selectedRegion) => countries.filter(_.region == selectedRegion)
+    }
+
     context.setVariable("regionsSet", regions)
-    context.setVariable("countriesList", countries.asJava)
+    context.setVariable("countriesList", selectedCountries.asJava)
+    context.setVariable("selectedRegion", region.getOrElse(""))
 
     val indexPage = engine.process("index", context)
     Response(
