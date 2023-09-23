@@ -50,30 +50,38 @@
         </select>
       </form>
     </nav>
-    <main class="flex flex-col items-center gap-10 pb-8">
+    <main class="flex flex-col items-center gap-10 pb-8"
+          th:remove="all-but-first"
+    >
       <article
+        th:each="country : ${countriesList}"
         id="germany"
+        th:id="${country.alpha3Code}"
         class="bg-white h-[350px] w-[275px] border flex flex-col rounded-lg shadow-lg"
       >
         <img
           src="https://flagcdn.com/de.svg"
+          th:src="${country.flag}"
           alt="flag of Germany"
+          th:alt="|flag of ${country.name}|"
           class="rounded-t-lg"
         />
         <section class="p-8 space-y-3">
-          <h2 class="text-2xl font-bold">Germany</h2>
+          <h2 class="text-2xl font-bold"
+              th:text="${country.name}"
+          >Germany</h2>
           <dl class="space-y-1">
             <div class="flex">
               <dt class="font-bold mr-2">Population:</dt>
-              <dd>81,771,900</dd>
+              <dd th:text="${#numbers.formatInteger(country.population, 3, 'COMMA')}">81,771,900</dd>
             </div>
             <div class="flex">
               <dt class="font-bold mr-2">Region:</dt>
-              <dd>Europe</dd>
+              <dd th:text="${country.region}">Europe</dd>
             </div>
             <div class="flex">
               <dt class="font-bold mr-2">Capital:</dt>
-              <dd>Berlin</dd>
+              <dd th:text="${country.capital}">Berlin</dd>
             </div>
           </dl>
         </section>

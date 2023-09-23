@@ -9,6 +9,7 @@ final case class Country(
   population: Int,
   region: String,
   subregion: String,
+  flag: String,
   capital: String = "",
   topLevelDomain: Option[String], // maybe optional?
   currencies: List[Currency] = List.empty,

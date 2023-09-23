@@ -5,7 +5,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
 import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.Context
 import org.thymeleaf.templatemode.TemplateMode
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 case class Routes(countries: List[Country])(implicit
     cc: castor.Context,
@@ -32,7 +32,7 @@ case class Routes(countries: List[Country])(implicit
 
     val regions = countries.map(_.region).distinct.sorted.asJava
     context.setVariable("regionsSet", regions)
-    println(s"> got $regions")
+    context.setVariable("countriesList", countries.asJava)
 
     val indexPage = engine.process("index", context)
     Response(
