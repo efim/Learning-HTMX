@@ -19,39 +19,122 @@
         your experience.
       </p>
     <![endif]-->
-    <main>
-      <header
-        class="bg-white h-20 flex flex-row justify-between items-center px-4 shadow-md"
+    <header
+      class="bg-white h-20 flex flex-row justify-between items-center px-4 shadow-md"
+    >
+      <h1 class="font-bold">Where in the world?</h1>
+      <p>Dark Mode</p>
+    </header>
+    <nav class="flex flex-col px-6 my-4 justify-around h-48">
+      <form method="post" id="search-country" action="">
+        <div class="flex flex-row bg-white shadow-md h-14 rounded-lg">
+          <p class="w-16 grid place-content-center">IC</p>
+          <input
+            class="appearance-none flex-grow focus:outline-none mr-2"
+            type="text"
+            name="country-name"
+            placeholder="Search for a country..."
+          />
+        </div>
+      </form>
+      <form>
+        <select
+          class="block w-62 mt-1 h-12 w-64 bg-white shadow-md rounded-md shadow-sm focus:outline-none"
+        >
+          <option value="" selected disabled>Filter by Region</option>
+          <option value="Africa">Africa</option>
+          <option value="Americas">Americas</option>
+          <option value="Asia">Asia</option>
+          <option value="Europe">Europe</option>
+          <option value="Oceania">Oceania</option>
+        </select>
+      </form>
+    </nav>
+    <main class="flex flex-col items-center gap-10 pb-8">
+      <article
+        id="germany"
+        class="bg-white h-[350px] w-[275px] border flex flex-col rounded-lg shadow-lg"
       >
-        <h1 class="font-bold">Where in the world?</h1>
-        <p>Dark Mode</p>
-      </header>
-      <nav class="flex flex-col px-4 justify-around h-48">
-        <form method="post" id="search-country" action="">
-          <div class="flex flex-row bg-white shadow-md h-14 rounded-lg">
-            <p class="w-16 grid place-content-center">IC</p>
-            <input
-              class="appearance-none flex-grow focus:outline-none mr-2"
-              type="text"
-              name="country-name"
-              placeholder="Search for a country..."
-            />
-          </div>
-        </form>
-        <form>
-          <select
-            class="block w-full mt-1 h-12 w-64 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none"
-          >
-            <option value="" selected disabled>Filter by Region</option>
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-          </select>
-        </form>
-      </nav>
-      <article>
-        <h1 class="text-3xl">Hello!</h1>
+        <img
+          src="https://flagcdn.com/de.svg"
+          alt="flag of Germany"
+          class="rounded-t-lg"
+        />
+        <section class="p-8 space-y-3">
+          <h2 class="text-2xl font-bold">Germany</h2>
+          <dl class="space-y-1">
+            <div class="flex">
+              <dt class="font-bold mr-2">Population:</dt>
+              <dd>81,771,900</dd>
+            </div>
+            <div class="flex">
+              <dt class="font-bold mr-2">Region:</dt>
+              <dd>Europe</dd>
+            </div>
+            <div class="flex">
+              <dt class="font-bold mr-2">Capital:</dt>
+              <dd>Berlin</dd>
+            </div>
+          </dl>
+        </section>
       </article>
+
+      <article
+        id="usa"
+        class="bg-white h-[350px] w-[275px] border flex flex-col rounded-lg shadow-lg"
+      >
+        <img
+          src="https://flagcdn.com/us.svg"
+          alt="flag of the USA"
+          class="rounded-t-lg"
+        />
+        <section class="p-8 space-y-3">
+          <h2 class="text-2xl font-bold">United States of America</h2>
+          <dl class="space-y-1">
+            <div class="flex">
+              <dt class="font-bold mr-2">Population:</dt>
+              <dd>329,484,123</dd>
+            </div>
+            <div class="flex">
+              <dt class="font-bold mr-2">Region:</dt>
+              <dd>Americas</dd>
+            </div>
+            <div class="flex">
+              <dt class="font-bold mr-2">Capital:</dt>
+              <dd>Washington, D.C.</dd>
+            </div>
+          </dl>
+        </section>
+      </article>
+
+      <article
+        id="Brazil"
+        class="bg-white h-[350px] w-[275px] border flex flex-col rounded-lg shadow-lg"
+      >
+        <img
+          src="https://flagcdn.com/br.svg"
+          alt="flag of Germany"
+          class="rounded-t-lg"
+        />
+        <section class="p-8 space-y-3">
+          <h2 class="text-2xl font-bold">Brazil</h2>
+          <dl class="space-y-1">
+            <div class="flex">
+              <dt class="font-bold mr-2">Population:</dt>
+              <dd>212,559,409</dd>
+            </div>
+            <div class="flex">
+              <dt class="font-bold mr-2">Region:</dt>
+              <dd>Americas</dd>
+            </div>
+            <div class="flex">
+              <dt class="font-bold mr-2">Capital:</dt>
+              <dd>Brasília</dd>
+            </div>
+          </dl>
+        </section>
+      </article>
+
     </main>
   </body>
 </html>
