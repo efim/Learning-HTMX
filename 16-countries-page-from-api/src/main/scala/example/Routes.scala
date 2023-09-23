@@ -27,7 +27,7 @@ case class Routes()(implicit cc: castor.Context, log: cask.Logger)
   @cask.get("/")
   def hello() = {
     val context = new Context()
-    val yo = engine.process("lala", context)
+    val yo = engine.process("index", context)
     Response(
       yo,
       headers = Seq("Content-Type" -> "text/html; charset=utf-8")

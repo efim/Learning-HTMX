@@ -44,7 +44,7 @@ html {
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: NunitoSans, sans-serif;
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
@@ -522,17 +522,57 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.bg-cyan-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(6 182 212 / var(--tw-bg-opacity));
-}
-
-.bg-red-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
-}
-
 .bg-cyan-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(103 232 249 / var(--tw-bg-opacity));
+}
+
+.bg-very-light-gray {
+  --tw-bg-opacity: 1;
+  background-color: hsl(0 0% 98% / var(--tw-bg-opacity));
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+html {
+  font-size: 14px;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+
+  src: url('/public/fonts/nunito-sans/NunitoSans-Regular.ttf') format('truetype');
+
+  font-weight: 400;
+
+  /* Regular */
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+
+  src: url('/public/fonts/nunito-sans/NunitoSans-Bold.ttf') format('truetype');
+
+  font-weight: 700;
+
+  /* Bold */
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+
+  src: url('/public/fonts/nunito-sans/NunitoSans-ExtraBold.ttf') format('truetype');
+
+  font-weight: 800;
+
+  /* ExtraBold */
+
+  font-style: normal;
 }
