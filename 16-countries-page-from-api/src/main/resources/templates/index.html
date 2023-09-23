@@ -12,7 +12,7 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Place favicon.ico in the root directory -->
   </head>
-  <body class="bg-very-light-gray">
+  <body class="bg-very-light-gray" hx-boost="true">
     <!--[if lt IE 8]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -27,16 +27,32 @@
       <p>Dark Mode</p>
     </header>
     <nav class="flex flex-col px-6 my-4 justify-around h-48">
-      <form method="post" id="search-country" action="">
+      <form
+        method="get"
+        id="search-country"
+        action=""
+        hx-get="/country"
+        hx-target="body"
+        hx-push-url="true"
+      >
         <div class="flex flex-row bg-white shadow-md h-14 rounded-lg">
           <p class="w-16 grid place-content-center">IC</p>
           <input
             class="appearance-none flex-grow focus:outline-none mr-2"
             type="text"
-            name="country-name"
+            id="country-name-input"
+            name="countryName"
+            list="country-names-list"
             placeholder="Search for a country..."
           />
         </div>
+        <datalist id="country-names-list">
+          <option
+            th:each="country : ${allCountriesList}"
+            th:value="${country.name}"
+            value=""
+          ></option>
+        </datalist>
       </form>
       <form>
         <select
@@ -83,34 +99,38 @@
         th:id="${country.alpha3Code}"
         class="bg-white h-[350px] w-[275px] border flex flex-col rounded-lg shadow-lg"
       >
-        <img
-          src="https://flagcdn.com/de.svg"
-          th:src="${country.flag}"
-          alt="flag of Germany"
-          th:alt="|flag of ${country.name}|"
-          class="rounded-t-lg"
-        />
-        <section class="p-8 space-y-3">
-          <h2 class="text-2xl font-bold" th:text="${country.name}">Germany</h2>
-          <dl class="space-y-1">
-            <div class="flex">
-              <dt class="font-bold mr-2">Population:</dt>
-              <dd
-                th:text="${#numbers.formatInteger(country.population, 3, 'COMMA')}"
-              >
-                81,771,900
-              </dd>
-            </div>
-            <div class="flex">
-              <dt class="font-bold mr-2">Region:</dt>
-              <dd th:text="${country.region}">Europe</dd>
-            </div>
-            <div class="flex">
-              <dt class="font-bold mr-2">Capital:</dt>
-              <dd th:text="${country.capital}">Berlin</dd>
-            </div>
-          </dl>
-        </section>
+        <a href="" th:href="@{~/country(countryName=${country.name})}">
+          <img
+            src="https://flagcdn.com/de.svg"
+            th:src="${country.flag}"
+            alt="flag of Germany"
+            th:alt="|flag of ${country.name}|"
+            class="rounded-t-lg"
+          />
+          <section class="p-8 space-y-3">
+            <h2 class="text-2xl font-bold" th:text="${country.name}">
+              Germany
+            </h2>
+            <dl class="space-y-1">
+              <div class="flex">
+                <dt class="font-bold mr-2">Population:</dt>
+                <dd
+                  th:text="${#numbers.formatInteger(country.population, 3, 'COMMA')}"
+                >
+                  81,771,900
+                </dd>
+              </div>
+              <div class="flex">
+                <dt class="font-bold mr-2">Region:</dt>
+                <dd th:text="${country.region}">Europe</dd>
+              </div>
+              <div class="flex">
+                <dt class="font-bold mr-2">Capital:</dt>
+                <dd th:text="${country.capital}">Berlin</dd>
+              </div>
+            </dl>
+          </section>
+        </a>
       </article>
 
       <article
