@@ -5,9 +5,12 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
 import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.Context
 import org.thymeleaf.templatemode.TemplateMode
+import scala.collection.JavaConverters._
 
-case class Routes(countries: List[Country])(implicit cc: castor.Context, log: cask.Logger)
-    extends cask.Routes {
+case class Routes(countries: List[Country])(implicit
+    cc: castor.Context,
+    log: cask.Logger
+) extends cask.Routes {
 
   def buildTemplateEngine(): TemplateEngine = {
     val templateResolver = new ClassLoaderTemplateResolver()
@@ -26,8 +29,12 @@ case class Routes(countries: List[Country])(implicit cc: castor.Context, log: ca
   @cask.get("/")
   def hello() = {
     val context = new Context()
-    val indexPage = engine.process("index", context)
 
+    val regions = countries.map(_.region).distinct.sorted.asJava
+    context.setVariable("regionsSet", regions)
+    println(s"> got $regions")
+
+    val indexPage = engine.process("index", context)
     Response(
       indexPage,
       headers = Seq("Content-Type" -> "text/html; charset=utf-8")
