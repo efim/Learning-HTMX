@@ -20,6 +20,9 @@ object MinimalApplication extends cask.MainRoutes{
     request.text().reverse
   }
 
+  @cask.staticResources("public")
+  def giveStaticResources() = "public"
+
   initialize()
 
   def buildTemplateEngine(): TemplateEngine = {
