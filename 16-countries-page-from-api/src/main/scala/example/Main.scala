@@ -4,40 +4,27 @@ import org.thymeleaf.templatemode.TemplateMode
 import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.Context
 import cask.model.Response
-object MinimalApplication extends cask.MainRoutes{
-  @cask.get("/")
-  def hello() = {
-    val context = new Context()
-    val yo = engine.process("lala", context)
-    Response(
-      yo,
-      headers = Seq("Content-Type" -> "text/html; charset=utf-8")
-    )
+import mainargs.{main, arg, ParserForMethods, Flag}
+
+object MinimalApplication extends cask.Routes{
+
+  @main
+  def run(
+    @arg(name="port", short='p', doc="Port on which server will start service")
+      portArg: Int = 8080,
+    @arg(name="host", doc="Host on which server will start serving")
+      hostArg: String = "localhost"
+  ) = {
+    println(s"Will start server on ${hostArg}:${portArg}")
+    val server = new cask.Main {
+      override def allRoutes: Seq[cask.main.Routes] = Seq(Routes())
+      override def port: Int = portArg
+      override def host: String = hostArg
+    }
+    server.main(Array.empty)
   }
 
-  @cask.post("/do-thing")
-  def doThing(request: cask.Request) = {
-    request.text().reverse
-  }
+  def main(args: Array[String]): Unit = ParserForMethods(this).runOrExit(args)
 
-  @cask.staticResources("public")
-  def giveStaticResources() = "public"
 
-  initialize()
-
-  def buildTemplateEngine(): TemplateEngine = {
-    import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
-    val templateResolver = new ClassLoaderTemplateResolver()
-    templateResolver.setTemplateMode(TemplateMode.HTML)
-    templateResolver.setPrefix("/templates/")
-    templateResolver.setSuffix(".html")
-    templateResolver.setCacheTTLMs(3600000L);
-
-    val templateEngine = new TemplateEngine()
-    templateEngine.setTemplateResolver(templateResolver)
-
-    templateEngine
-  }
-
-  val engine: TemplateEngine = buildTemplateEngine()
 }
