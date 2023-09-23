@@ -40,14 +40,30 @@
       </form>
       <form>
         <select
+          name="region"
           class="block w-62 mt-1 h-12 w-64 bg-white shadow-md rounded-md shadow-sm focus:outline-none"
+          hx-get="/"
+          hx-target="#countries-main-list"
+          hx-select="#countries-main-list"
+          hx-push-url="true"
         >
-          <option value="" selected disabled
-                  th:selected=${#strings.isEmpty(selectedRegion)}
-          >Filter by Region</option>
-          <option th:each="region: ${regionsSet}" th:value="${region}" th:text="${region}"
-                  th:selected="${selectedRegion == region}"
-                  value="Africa">Africa</option>
+          <option
+            value=""
+            selected
+            disabled
+            th:selected="${#strings.isEmpty(selectedRegion)}"
+          >
+            Filter by Region
+          </option>
+          <option
+            th:each="region: ${regionsSet}"
+            th:value="${region}"
+            th:text="${region}"
+            th:selected="${selectedRegion == region}"
+            value="Africa"
+          >
+            Africa
+          </option>
           <option th:remove="all" value="Americas">Americas</option>
           <option th:remove="all" value="Asia">Asia</option>
           <option th:remove="all" value="Europe">Europe</option>
@@ -55,9 +71,11 @@
         </select>
       </form>
     </nav>
-    <main class="flex flex-col items-center gap-10 pb-8"
-          th:remove="all-but-first"
-          th:fragment="countries-main (countriesList)"
+    <main
+      class="flex flex-col items-center gap-10 pb-8"
+      id="countries-main-list"
+      th:remove="all-but-first"
+      th:fragment="countries-main (countriesList)"
     >
       <article
         th:each="country : ${countriesList}"
@@ -73,13 +91,15 @@
           class="rounded-t-lg"
         />
         <section class="p-8 space-y-3">
-          <h2 class="text-2xl font-bold"
-              th:text="${country.name}"
-          >Germany</h2>
+          <h2 class="text-2xl font-bold" th:text="${country.name}">Germany</h2>
           <dl class="space-y-1">
             <div class="flex">
               <dt class="font-bold mr-2">Population:</dt>
-              <dd th:text="${#numbers.formatInteger(country.population, 3, 'COMMA')}">81,771,900</dd>
+              <dd
+                th:text="${#numbers.formatInteger(country.population, 3, 'COMMA')}"
+              >
+                81,771,900
+              </dd>
             </div>
             <div class="flex">
               <dt class="font-bold mr-2">Region:</dt>
@@ -148,7 +168,6 @@
           </dl>
         </section>
       </article>
-
     </main>
   </body>
 </html>
