@@ -19,6 +19,39 @@
         your experience.
       </p>
     <![endif]-->
-    <h1 class="text-3xl">Hello!</h1>
+    <main>
+      <header
+        class="bg-white h-20 flex flex-row justify-between items-center px-4 shadow-md"
+      >
+        <h1 class="font-bold">Where in the world?</h1>
+        <p>Dark Mode</p>
+      </header>
+      <nav class="flex flex-col px-4 justify-around h-48">
+        <form method="post" id="search-country" action="">
+          <div class="flex flex-row bg-white shadow-md h-14 rounded-lg">
+            <p class="w-16 grid place-content-center">IC</p>
+            <input
+              class="appearance-none flex-grow focus:outline-none mr-2"
+              type="text"
+              name="country-name"
+              placeholder="Search for a country..."
+            />
+          </div>
+        </form>
+        <form>
+          <select
+            class="block w-full mt-1 h-12 w-64 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none"
+          >
+            <option value="" selected disabled>Filter by Region</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+          </select>
+        </form>
+      </nav>
+      <article>
+        <h1 class="text-3xl">Hello!</h1>
+      </article>
+    </main>
   </body>
 </html>
