@@ -16,12 +16,21 @@ object MinimalApplication extends cask.Routes{
       hostArg: String = "localhost"
   ) = {
     println(s"Will start server on ${hostArg}:${portArg}")
+    val countriesDb = loadCountries()
     val server = new cask.Main {
-      override def allRoutes: Seq[cask.main.Routes] = Seq(Routes())
+      override def allRoutes: Seq[cask.main.Routes] = Seq(Routes(countries = countriesDb ))
       override def port: Int = portArg
       override def host: String = hostArg
     }
     server.main(Array.empty)
+  }
+
+  def loadCountries() = {
+    val countries: List[Country] = upickle.default.read[List[Country]](
+      scala.io.Source.fromResource("temporary/data.json").getLines().mkString,
+      true
+    )
+    countries
   }
 
   def main(args: Array[String]): Unit = ParserForMethods(this).runOrExit(args)

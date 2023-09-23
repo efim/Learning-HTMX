@@ -6,8 +6,7 @@ import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.Context
 import org.thymeleaf.templatemode.TemplateMode
 
-
-case class Routes()(implicit cc: castor.Context, log: cask.Logger)
+case class Routes(countries: List[Country])(implicit cc: castor.Context, log: cask.Logger)
     extends cask.Routes {
 
   def buildTemplateEngine(): TemplateEngine = {
@@ -27,9 +26,10 @@ case class Routes()(implicit cc: castor.Context, log: cask.Logger)
   @cask.get("/")
   def hello() = {
     val context = new Context()
-    val yo = engine.process("index", context)
+    val indexPage = engine.process("index", context)
+
     Response(
-      yo,
+      indexPage,
       headers = Seq("Content-Type" -> "text/html; charset=utf-8")
     )
   }
