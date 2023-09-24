@@ -66,7 +66,7 @@
       <form>
         <select
           name="region"
-          class="block w-62 mt-1 h-12 w-64 bg-white shadow-md rounded-md shadow-sm focus:outline-none"
+          class="block w-62 mt-1 h-12 w-64 bg-white shadow-md rounded-md shadow-sm focus:outline-none px-7"
           hx-get="/"
           hx-target="#countries-main-list"
           hx-select="#countries-main-list"
@@ -114,7 +114,7 @@
             th:src="${country.flag}"
             alt="flag of Germany"
             th:alt="|flag of ${country.name}|"
-            class="rounded-t-lg"
+            class="rounded-t-lg max-h-60"
           />
           <section class="p-8 space-y-3">
             <h2 class="text-2xl font-bold" th:text="${country.name}">
