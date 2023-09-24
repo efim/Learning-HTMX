@@ -30,18 +30,28 @@ case class Routes(countries: List[Country])(implicit
   }
   val engine: TemplateEngine = buildTemplateEngine()
 
+  private val pageSize = 10
+
   @cask.get("/")
-  def indexPage(region: Option[String] = None) = {
+  def indexPage(region: Option[String] = None, page: Int = 0) = {
     val context = new Context()
 
     val regions = countries.map(_.region).distinct.sorted.asJava
     val selectedCountries = region match {
       case None                 => countries
+      case Some("")             => countries
       case Some(selectedRegion) => countries.filter(_.region == selectedRegion)
     }
 
+    val startIndex = page * pageSize
+    val countriesPage =
+      selectedCountries.slice(startIndex, startIndex + pageSize)
+    // if current page is not full - there will be no next page
+    val nextPage = if (countriesPage.length == pageSize) page + 1 else -1
+    context.setVariable("nextPage", nextPage)
+
     context.setVariable("regionsSet", regions)
-    context.setVariable("countriesList", selectedCountries.asJava)
+    context.setVariable("countriesList", countriesPage.asJava)
     context.setVariable("allCountriesList", countries.asJava)
     context.setVariable("selectedRegion", region.getOrElse(""))
 
@@ -60,7 +70,8 @@ case class Routes(countries: List[Country])(implicit
         context.setVariable("country", selectedCountry)
         val borderCountries = countries
           .filter(c => selectedCountry.borders.contains(c.alpha3Code))
-          .map(_.name).asJava
+          .map(_.name)
+          .asJava
 
         context.setVariable("borderCountries", borderCountries)
 

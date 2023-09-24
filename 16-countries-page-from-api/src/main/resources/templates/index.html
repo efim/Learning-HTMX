@@ -25,9 +25,11 @@
     >
       <h1 class="font-bold">Where in the world?</h1>
       <div class="flex flex-row gap-x-2">
-        <img src="../public/icons/half-moon-shape-svgrepo-com.svg"
-             class="w-4"
-             alt="" />
+        <img
+          src="../public/icons/half-moon-shape-svgrepo-com.svg"
+          class="w-4"
+          alt=""
+        />
         <p>Dark Mode</p>
       </div>
     </header>
@@ -42,10 +44,12 @@
       >
         <div class="flex flex-row bg-white shadow-md h-14 rounded-lg">
           <!-- <p class="w-16 grid place-content-center">IC</p> -->
-          <img src="../public/icons/search-svgrepo-com.svg"
-               th:src="@{~/public/icons/search-svgrepo-com.svg}"
-               class="w-6 mx-5"
-               alt="" />
+          <img
+            src="../public/icons/search-svgrepo-com.svg"
+            th:src="@{~/public/icons/search-svgrepo-com.svg}"
+            class="w-6 mx-5"
+            alt=""
+          />
           <input
             class="appearance-none flex-grow focus:outline-none mr-2"
             type="text"
@@ -99,7 +103,6 @@
     <main
       class="flex flex-col items-center gap-10 pb-8"
       id="countries-main-list"
-      th:remove="all-but-first"
       th:fragment="countries-main (countriesList)"
     >
       <article
@@ -141,10 +144,19 @@
           </section>
         </a>
       </article>
+      <div
+        th:if="${nextPage != -1}"
+        id="next-page-anchor"
+        hx-trigger="revealed"
+        th:hx-get="@{~/(region=${selectedRegion},page=${nextPage})}"
+        hx-swap="outerHTML"
+        hx-select="#countries-main-list"
+      ></div>
 
       <article
         id="usa"
         class="bg-white h-[350px] w-[275px] border flex flex-col rounded-lg shadow-lg"
+        th:remove="all"
       >
         <img
           src="https://flagcdn.com/us.svg"
@@ -173,6 +185,7 @@
       <article
         id="Brazil"
         class="bg-white h-[350px] w-[275px] border flex flex-col rounded-lg shadow-lg"
+        th:remove="all"
       >
         <img
           src="https://flagcdn.com/br.svg"
