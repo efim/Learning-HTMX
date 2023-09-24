@@ -13,10 +13,9 @@ case class Routes(countries: List[Country])(implicit
     log: cask.Logger
 ) extends cask.Routes {
 
-  /**
-   * initializing thymeleaf template engine
-   * which finds and renders html templates by name
-   */
+  /** initializing thymeleaf template engine which finds and renders html
+    * templates by name
+    */
   def buildTemplateEngine(): TemplateEngine = {
     val templateResolver = new ClassLoaderTemplateResolver()
     templateResolver.setTemplateMode(TemplateMode.HTML)
@@ -37,7 +36,7 @@ case class Routes(countries: List[Country])(implicit
 
     val regions = countries.map(_.region).distinct.sorted.asJava
     val selectedCountries = region match {
-      case None => countries
+      case None                 => countries
       case Some(selectedRegion) => countries.filter(_.region == selectedRegion)
     }
 
@@ -55,7 +54,23 @@ case class Routes(countries: List[Country])(implicit
 
   @cask.get("/country")
   def getCountryPage(countryName: String) = {
-    s"counrty $countryName was requested"
+    val context = new Context()
+    countries.find(_.name == countryName) match {
+      case Some(selectedCountry) =>
+        context.setVariable("country", selectedCountry)
+        val borderCountries = countries
+          .filter(c => selectedCountry.borders.contains(c.alpha3Code))
+          .map(_.name).asJava
+
+        context.setVariable("borderCountries", borderCountries)
+
+        val countryPage = engine.process("country", context)
+        Response(
+          countryPage,
+          headers = Seq("Content-Type" -> "text/html; charset=utf-8")
+        )
+      case None => Response("", 400)
+    }
   }
 
   @cask.post("/do-thing")

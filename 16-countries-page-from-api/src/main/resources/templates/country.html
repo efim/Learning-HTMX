@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Exploring countries</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../public/output.css" th:href=@{~/public/output.css}
+    rel="stylesheet" />
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- Place favicon.ico in the root directory -->
+  </head>
+  <body class="bg-very-light-gray">
+    <!--[if lt IE 8]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+        your experience.
+      </p>
+    <![endif]-->
+    <header
+      class="h-20 flex flex-row justify-between items-center px-4 shadow-md"
+    >
+      <h1 class="font-bold">Where in the world?</h1>
+      <p>Dark Mode</p>
+    </header>
+    <nav class="h-32 px-8 py-10">
+      <a
+        href="/"
+        class="w-20 h-12 bg-white drop-shadow-[0_0_3px_rgba(0,0,0,0.5)] text-md rounded px-5 py-2"
+        >arr Back</a
+      >
+    </nav>
+
+    <main class="px-8 pb-10 flex flex-col gap-y-10">
+      <img
+        src="https://flagcdn.com/de.svg"
+        th:src="${country.flag}"
+        th:alt="|flag of ${country.name}|"
+        class="h-60"
+      />
+      <h1 class="text-2xl font-bold pt-2 -mb-4" th:text="${country.name}">
+        Germany
+      </h1>
+
+      <dl class="space-y-2" id="main-stats">
+        <div class="flex">
+          <dt class="font-bold mr-2">Native name:</dt>
+          <dd th:text="${country.nativeName}">Belgie</dd>
+        </div>
+        <div class="flex">
+          <dt class="font-bold mr-2">Population:</dt>
+          <dd
+            th:text="${#numbers.formatInteger(country.population, 3, 'COMMA')}"
+          >
+            81,771,900
+          </dd>
+        </div>
+        <div class="flex">
+          <dt class="font-bold mr-2">Region:</dt>
+          <dd th:text="${country.region}">Europe</dd>
+        </div>
+        <div class="flex">
+          <dt class="font-bold mr-2">Sub Region:</dt>
+          <dd th:text="${country.subregion}">Western Europe</dd>
+        </div>
+        <div class="flex">
+          <dt class="font-bold mr-2">Capital:</dt>
+          <dd th:text="${country.capital}">Berlin</dd>
+        </div>
+      </dl>
+
+      <dl class="space-y-2" id="additional-stats">
+        <div th:if="${country.topLevelDomain.nonEmpty()}" class="flex">
+          <dt class="font-bold mr-2">Top Level Domain:</dt>
+          <dd th:text="${country.topLevelDomain.get()}">.be</dd>
+        </div>
+        <div class="flex">
+          <dt class="font-bold mr-2">Currencies:</dt>
+          <!-- <dd th:text="${#strings.listJoin(country.currencies.map(_.name),',')}">Euro</dd> -->
+          <dd th:text="${#strings.listJoin(country.currenciesView, ',')}">
+            Euro
+          </dd>
+        </div>
+        <div class="flex">
+          <dt class="font-bold mr-2">Languages:</dt>
+          <dd th:text="${#strings.listJoin(country.languagesView, ', ')}">
+            Dutch, French, German
+          </dd>
+        </div>
+      </dl>
+      <section id="neighboring-countries">
+        <h2 class="font-bold text-lg">Border Countries:</h2>
+        <div
+            class="grid grid-cols-3 gap-2"
+        >
+            <a
+                href="/"
+                class="text-center min-h-9 bg-white drop-shadow text-md rounded px-5 py-2"
+                th:each="border : ${borderCountries}"
+                th:text="${border}"
+                th:href="@{~/country(countryName=${border})}"
+            >France</a
+                   >
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

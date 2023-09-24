@@ -1,6 +1,7 @@
 package example
 
 import upickle.default._
+import scala.jdk.CollectionConverters._
 
 final case class Country(
   name: String,
@@ -15,7 +16,10 @@ final case class Country(
   currencies: List[Currency] = List.empty,
   languages: List[Language],
   borders: List[String] = List.empty,
-) derives ReadWriter
+) derives ReadWriter {
+  def currenciesView = currencies.map(_.name).asJava
+  def languagesView = languages.map(_.name).asJava
+}
 
 final case class Currency(
   code: String,
