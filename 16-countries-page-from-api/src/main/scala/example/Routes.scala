@@ -62,12 +62,11 @@ case class Routes(countries: List[Country])(implicit
     )
   }
 
-  /**
-   * this method returns directly set of cards
-   * and new anchor for loading next page of cards
-   *
-   * intended to be called from "next-page-anchor" with htmx
-   */
+  /** this method returns directly set of cards and new anchor for loading next
+    * page of cards
+    *
+    * intended to be called from "next-page-anchor" with htmx
+    */
   @cask.get("/countries-cards")
   def getPageOfCountriesCards(region: Option[String] = None, page: Int = 0) = {
     val context = new Context()
@@ -87,10 +86,20 @@ case class Routes(countries: List[Country])(implicit
     context.setVariable("selectedRegion", region.getOrElse(""))
     context.setVariable("nextPage", nextPage)
 
-    val cards = engine.process("index", Set("cards-of-countries", "infiniteScrollAnchor").asJava, context)
+    val cards = engine.process(
+      "index",
+      Set("cards-of-countries", "infiniteScrollAnchor").asJava,
+      context
+    )
+    // this is to store switch to another region in the history
+    val newUrl = s"/?region=${region.getOrElse("")}"
+    // only save url when new region is requested, not on addtional card loads
+    val urlHeaderOpt = if (page == 0) Seq("HX-Push" -> newUrl) else Seq.empty
     Response(
       cards,
-      headers = Seq("Content-Type" -> "text/html; charset=utf-8")
+      headers = Seq(
+        "Content-Type" -> "text/html; charset=utf-8"
+      ) ++ urlHeaderOpt
     )
   }
 
