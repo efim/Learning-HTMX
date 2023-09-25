@@ -556,6 +556,10 @@ video {
   display: grid;
 }
 
+.contents {
+  display: contents;
+}
+
 .h-12 {
   height: 3rem;
 }
@@ -592,13 +596,17 @@ video {
   height: 350px;
 }
 
-.h-max {
-  height: -moz-max-content;
-  height: max-content;
-}
-
 .h-full {
   height: 100%;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .max-h-60 {
@@ -633,21 +641,8 @@ video {
   width: 100vw;
 }
 
-.w-max {
-  width: -moz-max-content;
-  width: max-content;
-}
-
-.max-w-screen-sm {
-  max-width: 640px;
-}
-
-.max-w-screen-md {
-  max-width: 768px;
-}
-
-.max-w-screen-lg {
-  max-width: 1024px;
+.w-full {
+  width: 100%;
 }
 
 .max-w-screen-xl {
@@ -656,6 +651,10 @@ video {
 
 .flex-1 {
   flex: 1 1 0%;
+}
+
+.flex-none {
+  flex: none;
 }
 
 .flex-grow {
@@ -686,6 +685,10 @@ video {
 
 .place-content-center {
   place-content: center;
+}
+
+.content-center {
+  align-content: center;
 }
 
 .items-center {
@@ -744,6 +747,10 @@ video {
   margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
 }
 
+.place-self-center {
+  place-self: center;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
@@ -773,6 +780,11 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-red-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
 
 .p-8 {
@@ -918,6 +930,26 @@ html {
 }
 
 @media (min-width: 768px) {
+  .md\:col-span-full {
+    grid-column: 1 / -1;
+  }
+
+  .md\:row-span-full {
+    grid-row: 1 / -1;
+  }
+
+  .md\:row-end-\[-1\] {
+    grid-row-end: -1;
+  }
+
+  .md\:row-end-3 {
+    grid-row-end: 3;
+  }
+
+  .md\:flex {
+    display: flex;
+  }
+
   .md\:grid {
     display: grid;
   }
@@ -926,86 +958,114 @@ html {
     height: 8rem;
   }
 
-  .md\:w-96 {
-    width: 24rem;
+  .md\:h-full {
+    height: 100%;
   }
 
-  .md\:w-60 {
-    width: 15rem;
+  .md\:h-screen {
+    height: 100vh;
+  }
+
+  .md\:h-max {
+    height: -moz-max-content;
+    height: max-content;
+  }
+
+  .md\:h-3\/5 {
+    height: 60%;
+  }
+
+  .md\:h-\[375px\] {
+    height: 375px;
+  }
+
+  .md\:h-60 {
+    height: 15rem;
+  }
+
+  .md\:h-48 {
+    height: 12rem;
+  }
+
+  .md\:h-\[400px\] {
+    height: 400px;
   }
 
   .md\:w-1\/4 {
     width: 25%;
   }
 
-  .md\:w-1\/3 {
-    width: 33.333333%;
-  }
-
-  .md\:w-1\/2 {
-    width: 50%;
-  }
-
   .md\:w-full {
     width: 100%;
+  }
+
+  .md\:w-\[375px\] {
+    width: 375px;
+  }
+
+  .md\:w-\[450px\] {
+    width: 450px;
+  }
+
+  .md\:w-\[455px\] {
+    width: 455px;
+  }
+
+  .md\:w-9\/12 {
+    width: 75%;
   }
 
   .md\:w-10\/12 {
     width: 83.333333%;
   }
 
-  .md\:grid-flow-col {
-    grid-auto-flow: column;
+  .md\:w-11\/12 {
+    width: 91.666667%;
   }
 
-  .md\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .md\:grid-cols-\[auto-fill\] {
-    grid-template-columns: auto-fill;
-  }
-
-  .md\:grid-cols-\[repeat\(autofill\2c _250px\)\] {
-    grid-template-columns: repeat(autofill, 250px);
-  }
-
-  .md\:grid-cols-\[repeat\(auto-fill\2c _250px\)\] {
-    grid-template-columns: repeat(auto-fill, 250px);
+  .md\:w-32 {
+    width: 8rem;
   }
 
   .md\:grid-cols-\[repeat\(auto-fill\2c _275px\)\] {
     grid-template-columns: repeat(auto-fill, 275px);
   }
 
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
 
-  .md\:place-content-center {
-    place-content: center;
+  .md\:flex-col {
+    flex-direction: column;
   }
 
   .md\:items-center {
     align-items: center;
   }
 
-  .md\:justify-between {
-    justify-content: space-between;
+  .md\:justify-center {
+    justify-content: center;
   }
 
   .md\:justify-around {
     justify-content: space-around;
   }
 
-  .md\:px-10 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+  .md\:gap-y-10 {
+    row-gap: 2.5rem;
   }
 
-  .md\:px-12 {
-    padding-left: 3rem;
-    padding-right: 3rem;
+  .md\:gap-x-2 {
+    -moz-column-gap: 0.5rem;
+         column-gap: 0.5rem;
+  }
+
+  .md\:place-self-center {
+    place-self: center;
   }
 
   .md\:px-20 {
@@ -1013,18 +1073,31 @@ html {
     padding-right: 5rem;
   }
 
-  .md\:px-24 {
-    padding-left: 6rem;
-    padding-right: 6rem;
+  .md\:py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 
-  .md\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+  .md\:py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .md\:pr-1 {
+    padding-right: 0.25rem;
+  }
+
+  .md\:pr-2 {
+    padding-right: 0.5rem;
   }
 
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 }

@@ -12,7 +12,7 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Place favicon.ico in the root directory -->
   </head>
-  <body class="bg-very-light-gray" hx-boost="true">
+  <body class="bg-very-light-gray h-screen flex flex-col" hx-boost="true">
     <!--[if lt IE 8]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -21,12 +21,14 @@
       </p>
     <![endif]-->
     <header
-      class="w-screen bg-white h-20 flex flex-row shadow-md place-content-center"
+      class="w-screen bg-white h-20 flex flex-row shadow-md place-content-center flex-none"
     >
       <div
         class="flex-1 max-w-screen-xl h-20 flex flex-row justify-between items-center px-4"
       >
-        <h1 class="grow font-bold md:text-2xl">Where in the world?</h1>
+        <a th:href="@{~/}" href="index.html"
+          ><h1 class="grow font-bold md:text-2xl">Where in the world?</h1>
+        </a>
         <div class="flex flex-row gap-x-2">
           <img
             src="../public/icons/half-moon-shape-svgrepo-com.svg"
@@ -38,7 +40,7 @@
       </div>
     </header>
     <nav
-      class="flex flex-col md:flex-row px-6 my-4 justify-around h-48 md:h-32 md:items-center"
+      class="flex flex-col flex-none md:flex-row px-6 my-4 justify-around h-48 md:h-32 md:items-center"
     >
       <form
         method="get"
@@ -116,7 +118,10 @@
         th:id="${country.alpha3Code}"
         class="bg-white h-[350px] w-[275px] border flex flex-col rounded-lg shadow-lg"
       >
-        <a href="" th:href="@{~/country(countryName=${country.name})}">
+        <a
+          href="country.html"
+          th:href="@{~/country(countryName=${country.name})}"
+        >
           <img
             src="https://flagcdn.com/de.svg"
             th:src="${country.flag}"

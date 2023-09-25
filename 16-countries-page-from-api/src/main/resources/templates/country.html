@@ -13,7 +13,7 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Place favicon.ico in the root directory -->
   </head>
-  <body class="bg-very-light-gray">
+  <body class="bg-very-light-gray h-screen flex flex-col" hx-boost="true">
     <!--[if lt IE 8]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -22,98 +22,123 @@
       </p>
     <![endif]-->
     <header
-      class="h-20 flex flex-row justify-between items-center px-4 shadow-md"
+      class="w-screen bg-white h-20 flex flex-row shadow-md place-content-center"
+      th:replace="~{index :: header}"
     >
-      <h1 class="font-bold">Where in the world?</h1>
-      <p>Dark Mode</p>
-    </header>
-    <nav class="h-32 px-8 py-10">
-      <a
-        href="/"
-        >
-          <div
-              class="h-9 w-28 bg-white drop-shadow-[0_0_3px_rgba(0,0,0,0.5)] text-md rounded px-5 py-2 flex flex-row gap-x-3 place-content-center"
-          >
-              <img src="../public/icons/back-svgrepo-com.svg"
-                   class="w-4 h-5"
-                   alt="" />
-              <p> Back </p>
-          </div>
-      </a
+      <div
+        class="flex-1 max-w-screen-xl h-20 flex flex-row justify-between items-center px-4"
       >
+        <a th:href="@{~/}" href="index.html"
+          ><h1 class="grow font-bold md:text-2xl">Where in the world?</h1>
+        </a>
+        <div class="flex flex-row gap-x-2">
+          <img
+            src="../public/icons/half-moon-shape-svgrepo-com.svg"
+            class="w-4"
+            alt=""
+          />
+          <p>Dark Mode</p>
+        </div>
+      </div>
+    </header>
+    <nav
+      class="flex flex-none h-32 px-8 py-10 max-w-screen-xl place-self-center w-full md:h-48 items-center"
+    >
+      <a href="index.html" th:href="@{~/}" class="h-fit">
+        <div
+          class="h-9 w-28 bg-white drop-shadow-[0_0_3px_rgba(0,0,0,0.5)] text-md rounded px-5 py-2 flex flex-row gap-x-3 place-content-center"
+        >
+          <img
+            src="../public/icons/back-svgrepo-com.svg"
+            class="w-4 h-5"
+            alt=""
+          />
+          <p>Back</p>
+        </div>
+      </a>
     </nav>
 
-    <main class="px-8 pb-10 flex flex-col gap-y-10">
+    <main
+      class="px-8 pb-10 flex flex-col gap-y-10 md:grid md:grid-cols-2 md:h-max md:place-self-center w-full max-w-screen-xl"
+    >
       <img
         src="https://flagcdn.com/de.svg"
         th:src="${country.flag}"
         th:alt="|flag of ${country.name}|"
-        class="h-60"
+        class="w-full md:w-10/12"
       />
-      <h1 class="text-2xl font-bold pt-2 -mb-4" th:text="${country.name}">
-        Germany
-      </h1>
-
-      <dl class="space-y-2" id="main-stats">
-        <div class="flex">
-          <dt class="font-bold mr-2">Native name:</dt>
-          <dd th:text="${country.nativeName}">Belgie</dd>
-        </div>
-        <div class="flex">
-          <dt class="font-bold mr-2">Population:</dt>
-          <dd
-            th:text="${#numbers.formatInteger(country.population, 3, 'COMMA')}"
-          >
-            81,771,900
-          </dd>
-        </div>
-        <div class="flex">
-          <dt class="font-bold mr-2">Region:</dt>
-          <dd th:text="${country.region}">Europe</dd>
-        </div>
-        <div class="flex">
-          <dt class="font-bold mr-2">Sub Region:</dt>
-          <dd th:text="${country.subregion}">Western Europe</dd>
-        </div>
-        <div class="flex">
-          <dt class="font-bold mr-2">Capital:</dt>
-          <dd th:text="${country.capital}">Berlin</dd>
-        </div>
-      </dl>
-
-      <dl class="space-y-2" id="additional-stats">
-        <div th:if="${country.topLevelDomain.nonEmpty()}" class="flex">
-          <dt class="font-bold mr-2">Top Level Domain:</dt>
-          <dd th:text="${country.topLevelDomain.get()}">.be</dd>
-        </div>
-        <div class="flex">
-          <dt class="font-bold mr-2">Currencies:</dt>
-          <!-- <dd th:text="${#strings.listJoin(country.currencies.map(_.name),',')}">Euro</dd> -->
-          <dd th:text="${#strings.listJoin(country.currenciesView, ',')}">
-            Euro
-          </dd>
-        </div>
-        <div class="flex">
-          <dt class="font-bold mr-2">Languages:</dt>
-          <dd th:text="${#strings.listJoin(country.languagesView, ', ')}">
-            Dutch, French, German
-          </dd>
-        </div>
-      </dl>
-      <section id="neighboring-countries">
-        <h2 class="font-bold text-lg">Border Countries:</h2>
-        <div
-            class="grid grid-cols-3 gap-2"
+      <section
+        id="stat-block"
+        class="contents md:grid md:grid-cols-2 md:gap-y-10 md:py-10"
+      >
+        <h1
+          class="text-2xl font-bold pt-2 -mb-4 md:col-span-full md:text-3xl"
+          th:text="${country.name}"
         >
+          Germany
+        </h1>
+        <dl class="space-y-2" id="main-stats">
+          <div class="flex">
+            <dt class="font-bold mr-2">Native name:</dt>
+            <dd th:text="${country.nativeName}">Belgie</dd>
+          </div>
+          <div class="flex">
+            <dt class="font-bold mr-2">Population:</dt>
+            <dd
+              th:text="${#numbers.formatInteger(country.population, 3, 'COMMA')}"
+            >
+              81,771,900
+            </dd>
+          </div>
+          <div class="flex">
+            <dt class="font-bold mr-2">Region:</dt>
+            <dd th:text="${country.region}">Europe</dd>
+          </div>
+          <div class="flex">
+            <dt class="font-bold mr-2">Sub Region:</dt>
+            <dd th:text="${country.subregion}">Western Europe</dd>
+          </div>
+          <div class="flex">
+            <dt class="font-bold mr-2">Capital:</dt>
+            <dd th:text="${country.capital}">Berlin</dd>
+          </div>
+        </dl>
+
+        <dl class="space-y-2" id="additional-stats">
+          <div th:if="${country.topLevelDomain.nonEmpty()}" class="flex">
+            <dt class="font-bold mr-2">Top Level Domain:</dt>
+            <dd th:text="${country.topLevelDomain.get()}">.be</dd>
+          </div>
+          <div class="flex">
+            <dt class="font-bold mr-2">Currencies:</dt>
+            <!-- <dd th:text="${#strings.listJoin(country.currencies.map(_.name),',')}">Euro</dd> -->
+            <dd th:text="${#strings.listJoin(country.currenciesView, ',')}">
+              Euro
+            </dd>
+          </div>
+          <div class="flex">
+            <dt class="font-bold mr-2">Languages:</dt>
+            <dd th:text="${#strings.listJoin(country.languagesView, ', ')}">
+              Dutch, French, German
+            </dd>
+          </div>
+        </dl>
+        <section
+          id="neighboring-countries"
+          class="md:col-span-full md:flex md:flex-row md:items-center md:gap-x-2"
+        >
+          <h2 class="font-bold text-lg md:pr-2">Border Countries:</h2>
+          <div class="grid grid-cols-3 gap-2">
             <a
-                href="/"
-                class="text-center min-h-9 bg-white drop-shadow text-md rounded px-5 py-2"
-                th:each="border : ${borderCountries}"
-                th:text="${border}"
-                th:href="@{~/country(countryName=${border})}"
-            >France</a
-                   >
-        </div>
+              href="/"
+              class="text-center min-h-9 bg-white drop-shadow text-md rounded px-5 py-2 md:w-32 md:py-1"
+              th:each="border : ${borderCountries}"
+              th:text="${border}"
+              th:href="@{~/country(countryName=${border})}"
+              >France</a
+            >
+          </div>
+        </section>
       </section>
     </main>
   </body>
