@@ -1,3 +1,4 @@
+name := "countries-page"
 
 val toolkitV = "0.1.7"
 val toolkit = "org.scala-lang" %% "toolkit" % toolkitV

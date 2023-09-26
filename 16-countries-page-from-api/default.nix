@@ -17,6 +17,6 @@ in {
       cp target/scala-*/${pname}-assembly-*.jar $out/bin/${pname}.jar
     '';
 
-    depsSha256 = "";
+    depsSha256 = "sha256-vdCU7UJAGi/CujA05OVw/lIomMpIFl+kW+pn8ny16JI=";
   };
 }
