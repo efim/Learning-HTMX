@@ -12,7 +12,10 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Place favicon.ico in the root directory -->
   </head>
-  <body class="bg-very-light-gray h-screen flex flex-col" hx-boost="true">
+  <body
+    class="bg-very-light-gray h-screen flex flex-col dark:bg-very-dark-blue dark:text-white"
+    hx-boost="true"
+  >
     <!--[if lt IE 8]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -21,7 +24,7 @@
       </p>
     <![endif]-->
     <header
-      class="w-screen bg-white h-20 flex flex-row shadow-md place-content-center flex-none"
+      class="w-screen bg-white h-20 flex flex-row shadow-md place-content-center flex-none dark:bg-dark-blue"
     >
       <div
         class="flex-1 max-w-screen-xl h-20 flex flex-row justify-between items-center px-4"
@@ -29,14 +32,30 @@
         <a th:href="@{~/}" href="index.html"
           ><h1 class="grow font-bold md:text-2xl">Where in the world?</h1>
         </a>
-        <div class="flex flex-row gap-x-2">
-          <img
-            src="../public/icons/half-moon-shape-svgrepo-com.svg"
-            class="w-4"
-            alt=""
-          />
+        <button id="toggleDarkMode" class="flex flex-row gap-x-2">
+          <svg
+            class="text-black dark:text-white h-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21.7519 15.0019C20.597 15.4839 19.3296 15.75 18 15.75C12.6152 15.75 8.25 11.3848 8.25 5.99999C8.25 4.67039 8.51614 3.40296 8.99806 2.24805C5.47566 3.71785 3 7.19481 3 11.25C3 16.6348 7.36522 21 12.75 21C16.8052 21 20.2821 18.5243 21.7519 15.0019Z"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
           <p>Dark Mode</p>
-        </div>
+        </button>
+        <script type="text/javascript">
+          document
+            .getElementById("toggleDarkMode")
+            .addEventListener("click", function () {
+              document.documentElement.classList.toggle("dark");
+            });
+        </script>
       </div>
     </header>
     <nav
@@ -51,16 +70,25 @@
         hx-push-url="true"
         class="md:w-1/4"
       >
-        <div class="flex flex-row bg-white shadow-md h-14 rounded-lg md:w-full">
+        <div
+          class="flex flex-row items-center bg-white shadow-md h-14 md:h-16 rounded-lg md:w-full dark:bg-dark-blue"
+        >
           <!-- <p class="w-16 grid place-content-center">IC</p> -->
-          <img
-            src="../public/icons/search-svgrepo-com.svg"
-            th:src="@{~/public/icons/search-svgrepo-com.svg}"
-            class="w-6 mx-5"
-            alt=""
-          />
+          <svg
+            class="text-black dark:text-white h-6 px-7"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M9 3.5C5.96243 3.5 3.5 5.96243 3.5 9C3.5 12.0376 5.96243 14.5 9 14.5C10.519 14.5 11.893 13.8852 12.8891 12.8891C13.8852 11.893 14.5 10.519 14.5 9C14.5 5.96243 12.0376 3.5 9 3.5ZM2 9C2 5.13401 5.13401 2 9 2C12.866 2 16 5.13401 16 9C16 10.6625 15.4197 12.1906 14.4517 13.3911L17.7803 16.7197C18.0732 17.0126 18.0732 17.4874 17.7803 17.7803C17.4874 18.0732 17.0126 18.0732 16.7197 17.7803L13.3911 14.4517C12.1906 15.4197 10.6625 16 9 16C5.13401 16 2 12.866 2 9Z"
+              fill="currentColor"
+            />
+          </svg>
           <input
-            class="appearance-none flex-grow focus:outline-none mr-2"
+            class="appearance-none flex-grow focus:outline-none mr-2 dark:bg-dark-blue dark:placeholder:text-white"
             type="text"
             id="country-name-input"
             name="countryName"
@@ -79,7 +107,7 @@
       <form>
         <select
           name="region"
-          class="block w-62 mt-1 h-12 w-64 bg-white shadow-lg rounded-md shadow-sm focus:outline-none px-7"
+          class="block w-62 mt-1 h-14 md:h-16 w-64 bg-white shadow-lg rounded-md shadow-sm focus:outline-none px-7 dark:bg-dark-blue"
           hx-get="/countries-cards"
           hx-target="#countries-main-list"
         >
@@ -116,7 +144,7 @@
         th:each="country : ${countriesList}"
         id="germany"
         th:id="${country.alpha3Code}"
-        class="bg-white h-[350px] w-[275px] border flex flex-col rounded-lg shadow-lg"
+        class="bg-white h-[350px] w-[275px] flex flex-col rounded-lg shadow-lg dark:bg-dark-blue"
       >
         <a
           href="country.html"
@@ -165,7 +193,7 @@
 
       <article
         id="usa"
-        class="bg-white h-[350px] w-[275px] border flex flex-col rounded-lg shadow-lg"
+        class="bg-white h-[350px] w-[275px] flex flex-col rounded-lg shadow-lg dark:bg-dark-blue"
         th:remove="all"
       >
         <img
@@ -194,7 +222,7 @@
 
       <article
         id="Brazil"
-        class="bg-white h-[350px] w-[275px] border flex flex-col rounded-lg shadow-lg"
+        class="bg-white h-[350px] w-[275px] flex flex-col rounded-lg shadow-lg dark:bg-dark-blue"
         th:remove="all"
       >
         <img

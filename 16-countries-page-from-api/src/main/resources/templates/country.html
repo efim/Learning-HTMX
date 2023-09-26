@@ -13,7 +13,10 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Place favicon.ico in the root directory -->
   </head>
-  <body class="bg-very-light-gray h-screen flex flex-col" hx-boost="true">
+  <body
+    class="bg-very-light-gray h-screen flex flex-col dark:bg-very-dark-blue dark:text-white"
+    hx-boost="true"
+  >
     <!--[if lt IE 8]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -21,24 +24,37 @@
         your experience.
       </p>
     <![endif]-->
-    <header
-      class="w-screen bg-white h-20 flex flex-row shadow-md place-content-center"
-      th:replace="~{index :: header}"
-    >
+    <header th:replace="~{index :: header}">
       <div
         class="flex-1 max-w-screen-xl h-20 flex flex-row justify-between items-center px-4"
       >
         <a th:href="@{~/}" href="index.html"
           ><h1 class="grow font-bold md:text-2xl">Where in the world?</h1>
         </a>
-        <div class="flex flex-row gap-x-2">
-          <img
-            src="../public/icons/half-moon-shape-svgrepo-com.svg"
-            class="w-4"
-            alt=""
-          />
+        <button class="flex flex-row gap-x-2">
+          <svg
+            class="text-black dark:text-white h-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21.7519 15.0019C20.597 15.4839 19.3296 15.75 18 15.75C12.6152 15.75 8.25 11.3848 8.25 5.99999C8.25 4.67039 8.51614 3.40296 8.99806 2.24805C5.47566 3.71785 3 7.19481 3 11.25C3 16.6348 7.36522 21 12.75 21C16.8052 21 20.2821 18.5243 21.7519 15.0019Z"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
           <p>Dark Mode</p>
-        </div>
+        </button>
+        <script type="text/javascript">
+          document
+            .getElementById("toggleDarkMode")
+            .addEventListener("click", function () {
+              document.documentElement.classList.toggle("dark");
+            });
+        </script>
       </div>
     </header>
     <nav
@@ -46,13 +62,30 @@
     >
       <a href="index.html" th:href="@{~/}" class="h-fit">
         <div
-          class="h-9 w-28 bg-white drop-shadow-[0_0_3px_rgba(0,0,0,0.5)] text-md rounded px-5 py-2 flex flex-row gap-x-3 place-content-center"
+          class="h-9 w-28 bg-white drop-shadow-[0_0_3px_rgba(0,0,0,0.5)] text-md rounded px-5 py-2 flex flex-row gap-x-3 place-content-center dark:bg-dark-blue"
         >
-          <img
-            src="../public/icons/back-svgrepo-com.svg"
-            class="w-4 h-5"
-            alt=""
-          />
+          <!-- Back icon -->
+          <svg
+            class="text-black dark:text-white h-full"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.5 19.5L3 12M3 12L10.5 4.5M3 12H21"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <!-- <img
+     src="../public/icons/back-svgrepo-com.svg"
+     class="w-4 h-5"
+     alt=""
+     /> -->
           <p>Back</p>
         </div>
       </a>
@@ -131,7 +164,7 @@
           <div class="grid grid-cols-3 gap-2">
             <a
               href="/"
-              class="text-center min-h-9 bg-white drop-shadow text-md rounded px-5 py-2 md:w-32 md:py-1"
+              class="text-center min-h-9 bg-white drop-shadow text-md rounded px-5 py-2 md:w-32 md:py-1 dark:bg-dark-blue"
               th:each="border : ${borderCountries}"
               th:text="${border}"
               th:href="@{~/country(countryName=${border})}"
