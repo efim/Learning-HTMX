@@ -1,0 +1,136 @@
+* Frontend Mentor - REST Countries API with color theme switcher solution
+:PROPERTIES:
+:CUSTOM_ID: frontend-mentor---rest-countries-api-with-color-theme-switcher-solution
+:END:
+This is a solution to the
+[[https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca][REST
+Countries API with color theme switcher challenge on Frontend Mentor]].
+Frontend Mentor challenges help you improve your coding skills by
+building realistic projects.
+
+** Overview
+:PROPERTIES:
+:CUSTOM_ID: overview
+:END:
+*** The challenge
+:PROPERTIES:
+:CUSTOM_ID: the-challenge
+:END:
+Users should be able to:
+
+- See all countries from the API on the homepage
+- Search for a country using an =input= field
+- Filter countries by region
+- Click on a country to see more detailed information on a separate page
+- Click through to the border countries on the detail page
+- Toggle the color scheme between light and dark mode /(optional)/
+
+*** Screenshot
+:PROPERTIES:
+:CUSTOM_ID: screenshot
+:END:
+[[mobile-main.png]]
+[[mobile-single.png]]
+[[desktop-main.png]]
+[[desktop-single.png]]
+
+
+*** Links
+:PROPERTIES:
+:CUSTOM_ID: links
+:END:
+- Solution URL: https://github.com/efim/Learning-HTMX/tree/master/16-countries-page-from-api
+- Live Site URL: https://efim-frontentmentor-countries-page.onrender.com/
+
+** My process
+:PROPERTIES:
+:CUSTOM_ID: my-process
+:END:
+*** Built with
+:PROPERTIES:
+:CUSTOM_ID: built-with
+:END:
+- Scala Server Side Rendering
+- Htmx
+- TailwindCSS
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
+
+
+*** What I learned
+:PROPERTIES:
+:CUSTOM_ID: what-i-learned
+:END:
+**** polling download for 'infinite scroll'
+https://htmx.org/examples/infinite-scroll/
+
+I've done almost same thing as example,
+but i'm appending additional empty div, that inserts responses instead of itself
+
+this way i have one template fragment with repeater,
+and don't have to add hx attributes to the last one,
+
+i just have separate fragment that i append to response which will trigger new
+load on enter view.
+**** having html 5 native autocomplete with <datalist> tag
+just server side rendering it with all country names is yay
+**** inserting thymeleaf templates by css selector
+https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html#appendix-c-markup-selector-syntax
+
+this way i can insert <script> tag from index page, without declaring it as a fragment,
+because i'll want is static anyway.
+
+and can share 'dark mode' js code between pages
+**** building docker image
+First off: using nix docker tools, and sbt assembly to create 'uber jar'
+now 'nix build .#countries-page-image' builds an image and symlinks it to ./result
+
+$ docker load < result
+loads the image
+
+and it can be started
+$ docker image list
+$ docker run -d -p 9090:8080 <image-id>
+**** deploying to render.com
+need to auth the docker cli, then tag an image with my repository name
+$ docker login
+$ docker tag 141 efim1234/rock-paper-scissors:latest
+$ podman push localhost/efim1234/countries-page:latest     docker.io/efim1234/countries-page:latest
+
+and now render.com, when creating "new service"
+can find "efim1234/countries-page:latest" as public image and use it
+**** using browser history
+with either server side
+HX-Push -> "some-url"
+or
+hx-push-url="true" in the html side
+
+so that url is put into address bar,
+and browser save the body into history
+
+and now my website has forward and backward navigation
+
+only bug - the 'filter by region' for some reason doesn't maintain the selected value
+
+*** Continued development
+:PROPERTIES:
+:CUSTOM_ID: continued-development
+:END:
+In future project i'll probably want to lean and use go.
+For smaller binaries of the server, using PocketBase as embedded backend functions,
+and maybe having a better chances of just doing some real world small projects.
+
+*** Useful resources
+:PROPERTIES:
+:CUSTOM_ID: useful-resources
+:END:
+- htmx documentation and examples
+  https://htmx.org/docs/#introduction
+- thymeleaf documentation
+  https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html#introducing-thymeleaf
+- TailwindCSS documentation
+  https://tailwindcss.com/docs/installation
+- heroicons: MIT licensed svg icons
+  https://github.com/tailwindlabs/heroicons
+- render.com for providing free hosting for services from docker images
