@@ -27,7 +27,7 @@ object MinimalApplication extends cask.Routes{
 
   def loadCountries() = {
     val countries: List[Country] = upickle.default.read[List[Country]](
-      scala.io.Source.fromResource("temporary/data.json").getLines().mkString,
+      scala.io.Source.fromResource("temporary/all.json").getLines().mkString,
       true
     )
     countries
