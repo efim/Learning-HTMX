@@ -112,6 +112,7 @@ case class Routes(countries: List[Country])(implicit
         val borderCountries = countries
           .filter(c => selectedCountry.borders.contains(c.alpha3Code))
           .map(_.name)
+          .sortBy(_.length())
           .asJava
 
         context.setVariable("borderCountries", borderCountries)
