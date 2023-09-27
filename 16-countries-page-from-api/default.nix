@@ -1,7 +1,6 @@
 { pkgs, lib, sbt-derivation }:
-let
-  pname = "countries-page";
-in {
+let pname = "countries-page";
+in rec {
   package = sbt-derivation.lib.mkSbtDerivation {
     inherit pkgs pname;
     # ...and the rest of the arguments
@@ -19,4 +18,20 @@ in {
 
     depsSha256 = "sha256-vdCU7UJAGi/CujA05OVw/lIomMpIFl+kW+pn8ny16JI=";
   };
+  image = pkgs.dockerTools.buildLayeredImage {
+    name = pname;
+    tag = "latest";
+    created = "now";
+    config = {
+      Cmd = [
+        "${pkgs.jdk}/bin/java"
+        "-jar"
+        "${package}/bin/${pname}.jar"
+        "--host"
+        "0.0.0.0"
+      ];
+      ExposedPorts = { "8080/tcp" = { }; };
+    };
+  };
+
 }

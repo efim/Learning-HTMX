@@ -63,6 +63,7 @@
         packages.multi-step-form-image = multi-step-form.image;
         nixosModules.multi-step-form = multi-step-form.module;
         packages.flag-page = flags-page.package;
+        packages.flag-page-image = flags-page.image;
       });
   # see https://serokell.io/blog/practical-nix-flakes
 }
