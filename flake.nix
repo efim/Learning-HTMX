@@ -32,7 +32,7 @@
           inherit pkgs sbt-derivation;
           lib = pkgs.lib;
         };
-        flags-page = import ./16-countries-page-from-api {
+        countries-page = import ./16-countries-page-from-api {
           inherit pkgs sbt-derivation;
           lib = pkgs.lib;
         };
@@ -62,8 +62,8 @@
         packages.multi-step-form = multi-step-form.package;
         packages.multi-step-form-image = multi-step-form.image;
         nixosModules.multi-step-form = multi-step-form.module;
-        packages.flag-page = flags-page.package;
-        packages.flag-page-image = flags-page.image;
+        packages.countries-page = countries-page.package;
+        packages.countries-page-image = countries-page.image;
       });
   # see https://serokell.io/blog/practical-nix-flakes
 }

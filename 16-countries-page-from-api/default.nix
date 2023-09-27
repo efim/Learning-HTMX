@@ -16,7 +16,7 @@ in rec {
       cp target/scala-*/${pname}-assembly-*.jar $out/bin/${pname}.jar
     '';
 
-    depsSha256 = "sha256-vdCU7UJAGi/CujA05OVw/lIomMpIFl+kW+pn8ny16JI=";
+    depsSha256 = "sha256-PZYt1xvT8BKkFedA8nQvjvuE6JtmxNh0aSManAe4DpY=";
   };
   image = pkgs.dockerTools.buildLayeredImage {
     name = pname;
