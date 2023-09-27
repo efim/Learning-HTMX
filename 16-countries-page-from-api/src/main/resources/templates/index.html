@@ -49,13 +49,6 @@
           </svg>
           <p>Dark Mode</p>
         </button>
-        <script type="text/javascript">
-          document
-            .getElementById("toggleDarkMode")
-            .addEventListener("click", function () {
-              document.documentElement.classList.toggle("dark");
-            });
-        </script>
       </div>
     </header>
     <nav
@@ -249,5 +242,21 @@
         </section>
       </article>
     </main>
+    <script id="dark-mode-scripts" type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const darkMode = localStorage.getItem("darkMode");
+        if (darkMode === "true") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      });
+      document
+        .getElementById("toggleDarkMode")
+        .addEventListener("click", function () {
+          document.documentElement.classList.toggle("dark");
+          localStorage.setItem("darkMode", document.documentElement.classList.contains("dark"))
+        });
+    </script>
   </body>
 </html>

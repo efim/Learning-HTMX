@@ -31,7 +31,7 @@
         <a th:href="@{~/}" href="index.html"
           ><h1 class="grow font-bold md:text-2xl">Where in the world?</h1>
         </a>
-        <button class="flex flex-row gap-x-2">
+        <button id="toggleDarkMode" class="flex flex-row gap-x-2">
           <svg
             class="text-black dark:text-white h-6"
             viewBox="0 0 24 24"
@@ -48,13 +48,6 @@
           </svg>
           <p>Dark Mode</p>
         </button>
-        <script type="text/javascript">
-          document
-            .getElementById("toggleDarkMode")
-            .addEventListener("click", function () {
-              document.documentElement.classList.toggle("dark");
-            });
-        </script>
       </div>
     </header>
     <nav
@@ -174,5 +167,25 @@
         </section>
       </section>
     </main>
+    <script th:replace="~{index :: script#dark-mode-scripts}" type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const darkMode = localStorage.getItem("darkMode");
+        console.log("yoyo");
+        if (darkMode === "true") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      });
+      document
+        .getElementById("toggleDarkMode")
+        .addEventListener("click", function () {
+          document.documentElement.classList.toggle("dark");
+          localStorage.setItem(
+            "darkMode",
+            document.documentElement.classList.contains("dark")
+          );
+        });
+    </script>
   </body>
 </html>
