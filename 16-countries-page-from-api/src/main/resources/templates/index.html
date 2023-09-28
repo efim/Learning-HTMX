@@ -87,6 +87,11 @@
             name="countryName"
             list="country.nameViews-list"
             placeholder="Search for a country..."
+            th:hx-get="@{~/}"
+            hx-trigger="keyup changed delay:500ms"
+            hx-select="#countries-main-list"
+            hx-target="#countries-main-list"
+            hx-swap="outerHTML"
           />
         </div>
         <datalist id="country.nameViews-list">
@@ -180,7 +185,7 @@
         th:if="${nextPage != -1}"
         id="next-page-anchor"
         hx-trigger="revealed"
-        th:hx-get="@{~/countries-cards(region=${selectedRegion},page=${nextPage})}"
+        th:hx-get="@{~/countries-cards(region=${selectedRegion},page=${nextPage},countryName=${countryName})}"
         hx-swap="outerHTML"
       ></div>
 

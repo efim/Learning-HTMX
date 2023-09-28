@@ -33,15 +33,15 @@ case class Routes(countries: List[Country])(implicit
   private val pageSize = 12
 
   @cask.get("/")
-  def indexPage(region: Option[String] = None, page: Int = 0) = {
+  def indexPage(
+      region: Option[String] = None,
+      page: Int = 0,
+      countryName: Option[String] = None
+  ) = {
     val context = new Context()
 
     val regions = countries.map(_.region).distinct.sorted.asJava
-    val selectedCountries = region match {
-      case None                 => countries
-      case Some("")             => countries
-      case Some(selectedRegion) => countries.filter(_.region == selectedRegion)
-    }
+    val selectedCountries = getSelectedCountries(region, countryName)
 
     val startIndex = page * pageSize
     val countriesPage =
@@ -53,7 +53,9 @@ case class Routes(countries: List[Country])(implicit
     context.setVariable("regionsSet", regions)
     context.setVariable("countriesList", countriesPage.asJava)
     context.setVariable("allCountriesList", countries.asJava)
+    // for anchor to request next pages from same countries
     context.setVariable("selectedRegion", region.getOrElse(""))
+    context.setVariable("countryName", countryName.getOrElse(""))
 
     val indexPage = engine.process("index", context)
     Response(
@@ -68,22 +70,26 @@ case class Routes(countries: List[Country])(implicit
     * intended to be called from "next-page-anchor" with htmx
     */
   @cask.get("/countries-cards")
-  def getPageOfCountriesCards(region: Option[String] = None, page: Int = 0) = {
+  def getPageOfCountriesCards(
+      region: Option[String] = None,
+      page: Int = 0,
+      countryName: Option[String] = None
+  ) = {
     val context = new Context()
 
-    val selectedCountries = region match {
-      case None                 => countries
-      case Some("")             => countries
-      case Some(selectedRegion) => countries.filter(_.region == selectedRegion)
-    }
+    val selectedCountries = getSelectedCountries(region, countryName)
 
     val startIndex = page * pageSize
     val countriesPage =
       selectedCountries.slice(startIndex, startIndex + pageSize)
+    context.setVariable("countriesList", countriesPage.asJava)
+
+    // for anchor to request next pages from same countries
+    context.setVariable("selectedRegion", region.getOrElse(""))
+    context.setVariable("countryName", countryName.getOrElse(""))
+
     // if current page is not full - there will be no next page
     val nextPage = if (countriesPage.length == pageSize) page + 1 else -1
-    context.setVariable("countriesList", countriesPage.asJava)
-    context.setVariable("selectedRegion", region.getOrElse(""))
     context.setVariable("nextPage", nextPage)
 
     val cards = engine.process(
@@ -101,6 +107,36 @@ case class Routes(countries: List[Country])(implicit
         "Content-Type" -> "text/html; charset=utf-8"
       ) ++ urlHeaderOpt
     )
+  }
+
+  private def getSelectedCountries(
+      region: Option[String] = None,
+      countryName: Option[String] = None
+  ) = {
+    val countriesFromSelectedRegion = region match {
+      case None                 => countries
+      case Some("")             => countries
+      case Some(selectedRegion) => countries.filter(_.region == selectedRegion)
+    }
+    // applying country name filtering, can be partial name
+    val selectedCountries = countryName match {
+      case None     => countriesFromSelectedRegion
+      case Some("") => countriesFromSelectedRegion
+      case Some(partialSearchString) =>
+        val lowerSearch = partialSearchString.toLowerCase()
+        countriesFromSelectedRegion
+          .filter(country => {
+            val nameContainsPartialMatch =
+              country.name.common.toLowerCase().contains(lowerSearch) ||
+                country.name.nativeName.values.foldLeft(false) {
+                  (acc, nativeName) =>
+                    acc || nativeName.common.toLowerCase().contains(lowerSearch)
+                }
+
+            nameContainsPartialMatch
+          })
+    }
+    selectedCountries
   }
 
   @cask.get("/country")
