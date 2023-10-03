@@ -31,24 +31,58 @@
       }
     </style>
   </head>
-  <body class="">
+  <body>
     <main>
-      <section>
-        Your Result 76 of 100 Great! You scored higher than 65% of the people who
-        have taken these tests.
+      <section
+        class="flex flex-col gap-y-4 items-center px-10 pt-4 pb-8 text-white bg-gradient-to-t rounded-b-3xl from-light-royal-blue to-light-slate-blue"
+      >
+        <h1 class="font-bold text-pale-blue">Your Result</h1>
+        <div
+          class="flex flex-col justify-center items-center w-32 h-32 bg-gradient-to-t rounded-full from-violet-blue/60 to-persian-blue/75"
+        >
+          <span class="text-5xl font-extrabold">76</span>
+          <span class="text-pale-blue"> of 100 </span>
+        </div>
+        <div class="flex flex-col gap-y-3 items-center">
+          <h2 class="text-xl font-bold">Great</h2>
+          <p class="text-sm text-center text-pale-blue">
+            You scored higher than 65% of the people who have taken these tests.
+          </p>
+        </div>
       </section>
 
-      <section>
-        Summary Reaction 80 / 100 Memory 92 / 100 Verbal 61
-        / 100 Visual 72 / 100 Continue
+      <section class="flex flex-col gap-y-4 p-7">
+        <h2 class="font-bold">Summary</h2>
+        <dl class="grid grid-cols-2">
+          <dt>Reaction</dt>
+          <dd class="flex flex-row">
+            <strong>80</strong>
+            / 100
+          </dd>
+          <dt>Memory</dt>
+          <dd class="flex flex-row">
+            <strong>92</strong>
+            / 100
+          </dd>
+          <dt>Verbal</dt>
+          <dd class="flex flex-row">
+            <strong>61</strong>
+            / 100
+          </dd>
+          <dt>Visual</dt>
+          <dd class="flex flex-row">
+            <strong>72</strong>
+            / 100
+          </dd>
+        </dl>
+        Continue
       </section>
-
-  </main>
-  <footer class="attribution fixed inset-x-0 bottom-1">
-    Challenge by
-    <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+    </main>
+    <footer class="fixed inset-x-0 bottom-1 attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
         >Frontend Mentor</a
-                          >. Coded by <a href="#">Your Name Here</a>.
-  </footer>
+      >. Coded by <a href="#">Your Name Here</a>.
+    </footer>
   </body>
 </html>

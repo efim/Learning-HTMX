@@ -44,7 +44,7 @@ html {
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: HankenGrotesk, sans-serif;
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
@@ -535,6 +535,137 @@ video {
   bottom: 0.25rem;
 }
 
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.h-32 {
+  height: 8rem;
+}
+
+.w-32 {
+  width: 8rem;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-y-3 {
+  row-gap: 0.75rem;
+}
+
+.gap-y-4 {
+  row-gap: 1rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.rounded-b-3xl {
+  border-bottom-right-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+}
+
+.bg-gradient-to-t {
+  background-image: linear-gradient(to top, var(--tw-gradient-stops));
+}
+
+.from-light-royal-blue {
+  --tw-gradient-from: hsl(241, 81%, 54%) var(--tw-gradient-from-position);
+  --tw-gradient-to: hsl(241 81% 54% / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-violet-blue\/60 {
+  --tw-gradient-from: hsla(256, 72%, 46%, 0.6) var(--tw-gradient-from-position);
+  --tw-gradient-to: hsla(256, 72%, 46%, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-light-slate-blue {
+  --tw-gradient-to: hsl(252, 100%, 67%) var(--tw-gradient-to-position);
+}
+
+.to-persian-blue\/75 {
+  --tw-gradient-to: hsla(241, 72%, 46%, 0.75) var(--tw-gradient-to-position);
+}
+
+.p-7 {
+  padding: 1.75rem;
+}
+
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.pb-8 {
+  padding-bottom: 2rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+.text-pale-blue {
+  --tw-text-opacity: 1;
+  color: hsl(221 100% 96% / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 html {
   font-size: 18px;
 }
@@ -542,7 +673,7 @@ html {
 @font-face {
   font-family: 'HankenGrotesk';
 
-  src: url('public/fonts/static/HankenGrotesk-Medium.ttf') format('truetype');
+  src: url('/static/public/fonts/static/HankenGrotesk-Medium.ttf') format('truetype');
 
   font-weight: 400;
 
@@ -554,7 +685,7 @@ html {
 @font-face {
   font-family: 'HankenGrotesk';
 
-  src: url('public/fonts/static/HankenGrotesk-Bold.ttf') format('truetype');
+  src: url('/static/public/fonts/static/HankenGrotesk-Bold.ttf') format('truetype');
 
   font-weight: 700;
 
@@ -566,7 +697,7 @@ html {
 @font-face {
   font-family: 'HankenGrotesk';
 
-  src: url('public/fonts/static/HankenGrotesk-ExtraBold.ttf') format('truetype');
+  src: url('/static/public/fonts/static/HankenGrotesk-ExtraBold.ttf') format('truetype');
 
   font-weight: 800;
 

@@ -42,9 +42,11 @@
             pkgs.scala-cli
             pkgs.sbt
             pkgs.scalafmt
+            pkgs.jdk
+
             pkgs.nodePackages.tailwindcss
             pkgs.nodePackages.prettier
-            pkgs.jdk
+            pkgs.rustywind
 
             pkgs.go
             pkgs.wgo
