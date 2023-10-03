@@ -45,7 +45,16 @@
             pkgs.nodePackages.tailwindcss
             pkgs.nodePackages.prettier
             pkgs.jdk
+
+            pkgs.go
+            pkgs.wgo
+            pkgs.semgrep
+            pkgs.gopls
           ];
+          shellHook = ''
+            export GOPATH=$PWD/.go
+            export PATH=$GOPATH/bin:$PATH
+          '';
         };
         packages.price-grid-app = price-grid.package;
         nixosModules.price-grid-app = price-grid.module;
