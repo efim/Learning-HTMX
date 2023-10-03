@@ -62,6 +62,13 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 ### What I learned
 
+#### restarting server of file watch
+
+wgo -verbose -file .go -file .gohtml -file tailwind.config.js echo reloading :: bash -c 'tailwindcss -i ./input.css -o public/out.css' :: go run main.go
+
+and doing tailwind first, because server embeds the output css file, so it's needed for the build step
+
+#### sample
 Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
 To see how you can add code snippets, see below:

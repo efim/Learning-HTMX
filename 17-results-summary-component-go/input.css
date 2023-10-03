@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+    font-size: 18px;
+}
+
+@font-face {
+  font-family: 'HankenGrotesk';
+  src: url('public/fonts/static/HankenGrotesk-Medium.ttf') format('truetype');
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HankenGrotesk';
+  src: url('public/fonts/static/HankenGrotesk-Bold.ttf') format('truetype');
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HankenGrotesk';
+  src: url('public/fonts/static/HankenGrotesk-ExtraBold.ttf') format('truetype');
+  font-weight: 800; /* ExtraBold */
+  font-style: normal;
+}

@@ -522,12 +522,55 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.bg-blue-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(147 197 253 / var(--tw-bg-opacity));
+.fixed {
+  position: fixed;
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+.inset-x-0 {
+  left: 0px;
+  right: 0px;
+}
+
+.bottom-1 {
+  bottom: 0.25rem;
+}
+
+html {
+  font-size: 18px;
+}
+
+@font-face {
+  font-family: 'HankenGrotesk';
+
+  src: url('public/fonts/static/HankenGrotesk-Medium.ttf') format('truetype');
+
+  font-weight: 400;
+
+  /* Regular */
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HankenGrotesk';
+
+  src: url('public/fonts/static/HankenGrotesk-Bold.ttf') format('truetype');
+
+  font-weight: 700;
+
+  /* Bold */
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HankenGrotesk';
+
+  src: url('public/fonts/static/HankenGrotesk-ExtraBold.ttf') format('truetype');
+
+  font-weight: 800;
+
+  /* ExtraBold */
+
+  font-style: normal;
 }
