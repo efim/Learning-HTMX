@@ -11,8 +11,12 @@ import (
 //go:embed public
 var publicContent embed.FS
 
+//go:embed templates
+var templates embed.FS
+
 // starts webserver that serves html page for exercise
 func main() {
+	// serves public static resources: bundled images, fonts, css
 	// visible on http://localhost:8080/static/public/some-text.txt
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.FS(publicContent))))
 
@@ -20,8 +24,10 @@ func main() {
 		io.WriteString(w, "This is temporary here, hello")
 	})
 
+	// main page with results summary
 	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		tmpl := template.Must(template.ParseFiles("templates/summary-component.gohtml"))
+		templateName :=  "templates/summary-component.gohtml"
+		tmpl := template.Must(template.ParseFS(templates, templateName))
 		tmpl.Execute(w, nil)
 	})
 
