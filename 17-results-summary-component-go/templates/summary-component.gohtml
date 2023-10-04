@@ -53,16 +53,17 @@
 
       <section class="flex flex-col gap-y-4 p-7">
         <h2 class="font-bold">Summary</h2>
-        <dl class="flex flex-col">
+        <dl class="flex flex-col gap-y-4">
           {{ range . }}
           <div
-            class="flex flex-row bg-summary-item-color/10"
+            class="flex flex-row items-center px-5 h-12 text-sm rounded-lg bg-summary-item-color/5"
             style="--summary-item-color-var: {{ .ColorHsl }}"
             >
+            <img src="{{ .IconPath }}" alt="" class="pr-2" />
             <dt class="flex-1 text-summary-item-color">{{ .Name }}</dt>
             <dd class="flex flex-row">
-              <strong>{{ .Score }}</strong>
-              / 100
+              <strong class="pr-2" >{{ .Score }}</strong>
+              <span class="text-dark-gray-blue">/ 100</span>
             </dd>
           </div>
           {{ end }}
