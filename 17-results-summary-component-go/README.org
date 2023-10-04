@@ -1,0 +1,96 @@
+* Frontend Mentor - Results summary component solution
+:PROPERTIES:
+:CUSTOM_ID: frontend-mentor---results-summary-component-solution
+:END:
+This is a solution to the
+[[https://www.frontendmentor.io/challenges/results-summary-component-CE_K6s0maV][Results
+summary component challenge on Frontend Mentor]]. Frontend Mentor
+challenges help you improve your coding skills by building realistic
+projects.
+
+** Overview
+:PROPERTIES:
+:CUSTOM_ID: overview
+:END:
+*** The challenge
+:PROPERTIES:
+:CUSTOM_ID: the-challenge
+:END:
+Users should be able to:
+
+- View the optimal layout for the interface depending on their device's
+  screen size
+- See hover and focus states for all interactive elements on the page
+- *Bonus*: Use the local JSON data to dynamically populate the content
+
+*** Screenshot
+:PROPERTIES:
+:CUSTOM_ID: screenshot
+:END:
+[[screenshot-mobile.png]]
+[[screenshot-desktop.png]]
+
+*** Links
+:PROPERTIES:
+:CUSTOM_ID: links
+:END:
+- Solution URL: https://github.com/efim/Learning-HTMX/tree/master/17-results-summary-component-go
+- Live Site URL: https://efim-frontentmentor-results-summary-go.onrender.com/
+
+** My process
+:PROPERTIES:
+:CUSTOM_ID: my-process
+:END:
+*** Built with
+:PROPERTIES:
+:CUSTOM_ID: built-with
+:END:
+- Semantic HTML5 markup
+- TailwindCSS
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
+- Go Server Side Rendering
+- Nix for building and docker image creation
+
+*** What I learned
+:PROPERTIES:
+:CUSTOM_ID: what-i-learned
+:END:
+**** restarting server of file watch
+:PROPERTIES:
+:CUSTOM_ID: restarting-server-of-file-watch
+:END:
+go doesn't have built in restart on file watch, and there are separate programs that do that
+
+#+begin_src bash
+wgo -verbose -file .go -file .gohtml -file tailwind.config.js tailwindcss -i ./input.css -o public/out.css :: go run main.go -p 1234
+#+end_src
+
+and doing tailwind first, because server embeds the output css file, so
+it's needed for the build step
+**** setting up static routes with default go web server
+**** generating template and returning it as response of go route
+**** embedding files into the binary for portability
+**** using css variables to set custom colors in TailwindCSS
+**** getting cli arguments in the go program
+
+*** Continued development
+:PROPERTIES:
+:CUSTOM_ID: continued-development
+:END:
+Further things to learn: getting data from forms, general go things - coroutines, utilizing sqlite, embedding PocketBase
+
+*** Useful resources
+:PROPERTIES:
+:CUSTOM_ID: useful-resources
+:END:
+- https://pkg.go.dev/text/template#example-Template-Block
+  main go templating documentation
+- https://pkg.go.dev/net/http
+  main default server documentation
+- https://nixos.wiki/wiki/Go - packaging Go
+- https://golangdocs.com/command-line-arguments-in-golang
+  command line arguments
+
+
