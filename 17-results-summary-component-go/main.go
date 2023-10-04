@@ -60,7 +60,7 @@ func main() {
 	// main page with results summary
 	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
 		templateName := "templates/summary-component.gohtml"
-		tmpl := template.Must(template.ParseFS(templates, templateName))
+		tmpl := template.Must(template.ParseFS(templates, "templates/index.gohtml", templateName))
 		if err := tmpl.Execute(w, resultsData); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
