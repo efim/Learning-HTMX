@@ -68,10 +68,12 @@ func main() {
 	})
 
 	var port int
+	var host string
 	flag.IntVar(&port, "p", 8080, "Specify port for server to start on")
+	flag.StringVar(&host, "h", "localhost", "Specify host for server to start on")
 	flag.Parse()
 
-	address := fmt.Sprintf("localhost:%d", port)
+	address := fmt.Sprintf("%s:%d", host, port)
 	log.Printf("starting server on %s", address)
 	log.Fatal(http.ListenAndServe(address, nil))
 }

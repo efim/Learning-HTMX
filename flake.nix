@@ -36,6 +36,10 @@
           inherit pkgs sbt-derivation;
           lib = pkgs.lib;
         };
+        results-component-go = import ./17-results-summary-component-go {
+          inherit pkgs;
+          lib = pkgs.lib;
+        };
       in {
         devShells.default = pkgs.mkShell {
           buildInputs = [
@@ -75,6 +79,8 @@
         nixosModules.multi-step-form = multi-step-form.module;
         packages.countries-page = countries-page.package;
         packages.countries-page-image = countries-page.image;
+        packages.results-component-go = results-component-go.package;
+        packages.results-component-go-image = results-component-go.image;
       });
   # see https://serokell.io/blog/practical-nix-flakes
 }
