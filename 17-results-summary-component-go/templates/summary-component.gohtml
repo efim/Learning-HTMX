@@ -38,7 +38,7 @@
       >
         <section
           id="results-pane"
-          class="flex flex-col gap-y-4 items-center px-10 pt-4 pb-8 text-white bg-gradient-to-t rounded-b-3xl md:justify-around md:w-1/2 md:rounded-3xl from-light-royal-blue to-light-slate-blue"
+          class="flex flex-col gap-y-4 items-center px-10 pt-4 pb-8 text-white bg-gradient-to-t from-50% rounded-b-3xl md:justify-around md:w-1/2 md:rounded-3xl from-light-royal-blue to-light-slate-blue"
         >
           <h1 class="font-bold md:pt-2 md:text-xl text-pale-blue">
             Your Result
@@ -46,13 +46,13 @@
           <div
             class="flex flex-col justify-center items-center w-32 h-32 bg-gradient-to-t rounded-full md:w-44 md:h-44 from-violet-blue/60 to-persian-blue/75"
           >
-            <span class="text-5xl font-extrabold md:text-6xl">76</span>
+            <span class="text-5xl font-extrabold md:text-6xl">{{ .TotalScore }}</span>
             <span class="text-pale-blue"> of 100 </span>
           </div>
           <div class="flex flex-col gap-y-3 items-center">
             <h2 class="text-xl font-bold md:text-2xl">Great</h2>
             <p class="text-sm text-center md:text-base text-pale-blue">
-              You scored higher than 65% of the people who have taken these
+              You scored higher than {{ .UpperPercent }}% of the people who have taken these
               tests.
             </p>
           </div>
@@ -64,7 +64,7 @@
         >
           <h2 class="font-bold md:text-xl">Summary</h2>
           <dl class="flex flex-col gap-y-4">
-            {{ range . }}
+            {{ range .Categories }}
             <div
               class="flex flex-row items-center px-5 h-12 text-sm rounded-lg bg-summary-item-color/5"
               style="--summary-item-color-var: {{ .ColorHsl }}"

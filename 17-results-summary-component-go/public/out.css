@@ -646,6 +646,10 @@ video {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.from-50\% {
+  --tw-gradient-from-position: 50%;
+}
+
 .to-light-slate-blue {
   --tw-gradient-to: hsl(252, 100%, 67%) var(--tw-gradient-to-position);
 }
