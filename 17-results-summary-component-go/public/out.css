@@ -423,7 +423,7 @@ video {
 }
 
 :root {
-  --summary-item-color: 0deg 100% 67%
+  --summary-item-color-var: 0deg 100% 67%
     
 }
 
@@ -544,12 +544,24 @@ video {
   display: flex;
 }
 
+.grid {
+  display: grid;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
 .h-32 {
   height: 8rem;
 }
 
 .w-32 {
   width: 8rem;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .flex-1 {
@@ -562,6 +574,10 @@ video {
 
 .flex-col {
   flex-direction: column;
+}
+
+.place-items-center {
+  place-items: center;
 }
 
 .items-center {
@@ -587,6 +603,11 @@ video {
 .rounded-b-3xl {
   border-bottom-right-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;
+}
+
+.bg-dark-gray-blue {
+  --tw-bg-opacity: 1;
+  background-color: hsl(224 30% 27% / var(--tw-bg-opacity));
 }
 
 .bg-summary-item-color\/10 {
