@@ -54,49 +54,21 @@
       <section class="flex flex-col gap-y-4 p-7">
         <h2 class="font-bold">Summary</h2>
         <dl class="flex flex-col">
+          {{ range . }}
           <div
             class="flex flex-row bg-summary-item-color/10"
-            style="--summary-item-color-var: 0deg 100% 67%"
-          >
-            <dt class="flex-1 text-summary-item-color">Reaction</dt>
+            style="--summary-item-color-var: {{ .ColorHsl }}"
+            >
+            <dt class="flex-1 text-summary-item-color">{{ .Name }}</dt>
             <dd class="flex flex-row">
-              <strong>80</strong>
+              <strong>{{ .Score }}</strong>
               / 100
             </dd>
           </div>
-          <div
-            class="flex flex-row bg-summary-item-color/10"
-            style="--summary-item-color-var: 39deg 100% 56%"
-          >
-            <dt class="flex-1 text-summary-item-color">Memory</dt>
-            <dd class="flex flex-row">
-              <strong>92</strong>
-              / 100
-            </dd>
-          </div>
-          <div
-            class="flex flex-row bg-summary-item-color/10"
-            style="--summary-item-color-var: 166deg 100% 37%"
-          >
-            <dt class="flex-1 text-summary-item-color">Verbal</dt>
-            <dd class="flex flex-row">
-              <strong>61</strong>
-              / 100
-            </dd>
-          </div>
-          <div
-            class="flex flex-row bg-summary-item-color/10"
-            style="--summary-item-color-var: 234deg 85% 45%"
-          >
-            <dt class="flex-1 text-summary-item-color">Visual</dt>
-            <dd class="flex flex-row">
-              <strong>72</strong>
-              / 100
-            </dd>
-          </div>
+          {{ end }}
         </dl>
         <a
-          href="/"
+          href="/"flex flex-row
           class="grid place-items-center w-full h-12 text-white rounded-full bg-dark-gray-blue"
         >
           Continue
