@@ -2,6 +2,7 @@ package main
 
 import (
 	"embed"
+	"flag"
 	"fmt"
 	"html/template"
 	"io"
@@ -66,6 +67,11 @@ func main() {
 		}
 	})
 
-	log.Print("starting server on default :8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	var port int
+	flag.IntVar(&port, "p", 8080, "Specify port for server to start on")
+	flag.Parse()
+
+	address := fmt.Sprintf("localhost:%d", port)
+	log.Printf("starting server on %s", address)
+	log.Fatal(http.ListenAndServe(address, nil))
 }
