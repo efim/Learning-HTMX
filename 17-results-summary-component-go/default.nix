@@ -7,6 +7,11 @@ in rec {
     inherit pname version;
     src = pkgs.nix-gitignore.gitignoreSource [ ] ./.;
     vendorHash = null; # set to "" when get dependencies in go.mod
+
+    # Adding the Tailwind build step to preBuild
+    preBuild = ''
+      ${pkgs.nodePackages.tailwindcss}/bin/tailwindcss -i ./input.css -o public/out.css
+    '';
   };
   image = pkgs.dockerTools.buildLayeredImage {
     name = pname;
