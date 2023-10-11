@@ -61,10 +61,10 @@
         hx-get="/country"
         hx-target="body"
         hx-push-url="true"
-        class="md:w-1/4 md:min-w-max"
+        class="contents"
       >
         <div
-          class="flex flex-row items-center bg-white shadow-md h-14 md:h-16 rounded-lg md:w-full dark:bg-dark-blue"
+          class="md:w-1/4 md:min-w-max flex flex-row items-center bg-white shadow-md h-14 md:h-16 rounded-lg dark:bg-dark-blue"
         >
           <!-- <p class="w-16 grid place-content-center">IC</p> -->
           <svg
@@ -87,11 +87,9 @@
             name="countryName"
             list="country.nameViews-list"
             placeholder="Search for a country..."
-            th:hx-get="@{~/}"
-            hx-trigger="keyup changed delay:500ms"
-            hx-select="#countries-main-list"
+            hx-post="/countries-cards"
             hx-target="#countries-main-list"
-            hx-swap="outerHTML"
+            hx-trigger="keyup changed delay:500ms"
           />
         </div>
         <datalist id="country.nameViews-list">
@@ -101,12 +99,10 @@
             value=""
           ></option>
         </datalist>
-      </form>
-      <form>
         <select
           name="region"
           class="block w-62 mt-1 h-14 md:h-16 w-64 bg-white shadow-lg rounded-md shadow-sm focus:outline-none px-7 dark:bg-dark-blue"
-          hx-get="/countries-cards"
+          hx-post="/countries-cards"
           hx-target="#countries-main-list"
         >
           <option

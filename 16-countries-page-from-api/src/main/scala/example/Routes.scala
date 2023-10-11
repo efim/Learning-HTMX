@@ -64,6 +64,15 @@ case class Routes(countries: List[Country])(implicit
     )
   }
 
+  @cask.postForm("/countries-cards")
+  def postPageOfCountriesCards(
+    region: cask.FormValue,
+    countryName: cask.FormValue
+  ) = {
+    println(s"in get for countries cards with $region and $countryName")
+    getPageOfCountriesCards(Some(region.value), 0, Some(countryName.value))
+  }
+
   /** this method returns directly set of cards and new anchor for loading next
     * page of cards
     *
@@ -98,7 +107,7 @@ case class Routes(countries: List[Country])(implicit
       context
     )
     // this is to store switch to another region in the history
-    val newUrl = s"/?region=${region.getOrElse("")}"
+    val newUrl = s"/?region=${region.getOrElse("")}&countryName=${countryName.getOrElse("")}"
     // only save url when new region is requested, not on addtional card loads
     val urlHeaderOpt = if (page == 0) Seq("HX-Push" -> newUrl) else Seq.empty
     Response(
@@ -140,7 +149,7 @@ case class Routes(countries: List[Country])(implicit
   }
 
   @cask.get("/country")
-  def getCountryPage(countryName: String) = {
+  def getCountryPage(countryName: String, region: Option[String] = None) = {
     val context = new Context()
     countries.find(_.name.common == countryName) match {
       case Some(selectedCountry) =>
