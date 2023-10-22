@@ -8,7 +8,8 @@ val cask = "com.lihaoyi" %% "cask" % "0.9.1"
 val mainargs = "com.lihaoyi" %% "mainargs" % "0.5.4"
 val requests = "com.lihaoyi" %% "requests" % "0.8.0"
 
-ThisBuild / scalaVersion := "3.2.2"
+ThisBuild / scalaVersion := "3.3.0"
+
 libraryDependencies ++= Seq(cask, mainargs, requests)
 libraryDependencies += toolkit
 libraryDependencies += (toolkitTest % Test)
